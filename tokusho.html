@@ -28,6 +28,7 @@ dd{white-space:pre-wrap}
 dd small{display:block;color:var(--sub);font-size:12.5px;margin-top:2px}
 @media (min-width:640px){dl div{display:flex;gap:20px}dt{flex:none;width:190px;margin:0}dd{flex:1}}
 .todo{background:#FFF4D6;color:#6B4E00;border-radius:4px;padding:0 6px}
+.muted{color:var(--sub)}
 .foot{margin-top:36px;text-align:center;font-size:12px;color:var(--sub)}
 .foot a{margin:0 8px}
 .back-btn{display:flex;align-items:center;justify-content:center;height:52px;border-radius:14px;background:var(--ink);color:#fff;font-weight:700;text-decoration:none;margin-top:32px}
@@ -45,12 +46,12 @@ dd small{display:block;color:var(--sub);font-size:12.5px;margin-top:2px}
     <div><dt>代表者・運営統括責任者</dt><dd>代表取締役　金山 正</dd></div>
     <div><dt>所在地</dt><dd>〒153-0061
 東京都目黒区中目黒1-4-6 和田邸1F</dd></div>
-    <div><dt>店舗（受け取り場所）</dt><dd>土鍋ご飯いくしか 堀切
-〒124-0006
-東京都葛飾区堀切4-8-11 金井ビル1F</dd></div>
-    <div><dt>電話番号</dt><dd><a href="tel:000000">00-0000</a><small>受付時間 11:00〜19:00</small></dd></div>
-    <!-- ↓ 公開前にメールアドレスを入れてください（Stripeの審査でも必要です） -->
-    <div><dt>メールアドレス</dt><dd><span class="todo">（メールアドレスを記載）</span></dd></div>
+    <!-- ↓ 店舗・電話番号・メールアドレス・受付時間などは、スプレッドシートの「設定」シートから自動で表示されます -->
+    <div><dt>店舗（受け取り場所）</dt><dd><span data-cfg="storeName">土鍋ご飯いくしか 堀切</span>
+<span data-cfg="postalAddress">〒124-0006
+東京都葛飾区堀切4-8-11 金井ビル1F</span></dd></div>
+    <div><dt>電話番号</dt><dd><span data-cfg="tel"><span class="muted">準備中</span></span><small>受付時間 <span data-cfg="hoursText">11:00〜19:00</span></small></dd></div>
+    <div><dt>メールアドレス</dt><dd><span data-cfg="email"><a href="https://ikushika.com/contact" target="_blank" rel="noopener">お問い合わせフォーム</a>からご連絡ください</span></dd></div>
     <div><dt>ホームページ</dt><dd><a href="https://ikushika.github.io/horikiri/">https://ikushika.github.io/horikiri/</a></dd></div>
     <div><dt>販売価格</dt><dd>各商品の注文ページに表示している価格（税込）<small>クーポンをご利用の場合は、割引後の金額となります</small></dd></div>
     <div><dt>商品代金以外の必要料金</dt><dd>ありません（店頭でのお受け取りのため、送料はかかりません）。
@@ -61,9 +62,9 @@ dd small{display:block;color:var(--sub);font-size:12.5px;margin-top:2px}
 オンライン決済：ご注文確定時に決済されます</dd></div>
     <div><dt>商品の引渡時期</dt><dd>ご注文時に選択いただいた受取日時</dd></div>
     <div><dt>商品の引渡方法</dt><dd>店舗でのお受け取り（配送は行っておりません）</dd></div>
-    <div><dt>お申し込みの期間</dt><dd>受取時間の60分前まで<small>注文ページで選択できる受取日時に限ります</small></dd></div>
-    <div><dt>販売数量の制限</dt><dd>1回のご注文につき30点まで<small>それを超えるご注文はお電話でご相談ください</small></dd></div>
-    <div><dt>キャンセル・変更</dt><dd>受取日の前日までにお電話でご連絡ください。受取日当日のキャンセルは、仕込みの都合によりお受けできない場合があります。
+    <div><dt>お申し込みの期間</dt><dd>受取時間の<span data-cfg="leadMinutes">60</span>分前まで<small>注文ページで選択できる受取日時に限ります</small></dd></div>
+    <div><dt>販売数量の制限</dt><dd><span data-cfg="maxPerOrder">1回のご注文につき30点まで</span><small>それを超えるご注文はお電話・お問い合わせフォームでご相談ください</small></dd></div>
+    <div><dt>キャンセル・変更</dt><dd><span data-cfg="cancelText">受取日の前日までにお電話でご連絡ください。当日のキャンセルは、仕込みの都合によりお受けできない場合があります。</span>
 オンライン決済でのご注文のキャンセルを承った場合は、ご利用の決済方法にて返金いたします（返金が反映される時期はカード会社等により異なります）。</dd></div>
     <div><dt>返品・交換</dt><dd>食品のため、お客様のご都合による返品・交換はお受けしておりません。
 商品に不備があった場合は、お受け取り当日中にお電話でご連絡ください。確認のうえ、交換または返金にて対応いたします。</dd></div>
@@ -74,5 +75,32 @@ dd small{display:block;color:var(--sub);font-size:12.5px;margin-top:2px}
   <a class="back-btn" href="./">注文ページに戻る</a>
   <p class="foot"><a href="https://ikushika.com/contact" target="_blank" rel="noopener">お問い合わせ</a><a href="https://ikushika.com/company" target="_blank" rel="noopener">会社概要</a><br>© 株式会社いくしか</p>
 </div>
+<script>
+/* 電話番号・メールアドレスなどを、スプレッドシートの「設定」シートから読み込んで表示します
+   （GAS_URL は index.html と同じウェブアプリURL） */
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxJY0sDV1JzD7mhZkVxPptVTydSW7bdIlJOTZVP6m0oSrMEudbP8cNP4A-yZBXrVFqG/exec';
+(async () => {
+  if (!GAS_URL) return;
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const set = (k, html) => document.querySelectorAll('[data-cfg="' + k + '"]').forEach(el => { el.innerHTML = html; });
+  try {
+    const ctrl = new AbortController(); setTimeout(() => ctrl.abort(), 15000);
+    const d = await (await fetch(GAS_URL + '?action=init', { cache: 'no-store', signal: ctrl.signal })).json();
+    if (!d || !d.ok) return;
+    const c = d.config || {};
+    if (c.storeName) set('storeName', esc(c.storeName));
+    if (c.address) set('postalAddress', (c.postal ? '〒' + esc(c.postal) + '\n' : '') + esc(c.address));
+    const tel = String(c.tel || '').trim();
+    set('tel', tel ? '<a href="tel:' + esc(tel.replace(/[^\d+]/g, '')) + '">' + esc(tel) + '</a>' : '<span class="muted">準備中</span>');
+    if (c.hoursText) set('hoursText', esc(c.hoursText));
+    const mail = String(c.email || '').trim();
+    const contact = c.contactUrl || 'https://ikushika.com/contact';
+    set('email', mail ? '<a href="mailto:' + esc(mail) + '">' + esc(mail) + '</a>' : '<a href="' + esc(contact) + '" target="_blank" rel="noopener">お問い合わせフォーム</a>からご連絡ください');
+    if (c.leadMinutes != null) set('leadMinutes', esc(c.leadMinutes));
+    set('maxPerOrder', c.maxPerOrder ? '1回のご注文につき' + esc(c.maxPerOrder) + '点まで' : '特にありません');
+    if (c.cancelText) set('cancelText', esc(c.cancelText));
+  } catch (e) { /* 読み込めないときは、ページに書いてある内容をそのまま表示 */ }
+})();
+</script>
 </body>
 </html>

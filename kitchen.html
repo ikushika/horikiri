@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0B0A09">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="いくしか注文">
+<title>注文ダッシュボード｜土鍋ご飯いくしか 堀切</title>
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<style>
+:root{
+  --bg:#F4F1EC;--card:#FFFFFF;--ink:#1A1714;--sub:#6B645B;--mute:#A39A8E;--line:#E6E0D6;
+  --dark:#0B0A09;--accent:#8C4A2F;--orange:#E8650F;--orange-weak:#FFF1E6;--red:#D0121B;--red-weak:#FDECEC;
+  --green:#1F8A4C;--green-weak:#E8F5EC;--yellow:#FFF6D6;--blue:#2B5CB8;--blue-weak:#EAF0FB;
+  --r:14px;--safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;min-height:100vh}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+a{color:inherit}
+[hidden]{display:none!important}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* ---------- start ---------- */
+.start{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:var(--dark);color:#fff}
+.start-card{width:100%;max-width:440px;text-align:center}
+.start-logo{width:96px;height:auto;margin:0 auto 14px;display:block}
+.start h1{font-size:22px;font-weight:700;letter-spacing:.04em}
+.start .lead{color:#C9C1B6;font-size:14px;margin:6px 0 26px}
+.key-label{display:block;text-align:left;font-size:13px;color:#C9C1B6;margin-bottom:6px}
+.key-input{width:100%;height:60px;border-radius:12px;border:1.5px solid #3A342E;background:#1A1714;color:#fff;font-size:26px;letter-spacing:.18em;text-align:center;font-family:ui-monospace,Menlo,Consolas,monospace;text-transform:uppercase;outline:none}
+.key-input:focus{border-color:var(--orange)}
+.start-btn{margin-top:16px;width:100%;height:64px;border-radius:14px;background:var(--orange);color:#fff;font-size:20px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .1s,opacity .2s}
+.start-btn:active{transform:scale(.98)}
+.start-btn[disabled]{opacity:.6}
+.start-err{margin-top:12px;color:#FF9C8F;font-size:14px;min-height:21px}
+.start-tips{margin-top:26px;text-align:left;font-size:13px;color:#C9C1B6;background:#15120F;border:1px solid #2A2520;border-radius:12px;padding:14px 16px}
+.start-tips b{color:#fff}
+.start-tips li{margin-left:18px;margin-top:4px}
+.start-demo{display:inline-block;margin-top:18px;font-size:13px;color:#C9C1B6;text-decoration:underline}
+
+/* ---------- header ---------- */
+.hd{position:sticky;top:0;z-index:20;background:var(--dark);color:#fff;padding:calc(10px + var(--safe-t)) 16px 10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hd-brand{display:flex;align-items:center;gap:10px;min-width:0}
+.hd-brand img{width:44px;height:auto}
+.hd-brand b{display:block;font-size:15px;line-height:1.2;white-space:nowrap}
+.hd-brand small{display:block;font-size:11px;color:#A39A8E;white-space:nowrap}
+.datenav{display:flex;align-items:center;gap:6px;margin:0 auto}
+.datenav .arrow{width:44px;height:44px;border-radius:10px;background:#1E1A17;display:flex;align-items:center;justify-content:center}
+.datenav .arrow:active{background:#2B2621}
+.date-lbl{min-width:170px;text-align:center;line-height:1.2}
+.date-lbl b{display:block;font-size:20px}
+.date-lbl span{display:inline-block;margin-top:3px;font-size:12px;color:#C9C1B6}
+.date-lbl .rel{background:var(--orange);color:#fff;border-radius:999px;padding:1px 9px;font-weight:700}
+.today-btn{height:44px;padding:0 14px;border-radius:10px;background:#fff;color:var(--dark);font-weight:700;font-size:14px}
+.hd-right{display:flex;align-items:center;gap:10px}
+.clock{font-size:30px;font-weight:700;letter-spacing:.02em;line-height:1}
+.sync{display:flex;align-items:center;gap:6px;font-size:12px;color:#C9C1B6;white-space:nowrap}
+.sync i{width:9px;height:9px;border-radius:50%;background:#4ADE80;box-shadow:0 0 0 3px rgba(74,222,128,.18)}
+.sync.err{color:#FF9C8F}
+.sync.err i{background:#FF5A4F;box-shadow:0 0 0 3px rgba(255,90,79,.22);animation:blink 1s infinite}
+.sync.busy i{animation:blink .8s infinite}
+@keyframes blink{50%{opacity:.25}}
+.icon-btn{width:46px;height:46px;border-radius:12px;background:#1E1A17;display:flex;align-items:center;justify-content:center;position:relative}
+.icon-btn:active{background:#2B2621}
+.icon-btn.off{background:#5A1F1A;color:#FFB4AA}
+
+.banner{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:14px;font-weight:600}
+.banner.warn{background:var(--yellow);color:#6B4E00;border-bottom:1px solid #EAD891}
+.banner.err{background:var(--red-weak);color:var(--red);border-bottom:1px solid #F4C7C7}
+.banner button{margin-left:auto;background:rgba(0,0,0,.08);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:700;white-space:nowrap}
+.demo-tag{background:#FFF4D6;color:#6B4E00;border-radius:999px;font-size:11px;padding:2px 8px;font-weight:700}
+
+/* ---------- layout ---------- */
+.main{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:16px;padding:16px;max-width:1500px;margin:0 auto;align-items:start}
+.main>*{min-width:0}
+@media (max-width:960px){.main{grid-template-columns:minmax(0,1fr)}}
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px}
+@media (max-width:640px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.kpi{background:var(--card);border-radius:12px;padding:10px 12px;border:1px solid var(--line)}
+.kpi small{display:block;font-size:12px;color:var(--sub)}
+.kpi b{font-size:24px;line-height:1.2}
+.kpi b em{font-style:normal;font-size:13px;font-weight:600;margin-left:2px;color:var(--sub)}
+.kpi.hl{background:var(--orange-weak);border-color:#F7CFAF}
+@media (max-width:640px){#sKpis{grid-template-columns:repeat(2,minmax(0,1fr))}#sKpis .kpi:first-child{grid-column:1/-1}#sKpis .kpi b{font-size:22px}}
+.kpi.hl b{color:var(--orange)}
+
+.tabs{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{height:42px;padding:0 16px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:15px;font-weight:600;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.tab span{min-width:24px;height:22px;border-radius:999px;background:var(--bg);font-size:13px;display:inline-flex;align-items:center;justify-content:center;padding:0 6px}
+.tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.tab.on span{background:rgba(255,255,255,.18)}
+
+/* time slots */
+.slot{margin-bottom:16px}
+.slot-hd{display:flex;align-items:baseline;gap:10px;margin:0 2px 8px}
+.slot-hd b{font-size:22px}
+.slot-hd span{font-size:13px;color:var(--sub)}
+.slot-hd .flag{font-size:12px;font-weight:700;border-radius:6px;padding:2px 8px}
+.slot-hd .flag.late{background:var(--red);color:#fff}
+.slot-hd .flag.soon{background:var(--orange);color:#fff}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+
+.card{background:var(--card);border-radius:var(--r);border:1.5px solid var(--line);padding:14px 14px 12px;display:flex;flex-direction:column;gap:8px;position:relative;transition:opacity .2s,border-color .2s}
+.card.late{border-color:var(--red);box-shadow:0 0 0 3px var(--red-weak)}
+.card.soon{border-color:var(--orange)}
+.card.fresh{box-shadow:0 0 0 3px rgba(232,101,15,.35);animation:fresh 1.6s ease-in-out 3}
+@keyframes fresh{50%{box-shadow:0 0 0 6px rgba(232,101,15,.12)}}
+.card.s-done{background:#FAFAF8;opacity:.78}
+.card.s-cancel,.card.s-pending{opacity:.55;background:#F7F5F2}
+.c-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.c-time{font-size:28px;font-weight:800;line-height:1}
+.c-id{font-size:13px;color:var(--sub);font-family:ui-monospace,Menlo,Consolas,monospace}
+.tag{font-size:12px;font-weight:700;border-radius:6px;padding:2px 8px;line-height:1.5}
+.tag.new{background:var(--orange);color:#fff}
+.tag.late{background:var(--red);color:#fff}
+.tag.soon{background:var(--orange-weak);color:var(--orange)}
+.tag.done{background:var(--green-weak);color:var(--green)}
+.tag.cancel{background:#EEE;color:#555}
+.tag.pending{background:var(--blue-weak);color:var(--blue)}
+.c-name{font-size:19px;font-weight:700;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.c-name small{font-size:13px;font-weight:600;color:var(--sub)}
+.c-tel{margin-left:auto;font-size:14px;font-weight:600;color:var(--blue);text-decoration:none;white-space:nowrap}
+.c-items{list-style:none;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:8px 0;display:flex;flex-direction:column;gap:5px}
+.c-items li{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:baseline}
+.c-items .q{font-size:20px;font-weight:800;min-width:38px}
+.c-items .n{font-size:16px;font-weight:700;line-height:1.35}
+.c-items .op{grid-column:2;display:flex;flex-wrap:wrap;gap:4px;margin-top:-2px}
+.c-items .op span{font-size:12px;font-weight:700;background:var(--orange-weak);color:#A3470A;border-radius:6px;padding:1px 7px}
+.c-meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-size:14px}
+.pay{font-weight:700;border-radius:8px;padding:3px 10px}
+.pay.store{background:var(--yellow);color:#6B4E00}
+.pay.paid{background:var(--green-weak);color:var(--green)}
+.pay.pending{background:var(--blue-weak);color:var(--blue)}
+.c-meta .chop{color:var(--sub)}
+.c-meta .chop.no{color:var(--ink);font-weight:700}
+.c-meta .cp{color:var(--sub);font-size:13px}
+.c-note{background:var(--yellow);border-radius:8px;padding:7px 10px;font-size:14px;font-weight:600;white-space:pre-wrap;word-break:break-word}
+.c-acts{display:flex;gap:8px;margin-top:2px}
+.btn{height:50px;border-radius:12px;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 14px;transition:transform .1s,opacity .2s}
+.btn:active{transform:scale(.98)}
+.btn[disabled]{opacity:.5;pointer-events:none}
+.btn.primary{flex:1;background:var(--ink);color:#fff}
+.btn.ghost{background:var(--bg);color:var(--sub);font-size:14px}
+.btn.line{flex:1;background:var(--card);border:1.5px solid var(--line)}
+.c-sub{font-size:12px;color:var(--mute)}
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:var(--r);padding:42px 20px;text-align:center;color:var(--sub)}
+.empty b{display:block;color:var(--ink);font-size:17px;margin-bottom:4px}
+
+/* side */
+.side{display:flex;flex-direction:column;gap:14px;position:sticky;top:86px}
+@media (max-width:960px){.side{position:static}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.panel h2{font-size:15px;display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.panel h2 small{margin-left:auto;font-size:12px;color:var(--sub);font-weight:600}
+.prod{list-style:none;display:flex;flex-direction:column}
+.prod li{display:grid;grid-template-columns:1fr auto auto;gap:4px 12px;align-items:baseline;padding:8px 0;border-top:1px solid var(--line)}
+.prod li:first-child{border-top:0;padding-top:0}
+.prod .pn{font-weight:700;font-size:14px;line-height:1.35}
+.prod .pt{font-size:22px;font-weight:800;text-align:right;min-width:36px}
+.prod .pr{font-size:12px;color:var(--sub);text-align:right;min-width:56px}
+.prod .pr b{color:var(--orange);font-size:15px}
+.prod .po{grid-column:1/-1;font-size:12px;color:#A3470A;display:flex;flex-wrap:wrap;gap:4px}
+.prod .po span{background:var(--orange-weak);border-radius:6px;padding:1px 7px;font-weight:700}
+.prod-empty{font-size:13px;color:var(--sub)}
+.days{display:flex;flex-wrap:wrap;gap:6px}
+.day{border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;font-weight:600;background:var(--bg)}
+.day b{color:var(--orange);margin-left:4px}
+.day.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.day.on b{color:#FFC59A}
+.side-note{font-size:12px;color:var(--sub);line-height:1.6}
+
+/* ---------- 受付・売り切れ ---------- */
+.accept-btn{height:46px;border-radius:12px;background:#1E1A17;display:flex;align-items:center;gap:8px;padding:0 12px 0 10px;text-align:left;line-height:1.15}
+.accept-btn:active{background:#2B2621}
+.accept-btn i{width:10px;height:10px;border-radius:50%;background:#4ADE80;flex:none}
+.accept-btn small{display:block;font-size:10.5px;color:#A39A8E;white-space:nowrap}
+.accept-btn b{display:block;font-size:14px;white-space:nowrap}
+.accept-btn.cut{background:#4A2A10}.accept-btn.cut i{background:#FF9B4A}
+.accept-btn.paused{background:#5A1F1A}.accept-btn.paused i{background:#FF5A4F;animation:blink 1s infinite}
+.accept-btn.closed i{background:#A39A8E}
+.banner.stop{background:var(--red);color:#fff;border-bottom:0}
+.banner.stop button{background:#fff;color:var(--red)}
+.banner.cut{background:#FFE7D3;color:#8A3A06;border-bottom:1px solid #F6C9A6}
+.banner.cut button{background:#8A3A06;color:#fff}
+#confirm{z-index:75}
+.modal:not([hidden]) ~ .toast{bottom:auto;top:calc(16px + var(--safe-t));transform:translate(-50%,-20px)}
+.modal:not([hidden]) ~ .toast.show{transform:translate(-50%,0)}
+.ctrl .modal-box{max-width:620px;max-height:calc(100vh - 40px);overflow-y:auto}
+.ctrl h4{font-size:15px;margin:18px 0 8px}
+.ctrl-state{display:flex;align-items:center;gap:12px;border-radius:14px;padding:14px 16px;margin-top:6px;background:var(--green-weak);color:var(--green)}
+.ctrl-state i{width:14px;height:14px;border-radius:50%;background:currentColor;flex:none}
+.ctrl-state b{display:block;font-size:18px}
+.ctrl-state span{display:block;font-size:13px;opacity:.9;color:var(--ink)}
+.ctrl-state.cut{background:#FFE7D3;color:#C2560F}
+.ctrl-state.paused{background:var(--red-weak);color:var(--red)}
+.ctrl-state.closed{background:#F2F0EC;color:var(--sub)}
+.ctrl-acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media (max-width:520px){.ctrl-acts{grid-template-columns:1fr}}
+.ctrl-acts .btn{height:60px;flex-direction:column;gap:0;line-height:1.25;font-size:16px}
+.ctrl-acts .btn small{font-size:11.5px;font-weight:600;opacity:.85}
+.btn.warn{background:#C2560F;color:#fff}
+.btn.ok{background:var(--green);color:#fff}
+.ctrl-hint{font-size:12px;color:var(--sub);line-height:1.6;margin-top:8px}
+.ctrl-items{list-style:none}
+.ctrl-items li{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.ctrl-items li:first-child{border-top:0}
+.ctrl-items .ci{flex:1;min-width:170px}
+.ctrl-items .ci b{display:block;font-size:15px;line-height:1.35}
+.ctrl-items .ci small{display:block;font-size:12px;color:var(--sub)}
+.seg3{display:flex;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:3px;gap:3px}
+.seg3 button{height:40px;padding:0 12px;border-radius:9px;font-size:13.5px;font-weight:700;color:var(--sub);white-space:nowrap}
+.seg3 button.on[data-m="on"]{background:var(--green);color:#fff}
+.seg3 button.on[data-m="today"]{background:#C2560F;color:#fff}
+.seg3 button.on[data-m="stop"]{background:var(--ink);color:#fff}
+.seg3 button[disabled]{opacity:.5}
+.ctrl-items li.st-today .ci b,.ctrl-items li.st-stop .ci b{color:var(--sub)}
+
+/* ---------- view switch ---------- */
+.views{display:flex;background:#1E1A17;border-radius:12px;padding:4px;gap:4px}
+.views button{height:38px;padding:0 16px;border-radius:9px;font-weight:700;font-size:15px;color:#C9C1B6;display:flex;align-items:center;gap:6px}
+.views button svg.i{width:18px;height:18px}
+.views button.on{background:#fff;color:var(--dark)}
+
+/* ---------- sales ---------- */
+.sales{padding:16px;max-width:1500px;margin:0 auto;transition:opacity .2s}
+.sales.loading{opacity:.55}
+.kpi .kpi-sub{display:block;font-size:12px;color:var(--sub);margin-top:1px}
+.kpi .delta{display:inline-flex;align-items:center;gap:3px;font-size:12px;font-weight:700;margin-top:2px}
+.delta.up{color:var(--green)}.delta.down{color:var(--red)}.delta.flat{color:var(--sub)}
+.chart-panel{margin-bottom:14px}
+.chart-hd{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;margin-bottom:4px}
+.chart-hd h2{margin:0}
+.legend{display:flex;gap:14px;margin-left:auto;font-size:12px;color:var(--sub)}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.legend i.act{background:#A8481A}
+.legend i.res{background:repeating-linear-gradient(45deg,#E9965F 0 3px,#D48553 3px 5px)}
+.chart{position:relative;height:250px;touch-action:pan-y}
+.chart svg{display:block;width:100%;height:100%}
+.chart .hit{fill:transparent;cursor:pointer;outline:none}
+.chart .bar{transition:opacity .15s}
+.chart.hovering .bar{opacity:.45}
+.chart.hovering .bar.on{opacity:1}
+.tip{position:absolute;pointer-events:none;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.12);padding:7px 11px;font-size:12px;color:var(--sub);white-space:nowrap;transform:translate(-50%,calc(-100% - 8px));z-index:5;line-height:1.45}
+.tip b{display:block;font-size:17px;color:var(--ink);font-variant-numeric:tabular-nums}
+.sales-grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:14px;align-items:start}
+.sales-grid>*{min-width:0}
+@media (max-width:960px){.sales-grid{grid-template-columns:minmax(0,1fr)}}
+.tbl-wrap{overflow-x:auto;margin:0 -14px;padding:0 14px;-webkit-overflow-scrolling:touch}
+table.st{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
+.st th{font-size:12px;color:var(--sub);font-weight:600;text-align:right;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.st th:first-child,.st td:first-child{text-align:left}
+.st td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.st td.strong{font-weight:800}
+.st tbody tr{cursor:pointer}
+.st tbody tr:hover td{background:#FBF8F4}
+.st tr.zero td{color:var(--mute)}
+.st tr.zero td:first-child{color:var(--sub)}
+.st tr.today td{background:var(--orange-weak)}
+.st .sun{color:var(--red)}.st .sat{color:var(--blue)}
+.st .mini{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;border-radius:5px;padding:0 6px;line-height:18px;vertical-align:1px}
+.st .mini.t{background:var(--orange);color:#fff}
+.st .mini.r{background:#FBE7DA;color:#8A3A12}
+.st tfoot td{font-weight:800;border-bottom:0;border-top:2px solid var(--ink);color:var(--ink)}
+.st tfoot tr+tr td{border-top:1px solid var(--line);font-weight:700;color:var(--sub)}
+.rank{list-style:none}
+.rank li{padding:9px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:4px 8px;align-items:baseline}
+.rank li:first-child{border-top:0;padding-top:0}
+.rank .no{font-weight:800;color:var(--sub);font-size:13px}
+.rank .nm{font-weight:700;font-size:14px;line-height:1.35}
+.rank .v{text-align:right;font-weight:800;font-variant-numeric:tabular-nums;font-size:15px}
+.rank .v small{display:block;font-weight:600;color:var(--sub);font-size:12px}
+.rank .meter{grid-column:2/-1;height:6px;border-radius:999px;background:#F6E6DB;overflow:hidden}
+.rank .meter i{display:block;height:100%;border-radius:999px;background:#A8481A}
+.rank-note{font-size:12px;color:var(--sub);margin-top:8px}
+.opt-line{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.opt-line span{font-size:12px;font-weight:700;background:var(--orange-weak);color:#A3470A;border-radius:6px;padding:2px 8px}
+.sales-note{font-size:12px;color:var(--sub);line-height:1.7;margin-top:14px}
+
+/* ---------- alert overlay ---------- */
+.alert{position:fixed;inset:0;z-index:60;background:var(--orange);color:#fff;display:flex;flex-direction:column;align-items:center;padding:calc(24px + var(--safe-t)) 20px calc(24px + var(--safe-b));overflow-y:auto;animation:alertIn .25s ease-out}
+@keyframes alertIn{from{opacity:0;transform:scale(1.03)}}
+.alert.pulse{animation:pulseBg 1.2s ease-in-out infinite}
+@keyframes pulseBg{50%{background:#C9520A}}
+.al-bell{width:84px;height:84px;margin-top:8px;animation:ring 1.2s ease-in-out infinite;transform-origin:50% 10%}
+@keyframes ring{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-12deg)}30%{transform:rotate(9deg)}40%{transform:rotate(-6deg)}50%{transform:rotate(3deg)}}
+.alert h2{font-size:34px;font-weight:800;margin-top:10px;letter-spacing:.04em;text-align:center}
+.alert .al-sub{font-size:16px;opacity:.92;margin-top:2px}
+.al-list{width:100%;max-width:720px;margin:20px 0;display:flex;flex-direction:column;gap:10px}
+.al-item{background:#fff;color:var(--ink);border-radius:16px;padding:14px 16px;display:grid;grid-template-columns:auto 1fr auto;gap:4px 14px;align-items:center}
+.al-when{text-align:center;line-height:1.15}
+.al-when small{display:block;font-size:12px;font-weight:700;color:var(--orange)}
+.al-when b{font-size:28px;font-weight:800}
+.al-body b{display:block;font-size:18px}
+.al-body span{display:block;font-size:14px;color:var(--sub);line-height:1.45}
+.al-total{text-align:right;font-weight:800;font-size:18px;white-space:nowrap}
+.al-total small{display:block;font-size:12px;color:var(--sub);font-weight:600}
+.al-more{font-size:14px;opacity:.9}
+.al-ok{width:100%;max-width:520px;height:76px;border-radius:18px;background:#fff;color:var(--orange);font-size:24px;font-weight:800;margin-top:auto;box-shadow:0 8px 24px rgba(0,0,0,.18);flex:none}
+.al-ok:active{transform:scale(.98)}
+.al-hint{font-size:13px;opacity:.85;margin-top:10px;text-align:center}
+
+/* ---------- modal / sheet / toast ---------- */
+.modal{position:fixed;inset:0;z-index:70;background:rgba(11,10,9,.5);display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-box{background:#fff;border-radius:18px;width:100%;max-width:440px;padding:22px 20px 18px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.modal-box h3{font-size:19px;margin-bottom:6px}
+.modal-box p{font-size:15px;color:var(--sub);white-space:pre-wrap}
+.modal-acts{display:flex;gap:10px;margin-top:18px}
+.modal-acts .btn{flex:1}
+.btn.danger{background:var(--red);color:#fff}
+.sheet .modal-box{max-width:480px}
+.set-row{display:flex;align-items:center;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.set-row:first-of-type{border-top:0}
+.set-row div{flex:1;min-width:0}
+.set-row b{display:block;font-size:15px}
+.set-row small{display:block;font-size:12px;color:var(--sub);line-height:1.5}
+.sw{width:56px;height:32px;border-radius:999px;background:#D8D2C8;position:relative;flex:none;transition:background .2s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+.sw.on{background:var(--green)}
+.sw.on::after{transform:translateX(24px)}
+.btn.sm{height:40px;font-size:14px;padding:0 14px;background:var(--bg);border:1px solid var(--line);color:var(--ink);flex:none}
+.toast{position:fixed;left:50%;bottom:calc(20px + var(--safe-b));transform:translate(-50%,20px);z-index:80;background:var(--ink);color:#fff;border-radius:14px;padding:12px 14px 12px 18px;display:flex;align-items:center;gap:14px;font-size:15px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s;max-width:calc(100% - 24px)}
+.toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.toast.err{background:var(--red)}
+.toast button{background:rgba(255,255,255,.16);border-radius:10px;padding:8px 12px;font-weight:700;font-size:14px;white-space:nowrap}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- はじめる画面 -->
+<section class="start" id="start">
+  <div class="start-card">
+    <img class="start-logo" src="data:image/webp;base64,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" alt="土鍋ご飯いくしか">
+    <h1>注文ダッシュボード</h1>
+    <p class="lead">土鍋ご飯いくしか 堀切 ｜ 店舗用</p>
+    <form id="startForm" autocomplete="off">
+      <label class="key-label" for="keyInput">合言葉</label>
+      <input class="key-input" id="keyInput" inputmode="text" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX" maxlength="12">
+      <button class="start-btn" id="startBtn" type="submit">
+        <svg class="i" viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        はじめる（通知音が鳴ります）
+      </button>
+      <p class="start-err" id="startErr" role="alert"></p>
+    </form>
+    <div class="start-tips">
+      <b>開きっぱなしで使うときのポイント</b>
+      <ul>
+        <li>端末の音量を上げ、マナーモード（消音）を解除してください</li>
+        <li>充電ケーブルをつないだままにしてください</li>
+        <li>この画面を一番手前に表示したままにしてください（ほかのアプリやタブを開くと音が鳴らないことがあります）</li>
+      </ul>
+    </div>
+    <a class="start-demo" href="?demo=1" id="demoLink">デモ画面で試す</a>
+  </div>
+</section>
+
+<!-- ダッシュボード -->
+<div id="app" hidden>
+  <header class="hd">
+    <div class="hd-brand">
+      <img src="data:image/webp;base64,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" alt="">
+      <div><b>注文ダッシュボード</b><small>土鍋ご飯いくしか 堀切 <span class="demo-tag" id="demoTag" hidden>デモ</span></small></div>
+    </div>
+    <div class="views" role="tablist" aria-label="表示の切り替え">
+      <button type="button" role="tab" data-view="orders" class="on" aria-selected="true"><svg class="i" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2M9 12h6M9 16h4"/></svg>注文</button>
+      <button type="button" role="tab" data-view="sales" aria-selected="false"><svg class="i" viewBox="0 0 24 24"><path d="M3 3v18h18M7 16v-4M12 16V8M17 16v-7"/></svg>売上</button>
+    </div>
+    <div class="datenav">
+      <button class="arrow" id="prevDay" aria-label="前の日"><svg class="i" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="date-lbl"><b id="dateMain">—</b><span id="dateSub"></span></div>
+      <button class="arrow" id="nextDay" aria-label="次の日"><svg class="i" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+      <button class="today-btn" id="todayBtn" hidden>今日に戻る</button>
+    </div>
+    <div class="hd-right">
+      <button class="accept-btn" id="acceptBtn" type="button" hidden aria-label="受付・売り切れの設定"><i></i><span><small>受付・売り切れ</small><b id="acceptText">受付中</b></span></button>
+      <div>
+        <div class="clock num" id="clock">--:--</div>
+        <div class="sync" id="sync"><i></i><span id="syncText">接続中…</span></div>
+      </div>
+      <button class="icon-btn" id="soundBtn" aria-label="通知音のオン・オフ"></button>
+      <button class="icon-btn" id="setBtn" aria-label="設定"><svg class="i" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></button>
+    </div>
+  </header>
+  <div class="banner stop" id="pauseBanner" hidden>
+    <svg class="i" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+    新しい注文の受付を一時停止しています（お客様のページにも表示中）
+    <button type="button" data-ctl="resume">受付を再開する</button>
+  </div>
+  <div class="banner cut" id="cutBanner" hidden>
+    <svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+    今日の受け取りの受付を締め切っています。明日以降の予約は受け付けています
+    <button type="button" data-ctl="openToday">今日の受付を再開</button>
+  </div>
+  <div class="banner warn" id="soundOffBanner" hidden>
+    <svg class="i" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"/></svg>
+    通知音がオフになっています
+    <button type="button" id="soundOnBtn">オンにする</button>
+  </div>
+  <div class="banner warn" id="blockedBanner" hidden>
+    <svg class="i" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+    通知音が鳴らせない状態です。画面をタップすると直ります
+    <button type="button" id="unblockBtn">タップして直す</button>
+  </div>
+  <div class="banner err" id="errBanner" hidden>
+    <svg class="i" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+    <span id="errText">注文を読み込めていません</span>
+    <button type="button" id="retryBtn">再読み込み</button>
+  </div>
+
+  <main class="main" id="ordersView">
+    <section>
+      <div class="kpis" id="kpis"></div>
+      <div class="tabs" id="tabs" role="tablist"></div>
+      <div id="list"></div>
+    </section>
+    <aside class="side">
+      <div class="panel">
+        <h2>
+          <svg class="i" viewBox="0 0 24 24"><path d="M3 11h18M5 11V8a7 7 0 0 1 14 0v3M4 11l1.5 8a2 2 0 0 0 2 1.6h9a2 2 0 0 0 2-1.6L20 11"/></svg>
+          この日の製造数<small>キャンセル除く</small>
+        </h2>
+        <ul class="prod" id="prod"></ul>
+      </div>
+      <div class="panel">
+        <h2>
+          <svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          予約が入っている日
+        </h2>
+        <div class="days" id="days"></div>
+      </div>
+      <p class="side-note" id="sideNote"></p>
+    </aside>
+  </main>
+
+  <main class="sales" id="salesView" hidden>
+    <div class="kpis" id="sKpis"></div>
+    <div class="panel chart-panel">
+      <div class="chart-hd">
+        <h2><svg class="i" viewBox="0 0 24 24"><path d="M3 3v18h18M7 16v-4M12 16V8M17 16v-7"/></svg>日別の売上<small style="margin-left:6px">税込・受取日ベース</small></h2>
+        <div class="legend" id="sLegend"><span><i class="act"></i>実績</span><span id="legRes"><i class="res"></i>予約（明日以降の受け取り）</span></div>
+      </div>
+      <div class="chart" id="sChart"><div class="tip" id="sTip" hidden></div></div>
+    </div>
+    <div class="sales-grid">
+      <div class="panel">
+        <h2><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>日ごとの内訳<small>日付をタップするとその日の注文へ</small></h2>
+        <div class="tbl-wrap"><table class="st" id="sTable"></table></div>
+      </div>
+      <div class="side-col" style="display:flex;flex-direction:column;gap:14px">
+        <div class="panel">
+          <h2><svg class="i" viewBox="0 0 24 24"><path d="M3 11h18M5 11V8a7 7 0 0 1 14 0v3M4 11l1.5 8a2 2 0 0 0 2 1.6h9a2 2 0 0 0 2-1.6L20 11"/></svg>商品別<small>個数順</small></h2>
+          <ul class="rank" id="sItems"></ul>
+          <div class="opt-line" id="sOpts"></div>
+          <p class="rank-note">金額はクーポン割引前です</p>
+        </div>
+        <div class="panel">
+          <h2><svg class="i" viewBox="0 0 24 24"><path d="M12 22s8-4.5 8-11.5A8 8 0 0 0 4 10.5C4 17.5 12 22 12 22z"/><circle cx="12" cy="10.5" r="2.5"/></svg>注文の経路<small>注文数</small></h2>
+          <ul class="rank" id="sSrc"></ul>
+        </div>
+      </div>
+    </div>
+    <p class="sales-note">売上＝お会計金額（クーポン割引後・税込）。税抜は軽減税率8%で計算しています。キャンセル・オンライン決済待ちは含みません。スプレッドシートの「日別売上」シートと同じ考え方で、1分ごとに自動で更新します。</p>
+  </main>
+</div>
+
+<!-- 新着のお知らせ -->
+<div class="alert" id="alert" role="alertdialog" aria-modal="true" aria-labelledby="alTitle" hidden>
+  <svg class="al-bell" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+  <h2 id="alTitle">新しい注文が入りました</h2>
+  <p class="al-sub" id="alSub"></p>
+  <div class="al-list" id="alList"></div>
+  <button class="al-ok" id="alOk" type="button">確認しました</button>
+  <p class="al-hint" id="alHint"></p>
+</div>
+
+<!-- 確認ダイアログ -->
+<div class="modal" id="confirm" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="cfTitle">
+    <h3 id="cfTitle"></h3>
+    <p id="cfText"></p>
+    <div class="modal-acts">
+      <button class="btn ghost" id="cfNo" type="button">やめる</button>
+      <button class="btn danger" id="cfYes" type="button"></button>
+    </div>
+  </div>
+</div>
+
+<!-- 設定 -->
+<div class="modal sheet" id="settings" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="setTitle">
+    <h3 id="setTitle">設定</h3>
+    <div class="set-row"><div><b>通知音</b><small>新しい注文が入ったときに鳴らします</small></div><button class="sw" id="swSound" type="button" aria-label="通知音"></button></div>
+    <div class="set-row"><div><b>確認するまで繰り返し鳴らす</b><small>「確認しました」を押すまで、約12秒ごとに鳴らします</small></div><button class="sw" id="swRepeat" type="button" aria-label="繰り返し鳴らす"></button></div>
+    <div class="set-row"><div><b>テスト音</b><small>音量の確認にどうぞ</small></div><button class="btn sm" id="testSound" type="button">鳴らす</button></div>
+    <div class="set-row" id="notifRow" hidden><div><b>パソコンの通知</b><small>ほかの作業中も、画面のすみに通知を出します</small></div><button class="btn sm" id="notifBtn" type="button">許可する</button></div>
+    <div class="set-row"><div><b>画面のスリープ防止</b><small id="wakeText">—</small></div></div>
+    <div class="set-row" id="demoRow" hidden><div><b>デモ注文</b><small>新着のお知らせを試せます</small></div><button class="btn sm" id="demoAdd" type="button">注文を入れる</button></div>
+    <div class="set-row"><div><b>合言葉を入れ直す</b><small>合言葉を発行し直したときに使います</small></div><button class="btn sm" id="logout" type="button">入れ直す</button></div>
+    <div class="modal-acts"><button class="btn primary" id="setClose" type="button">閉じる</button></div>
+  </div>
+</div>
+
+<!-- 受付・売り切れ -->
+<div class="modal sheet ctrl" id="ctrl" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="ctrlTitle">
+    <h3 id="ctrlTitle">受付・売り切れ</h3>
+    <div class="ctrl-state" id="ctrlState"></div>
+    <div class="ctrl-acts">
+      <button class="btn warn" id="btnCut" type="button"></button>
+      <button class="btn danger" id="btnPause" type="button"></button>
+    </div>
+    <p class="ctrl-hint"><b>今日の受付を締め切る</b>：今日の受け取りの注文だけ止めます。明日以降の予約は受け付け、日付が変わると自動で元に戻ります。<br><b>一時停止</b>：「再開する」を押すまで、新しい注文をすべて止めます。<br>どちらも、すぐにお客様の注文ページに反映されます。入っている注文はそのままです。</p>
+    <h4>商品ごとの売り切れ</h4>
+    <ul class="ctrl-items" id="ctrlItems"></ul>
+    <p class="ctrl-hint"><b>今日売切</b>：今日の受け取りだけ売り切れにします（明日以降の予約はできます。日付が変わると自動で販売再開）。<br><b>販売停止</b>：「販売中」に戻すまで、どの日も注文できなくします（スプレッドシートの「売切」チェックと同じ）。</p>
+    <div class="modal-acts"><button class="btn primary" id="ctrlClose" type="button">閉じる</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastText"></span><button type="button" id="toastBtn" hidden></button></div>
+
+<script>
+(function () {
+'use strict';
+
+/* ===== 設定 ===== */
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxJY0sDV1JzD7mhZkVxPptVTydSW7bdIlJOTZVP6m0oSrMEudbP8cNP4A-yZBXrVFqG/exec';
+const Q = new URLSearchParams(location.search);
+const DEMO = Q.get('demo') === '1' || !GAS_URL;
+const POLL_MS = Math.max(5, Number(Q.get('poll')) || 20) * 1000;
+const REPEAT_MS = 12000;
+const SOON_MIN = 30;
+
+const ST = { NEW: '新規', DONE: '受渡済', CANCEL: 'キャンセル' };
+const PS = { UNPAID: '未払い(店頭)', PENDING: '決済待ち', PAID: '決済済', FAILED: '未決済(期限切れ)' };
+const K_KEY = 'ikushika_kitchen_key' + (DEMO ? '_demo' : ''), K_SEEN = 'ikushika_kitchen_seen', K_SET = 'ikushika_kitchen_settings';
+
+const $ = s => document.querySelector(s);
+const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const yen = n => '¥' + (Number(n) || 0).toLocaleString('ja-JP');
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+  del(k) { try { localStorage.removeItem(k); } catch (e) {} }
+};
+
+const S = {
+  key: '', started: false, viewDate: '', today: '', follow: true,
+  orders: [], recent: [], days: {}, filter: 'open',
+  lastOk: 0, err: '', loading: false, timer: 0, gen: 0,
+  unacked: [], fresh: {}, busy: {},
+  view: 'orders', month: '', sales: null, sgen: 0, stimer: 0,
+  controls: null, ctlBusy: 0,
+  set: Object.assign({ sound: true, repeat: true }, store.get(K_SET, {}))
+};
+
+/* ===== 日本時間のヘルパー ===== */
+const WD = ['日', '月', '火', '水', '木', '金', '土'];
+function jstNow() {
+  const p = {};
+  new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' })
+    .formatToParts(new Date()).forEach(x => { p[x.type] = x.value; });
+  return { date: p.year + '-' + p.month + '-' + p.day, hm: p.hour + ':' + p.minute, min: Number(p.hour) * 60 + Number(p.minute), sec: p.second };
+}
+function addDays(ds, n) {
+  const a = ds.split('-').map(Number);
+  const d = new Date(Date.UTC(a[0], a[1] - 1, a[2] + n));
+  return d.getUTCFullYear() + '-' + String(d.getUTCMonth() + 1).padStart(2, '0') + '-' + String(d.getUTCDate()).padStart(2, '0');
+}
+function wd(ds) { const a = ds.split('-').map(Number); return WD[new Date(Date.UTC(a[0], a[1] - 1, a[2])).getUTCDay()]; }
+function md(ds) { const a = ds.split('-').map(Number); return a[1] + '/' + a[2] + '(' + wd(ds) + ')'; }
+function relDay(ds, today) {
+  if (!ds || !today) return '';
+  if (ds === today) return '今日';
+  if (ds === addDays(today, 1)) return '明日';
+  if (ds === addDays(today, 2)) return 'あさって';
+  if (ds === addDays(today, -1)) return '昨日';
+  return '';
+}
+const toMin = t => { const m = String(t || '').match(/(\d{1,2}):(\d{2})/); return m ? Number(m[1]) * 60 + Number(m[2]) : -1; };
+function hmOf(ms) {
+  return new Intl.DateTimeFormat('ja-JP', { timeZone: 'Asia/Tokyo', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date(ms));
+}
+
+/* ===== 通知音（端末の中で作る「ピンポーン」） ===== */
+const Sound = (function () {
+  function wavUrl() {
+    const sr = 22050, dur = 2.9, n = Math.floor(sr * dur), buf = new Float32Array(n);
+    const notes = [[0, 987.77, .32], [.30, 783.99, .9], [1.35, 987.77, .32], [1.65, 783.99, 1.0]];
+    notes.forEach(([t0, f, tau]) => {
+      const s0 = Math.floor(t0 * sr);
+      for (let i = s0; i < n; i++) {
+        const t = (i - s0) / sr, env = Math.min(1, t / .006) * Math.exp(-t / tau);
+        if (t > .05 && env < .0005) break; // 鳴り始め（音量0）では止めない
+        buf[i] += env * (Math.sin(2 * Math.PI * f * t) + .34 * Math.sin(4 * Math.PI * f * t) + .12 * Math.sin(6 * Math.PI * f * t) + .05 * Math.sin(2 * Math.PI * f * 2.76 * t));
+      }
+    });
+    let peak = 0; for (let i = 0; i < n; i++) peak = Math.max(peak, Math.abs(buf[i]));
+    const g = .92 / (peak || 1), dv = new DataView(new ArrayBuffer(44 + n * 2));
+    const w = (o, s) => { for (let i = 0; i < s.length; i++) dv.setUint8(o + i, s.charCodeAt(i)); };
+    w(0, 'RIFF'); dv.setUint32(4, 36 + n * 2, true); w(8, 'WAVE'); w(12, 'fmt ');
+    dv.setUint32(16, 16, true); dv.setUint16(20, 1, true); dv.setUint16(22, 1, true); dv.setUint32(24, sr, true);
+    dv.setUint32(28, sr * 2, true); dv.setUint16(32, 2, true); dv.setUint16(34, 16, true); w(36, 'data'); dv.setUint32(40, n * 2, true);
+    for (let i = 0; i < n; i++) dv.setInt16(44 + i * 2, Math.max(-1, Math.min(1, buf[i] * g)) * 32767, true);
+    return URL.createObjectURL(new Blob([dv], { type: 'audio/wav' }));
+  }
+  const el = new Audio();
+  el.preload = 'auto';
+  el.src = wavUrl();
+  let blocked = false;
+  function setBlocked(v) { blocked = v; $('#blockedBanner').hidden = !v || !S.started; }
+  return {
+    get blocked() { return blocked; },
+    // ボタンを押した瞬間に呼ぶ：以降、操作なしでも鳴らせるようになる
+    unlock(audible) {
+      try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+      el.muted = !audible;
+      el.currentTime = 0;
+      const p = el.play();
+      return Promise.resolve(p).then(() => {
+        if (!audible) { el.pause(); el.currentTime = 0; }
+        el.muted = false; setBlocked(false); return true;
+      }).catch(() => { el.muted = false; setBlocked(true); return false; });
+    },
+    play() {
+      try {
+        el.muted = false; el.currentTime = 0;
+        const p = el.play();
+        if (p && p.then) p.then(() => setBlocked(false)).catch(() => setBlocked(true));
+      } catch (e) { setBlocked(true); }
+    }
+  };
+})();
+
+/* ===== 画面のスリープ防止 ===== */
+let wakeLock = null, wakeState = '—';
+async function keepAwake() {
+  if (!('wakeLock' in navigator)) { wakeState = 'この端末では自動で止められません。端末の設定で「自動ロック：なし」にしてください'; updWake(); return; }
+  if (wakeLock || document.visibilityState !== 'visible') return;
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+    wakeState = '有効（この画面を開いている間はスリープしません）';
+    wakeLock.addEventListener('release', () => { wakeLock = null; wakeState = '一時的に解除されました（画面に戻ると自動で再開）'; updWake(); });
+  } catch (e) { wakeState = '使えませんでした。端末の設定で「自動ロック：なし」にしてください'; }
+  updWake();
+}
+function updWake() { $('#wakeText').textContent = wakeState; }
+
+/* ===== 通信 ===== */
+const OLD_GAS = 'スプレッドシート側のプログラム（Code.gs）が古いままです。Code.gs を最新に差し替えて、「デプロイ → デプロイを管理 → 新バージョン」で更新してください';
+async function apiGet(params) {
+  if (DEMO) return params.action === 'sales' ? Demo.sales(params) : Demo.get(params);
+  const u = GAS_URL + '?' + new URLSearchParams(Object.assign({}, params, { _: Date.now() })).toString();
+  const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 20000);
+  try {
+    const r = await fetch(u, { cache: 'no-store', signal: ctl.signal });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    if (params.action === 'orders' && d && d.ok && !Array.isArray(d.orders)) return { ok: false, code: 'oldgas', error: OLD_GAS };
+    if (params.action === 'sales' && d && d.ok && !Array.isArray(d.days)) return { ok: false, code: 'oldgas', error: OLD_GAS };
+    return d;
+  } finally { clearTimeout(t); }
+}
+async function apiPost(body) {
+  if (DEMO) return Demo.post(body);
+  const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 25000);
+  try {
+    const r = await fetch(GAS_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body), signal: ctl.signal });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return await r.json();
+  } finally { clearTimeout(t); }
+}
+
+/* ===== はじめる ===== */
+function showStart(msg) {
+  S.started = false;
+  clearTimeout(S.timer);
+  $('#app').hidden = true; $('#start').hidden = false;
+  $('#startErr').textContent = msg || '';
+  $('#startBtn').disabled = false;
+  $('#keyInput').value = S.key || store.get(K_KEY, '') || '';
+  $('#demoLink').hidden = DEMO;
+  if (DEMO) $('#keyInput').value = 'DEMO-0000';
+}
+
+async function start(e) {
+  e && e.preventDefault();
+  const key = $('#keyInput').value.trim().toUpperCase();
+  if (!key) { $('#startErr').textContent = '合言葉を入力してください'; return; }
+  $('#startBtn').disabled = true;
+  $('#startErr').textContent = '';
+  Sound.unlock(S.set.sound); // タップの瞬間に音を出す許可をもらう（テスト音を兼ねる）
+  S.key = key;
+  let d;
+  try { d = await apiGet({ action: 'orders', key: key }); }
+  catch (err) { $('#startBtn').disabled = false; $('#startErr').textContent = '通信できませんでした。インターネット接続を確認して、もう一度押してください'; return; }
+  if (!d || !d.ok) { $('#startBtn').disabled = false; $('#startErr').textContent = (d && d.error) || '読み込めませんでした'; return; }
+  store.set(K_KEY, key);
+  S.started = true;
+  $('#start').hidden = true; $('#app').hidden = false;
+  $('#demoTag').hidden = !DEMO; $('#demoRow').hidden = !DEMO;
+  keepAwake();
+  apply(d);
+  schedule();
+}
+
+/* ===== 読み込み ===== */
+function schedule(ms) {
+  clearTimeout(S.timer);
+  S.timer = setTimeout(refresh, ms == null ? POLL_MS : ms);
+}
+async function refresh() {
+  if (!S.started) return;
+  if (S.loading) { schedule(); return; }
+  S.loading = true; renderSync();
+  const gen = ++S.gen;
+  try {
+    const d = await apiGet({ action: 'orders', key: S.key, date: S.follow ? '' : S.viewDate });
+    if (gen !== S.gen) return;
+    if (!d || !d.ok) {
+      if (d && (d.code === 'badkey' || d.code === 'nokey' || d.code === 'oldgas')) { showStart(d.error + (d.code === 'badkey' ? '（合言葉が発行し直された可能性があります）' : '')); return; }
+      throw new Error((d && d.error) || '読み込めませんでした');
+    }
+    apply(d);
+  } catch (err) {
+    if (gen !== S.gen) return;
+    S.err = err && err.name === 'AbortError' ? '通信に時間がかかっています' : '通信できません';
+  } finally {
+    if (gen === S.gen) { S.loading = false; renderSync(); if (S.started) schedule(); }
+  }
+}
+function apply(d) {
+  S.today = d.today;
+  S.viewDate = d.date;
+  S.follow = d.date === d.today && S.follow;
+  S.orders = d.orders || [];
+  S.recent = d.recent || [];
+  S.days = d.days || {};
+  if (d.controls && !S.ctlBusy) S.controls = d.controls;
+  S.lastOk = Date.now(); S.err = '';
+  detectNew();
+  render();
+}
+function goDate(ds) {
+  if (!ds) return;
+  S.viewDate = ds;
+  S.follow = ds === S.today;
+  S.orders = []; S.gen++; S.loading = false;
+  render();
+  refresh();
+}
+
+/* ===== 新着の検知 ===== */
+// 確認済みの注文番号（デモのときは保存しない）
+let demoSeen = null;
+function loadSeen() { if (DEMO) return demoSeen; const v = store.get(K_SEEN, null); return v && typeof v === 'object' ? v : null; }
+function saveSeen(v) { if (DEMO) demoSeen = v; else store.set(K_SEEN, v); }
+function detectNew() {
+  let seen = loadSeen();
+  const first = !seen;            // この端末で初めて開いたときは、今ある注文を「確認済み」とする
+  if (first) seen = {};
+  const now = Date.now(), add = [];
+  let changed = first;
+  S.recent.forEach(o => {
+    if (seen[o.id]) return;
+    const inactive = o.status === ST.CANCEL || o.payState === PS.FAILED;
+    if (first || inactive) { seen[o.id] = o.created || now; changed = true; return; }
+    if (o.payState === PS.PENDING) return; // オンライン決済が終わるまで待つ
+    if (!S.unacked.some(u => u.id === o.id)) add.push(o);
+  });
+  // 確認待ちの内容を最新にする（キャンセルされたら消す）
+  S.unacked = S.unacked.map(u => S.recent.find(r => r.id === u.id) || u).filter(u => u.status !== ST.CANCEL);
+  Object.keys(seen).forEach(id => { if (seen[id] < now - 7 * 864e5) { delete seen[id]; changed = true; } });
+  if (changed) saveSeen(seen);
+  if (add.length) {
+    if (S.view === 'sales') loadSales();
+    S.unacked = S.unacked.concat(add);
+    add.forEach(o => { S.fresh[o.id] = now; });
+    openAlert(true);
+  } else if (!S.unacked.length && !$('#alert').hidden) closeAlert();
+  else if (S.unacked.length) renderAlert();
+}
+let repeatTimer = 0, titleTimer = 0;
+const BASE_TITLE = document.title;
+function openAlert(withSound) {
+  renderAlert();
+  const al = $('#alert');
+  if (al.hidden) { al.hidden = false; al.classList.add('pulse'); setTimeout(() => $('#alOk').focus(), 50); }
+  if (withSound) ring();
+  clearInterval(repeatTimer);
+  if (S.set.repeat) repeatTimer = setInterval(() => ring(), REPEAT_MS);
+  clearInterval(titleTimer);
+  let f = false;
+  titleTimer = setInterval(() => { f = !f; document.title = f ? '【新着注文 ' + S.unacked.length + '件】' : BASE_TITLE; }, 1000);
+  systemNotify();
+}
+function ring() {
+  if (S.set.sound) Sound.play();
+  try { if (navigator.vibrate) navigator.vibrate([300, 150, 300]); } catch (e) {}
+}
+function renderAlert() {
+  const list = S.unacked.slice().sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
+  $('#alTitle').textContent = list.length > 1 ? '新しい注文が' + list.length + '件入りました' : '新しい注文が入りました';
+  const other = list.filter(o => o.date !== S.today).length;
+  $('#alSub').textContent = !other ? '受け取り時間を確認してください' : other === list.length ? '今日以外の受け取り（予約）です' : 'うち' + other + '件は今日以外の受け取り（予約）です';
+  const show = list.slice(0, 6);
+  $('#alList').innerHTML = show.map(o => {
+    const rel = relDay(o.date, S.today);
+    return '<div class="al-item"><div class="al-when"><small>' + esc(rel || md(o.date)) + (rel && rel !== '今日' ? ' ' + esc(md(o.date)) : '') + '</small><b class="num">' + esc(o.time) + '</b></div>' +
+      '<div class="al-body"><b>' + esc(o.name) + ' 様</b><span>' + esc(o.itemsText) + '</span></div>' +
+      '<div class="al-total num">' + yen(o.total) + '<small>' + esc(o.qty) + '個・' + (o.payState === PS.PAID ? 'お支払い済み' : '店頭払い') + '</small></div></div>';
+  }).join('') + (list.length > show.length ? '<p class="al-more">ほか' + (list.length - show.length) + '件</p>' : '');
+  $('#alHint').textContent = S.set.sound ? (S.set.repeat ? '確認するまで、約12秒ごとに通知音が鳴ります' : '') : '通知音はオフになっています';
+}
+function ack() {
+  const seen = loadSeen() || {};
+  S.unacked.forEach(o => { seen[o.id] = o.created || Date.now(); });
+  saveSeen(seen);
+  const other = S.unacked.filter(o => o.date !== S.today);
+  S.unacked = [];
+  closeAlert();
+  render();
+  if (other.length) toast(other.map(o => (relDay(o.date, S.today) || md(o.date)) + ' ' + o.time).join('、') + ' の予約です。「予約が入っている日」から確認できます');
+}
+function closeAlert() {
+  $('#alert').hidden = true; $('#alert').classList.remove('pulse');
+  clearInterval(repeatTimer); clearInterval(titleTimer);
+  document.title = BASE_TITLE;
+  if (notif) { try { notif.close(); } catch (e) {} notif = null; }
+}
+let notif = null;
+function systemNotify() {
+  try {
+    if (!('Notification' in window) || Notification.permission !== 'granted' || !document.hidden) return;
+    const o = S.unacked[S.unacked.length - 1];
+    notif = new Notification('新しい注文（' + S.unacked.length + '件）', { body: o ? (relDay(o.date, S.today) || md(o.date)) + ' ' + o.time + '　' + o.name + '様　' + o.itemsText : '', tag: 'ikushika-order', requireInteraction: true });
+    notif.onclick = () => { window.focus(); notif.close(); };
+  } catch (e) {}
+}
+
+/* ===== 表示 ===== */
+const isValid = o => o.status !== ST.CANCEL && o.payState !== PS.PENDING && o.payState !== PS.FAILED;
+const FILTERS = [
+  ['open', '未受渡', o => isValid(o) && o.status !== ST.DONE],
+  ['done', '受渡済', o => isValid(o) && o.status === ST.DONE],
+  ['cancel', 'キャンセル', o => o.status === ST.CANCEL],
+  ['all', 'すべて', () => true]
+];
+
+function render() {
+  renderHeader(); renderKpis(); renderTabs(); renderList(); renderSide(); renderSync(); renderSoundBtn(); renderControls();
+}
+function renderHeader() {
+  if (S.view === 'sales') {
+    const ym = S.month || (S.today || '').slice(0, 7);
+    if (!ym) return;
+    const cur = ym === (S.today || '').slice(0, 7);
+    $('#dateMain').textContent = Number(ym.slice(0, 4)) + '年' + Number(ym.slice(5, 7)) + '月';
+    $('#dateSub').innerHTML = cur ? '<span class="rel">今月</span>' : esc(ym < S.today ? '' : '予約のみ');
+    $('#todayBtn').textContent = '今月に戻る';
+    $('#todayBtn').hidden = cur;
+    $('#prevDay').setAttribute('aria-label', '前の月'); $('#nextDay').setAttribute('aria-label', '次の月');
+    return;
+  }
+  $('#todayBtn').textContent = '今日に戻る';
+  $('#prevDay').setAttribute('aria-label', '前の日'); $('#nextDay').setAttribute('aria-label', '次の日');
+  const ds = S.viewDate || S.today;
+  if (!ds) return;
+  const a = ds.split('-').map(Number), rel = relDay(ds, S.today);
+  $('#dateMain').textContent = a[1] + '月' + a[2] + '日(' + wd(ds) + ')';
+  $('#dateSub').innerHTML = rel ? '<span class="rel">' + esc(rel) + '</span>' : esc(a[0] + '年');
+  $('#todayBtn').hidden = ds === S.today;
+}
+function renderKpis() {
+  const v = S.orders.filter(isValid);
+  const qty = v.reduce((s, o) => s + o.qty, 0), sales = v.reduce((s, o) => s + o.total, 0);
+  const open = v.filter(o => o.status !== ST.DONE).length;
+  const future = Object.keys(S.days).filter(d => d > S.today).reduce((s, d) => s + S.days[d], 0);
+  const k = (label, val, unit, hl) => '<div class="kpi' + (hl ? ' hl' : '') + '"><small>' + label + '</small><b class="num">' + val + '<em>' + unit + '</em></b></div>';
+  $('#kpis').innerHTML = k('注文', v.length, '件') + k('お弁当', qty, '個') + k('売上', yen(sales), '') + k('未受渡', open, '件', open > 0) + k('明日以降の予約', future, '件');
+}
+function renderTabs() {
+  $('#tabs').innerHTML = FILTERS.map(([id, label, fn]) =>
+    '<button class="tab' + (S.filter === id ? ' on' : '') + '" role="tab" aria-selected="' + (S.filter === id) + '" data-f="' + id + '">' + label + '<span class="num">' + S.orders.filter(fn).length + '</span></button>').join('');
+}
+function timeState(o, now) {
+  if (o.date !== now.date || o.status !== ST.NEW || !isValid(o)) return '';
+  const m = toMin(o.time);
+  if (m < 0) return '';
+  if (m < now.min) return 'late';
+  if (m - now.min <= SOON_MIN) return 'soon';
+  return '';
+}
+function renderList() {
+  const f = FILTERS.find(x => x[0] === S.filter) || FILTERS[0];
+  const list = S.orders.filter(f[2]);
+  const box = $('#list');
+  if (!list.length) {
+    const msg = !S.lastOk ? ['読み込み中です…', ''] :
+      S.filter === 'open' ? (S.orders.some(isValid) ? ['お渡し待ちの注文はありません', 'すべて受け渡し済みです'] : ['この日の注文はまだありません', '新しい注文が入ると音でお知らせします']) :
+      ['該当する注文はありません', ''];
+    box.innerHTML = '<div class="empty"><b>' + msg[0] + '</b>' + msg[1] + '</div>';
+    return;
+  }
+  // 受け取り時間の早い順に、左上から並べる
+  const now = jstNow();
+  box.innerHTML = '<div class="cards">' + list.map(o => card(o, now)).join('') + '</div>';
+}
+function card(o, now) {
+  const ts = timeState(o, now), pending = o.payState === PS.PENDING || o.payState === PS.FAILED;
+  const fresh = S.fresh[o.id] && Date.now() - S.fresh[o.id] < 15 * 60000 && o.status === ST.NEW;
+  const cls = ['card', o.status === ST.DONE ? 's-done' : o.status === ST.CANCEL ? 's-cancel' : pending ? 's-pending' : 's-new', ts, fresh ? 'fresh' : ''].join(' ');
+  const tags = [];
+  if (fresh) tags.push('<span class="tag new">NEW</span>');
+  if (ts === 'late') tags.push('<span class="tag late">時間を過ぎています</span>');
+  if (ts === 'soon') tags.push('<span class="tag soon">まもなく</span>');
+  if (o.status === ST.DONE) tags.push('<span class="tag done">受渡済</span>');
+  if (o.status === ST.CANCEL) tags.push('<span class="tag cancel">キャンセル</span>');
+  if (o.payState === PS.PENDING) tags.push('<span class="tag pending">決済待ち（未確定）</span>');
+  const lines = o.lines && o.lines.length ? o.lines : [{ name: o.itemsText, options: [], qty: '' }];
+  const items = lines.map(l => '<li><span class="q num">' + (l.qty === '' ? '' : '×' + esc(l.qty)) + '</span><span class="n">' + esc(l.name) + '</span>' +
+    (l.options && l.options.length ? '<span class="op">' + l.options.map(x => '<span>' + esc(x) + '</span>').join('') + '</span>' : '') + '</li>').join('');
+  const pay = o.payState === PS.PAID ? '<span class="pay paid">お支払い済み ' + yen(o.total) + '</span>' :
+    pending ? '<span class="pay pending">' + esc(o.payState) + '</span>' : '<span class="pay store">店頭でお会計 ' + yen(o.total) + '</span>';
+  const tel = String(o.phone || '').replace(/[^\d+]/g, '');
+  const busy = !!S.busy[o.id];
+  let acts = '';
+  if (!pending) {
+    if (o.status === ST.NEW) acts = '<button class="btn primary" data-act="done" data-id="' + esc(o.id) + '"' + (busy ? ' disabled' : '') + '><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>受け渡し済みにする</button><button class="btn ghost" data-act="cancel" data-id="' + esc(o.id) + '"' + (busy ? ' disabled' : '') + '>キャンセル</button>';
+    else acts = '<button class="btn line" data-act="undo" data-id="' + esc(o.id) + '"' + (busy ? ' disabled' : '') + '>' + (o.status === ST.DONE ? '受け渡し前に戻す' : 'キャンセルを取り消す') + '</button>';
+  }
+  return '<article class="' + cls + '" data-id="' + esc(o.id) + '">' +
+    '<div class="c-top"><span class="c-time num">' + esc(o.time) + '</span><span class="c-id">No.' + esc(o.id) + '</span>' + tags.join('') + '</div>' +
+    '<div class="c-name">' + esc(o.name) + '<small>様</small>' + (tel ? '<a class="c-tel" href="tel:' + esc(tel) + '">' + esc(o.phone) + '</a>' : '') + '</div>' +
+    '<ul class="c-items">' + items + '</ul>' +
+    '<div class="c-meta">' + pay + '<span class="chop' + (o.chopsticks === '不要' ? ' no' : '') + '">お箸 ' + esc(o.chopsticks || '必要') + '</span>' +
+    (o.coupon ? '<span class="cp">クーポン ' + esc(o.coupon) + (o.discount ? '（−' + yen(o.discount) + '）' : '') + '</span>' : '') + '</div>' +
+    (o.note ? '<div class="c-note">備考：' + esc(o.note) + '</div>' : '') +
+    (acts ? '<div class="c-acts">' + acts + '</div>' : '') +
+    '<div class="c-sub">受付 ' + (o.created ? esc(md(jstDateOf(o.created)) + ' ' + hmOf(o.created)) : '—') + (o.source ? '・' + esc(srcLabel(o.source)) : '') + '</div>' +
+    '</article>';
+}
+function jstDateOf(ms) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(ms));
+}
+function srcLabel(s) { return ({ qr: '店頭QR', line: 'LINE', ig: 'Instagram', google: 'Googleマップ', web: '検索・その他のWeb', other: 'その他' })[s] || s; }
+function renderSide() {
+  // 製造数
+  const map = {};
+  S.orders.filter(isValid).forEach(o => (o.lines || []).forEach(l => {
+    const m = map[l.name] || (map[l.name] = { total: 0, open: 0, opts: {} });
+    m.total += l.qty; if (o.status !== ST.DONE) m.open += l.qty;
+    (l.options || []).forEach(x => { m.opts[x] = (m.opts[x] || 0) + l.qty; });
+  }));
+  const names = Object.keys(map).sort((a, b) => map[b].total - map[a].total);
+  $('#prod').innerHTML = names.length ? names.map(n => {
+    const m = map[n], opts = Object.keys(m.opts);
+    return '<li><span class="pn">' + esc(n) + '</span><span class="pr">残り <b class="num">' + m.open + '</b></span><span class="pt num">' + m.total + '</span>' +
+      (opts.length ? '<span class="po">' + opts.map(x => '<span>' + esc(x) + ' ' + m.opts[x] + '</span>').join('') + '</span>' : '') + '</li>';
+  }).join('') : '<li class="prod-empty">この日の注文はまだありません</li>';
+  // 予約が入っている日
+  const ds = Object.keys(S.days).sort();
+  $('#days').innerHTML = ds.length ? ds.map(d => '<button class="day' + (d === S.viewDate ? ' on' : '') + '" data-date="' + esc(d) + '">' + esc((relDay(d, S.today) ? relDay(d, S.today) + ' ' : '') + md(d)) + '<b class="num">' + S.days[d] + '件</b></button>').join('') :
+    '<span class="prod-empty">今日以降の予約はまだありません</span>';
+  $('#sideNote').textContent = Math.round(POLL_MS / 1000) + '秒ごとに自動で更新しています。スプレッドシートで直接変えた内容も反映されます。';
+}
+function renderSync() {
+  const el = $('#sync'); if (!el) return;
+  const stale = S.lastOk && Date.now() - S.lastOk > Math.max(120000, POLL_MS * 4);
+  const bad = !!S.err || stale;
+  el.classList.toggle('err', bad);
+  el.classList.toggle('busy', S.loading && !bad);
+  $('#syncText').textContent = bad ? (S.err || '更新が止まっています') + (S.lastOk ? '（最終 ' + hmOf(S.lastOk) + '）' : '') : S.lastOk ? hmOf(S.lastOk) + ' 更新' : '接続中…';
+  $('#errBanner').hidden = !bad || !S.started;
+  $('#errText').textContent = '注文を読み込めていません' + (S.lastOk ? '（最終更新 ' + hmOf(S.lastOk) + '）' : '') + '。インターネット接続を確認してください。自動で再接続を続けます。';
+}
+function renderSoundBtn() {
+  const on = S.set.sound;
+  $('#soundBtn').classList.toggle('off', !on);
+  $('#soundBtn').innerHTML = on ? '<svg class="i" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5zM15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>' :
+    '<svg class="i" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"/></svg>';
+  $('#soundOffBanner').hidden = on || !S.started;
+  $('#swSound').classList.toggle('on', on);
+  $('#swRepeat').classList.toggle('on', S.set.repeat);
+}
+function tickClock() {
+  const n = jstNow();
+  $('#clock').textContent = n.hm;
+  if (n.sec === '00' && S.started) { renderList(); renderSync(); }
+}
+
+/* ===== 受付・売り切れ ===== */
+const ITEM_MODES = [['on', '販売中'], ['today', '今日売切'], ['stop', '販売停止']];
+function acceptState(c) {
+  if (!c) return null;
+  if (c.paused) return { cls: 'paused', label: '一時停止中', text: '新しい注文をすべて止めています' };
+  if (c.closedToday) return { cls: 'closed', label: '今日は定休日', text: '明日以降の予約は受け付けています' };
+  if (c.cutToday) return { cls: 'cut', label: '今日は締切', text: '今日の受け取りは締め切り中。明日以降の予約は受付中' };
+  return { cls: '', label: '受付中', text: 'お客様の注文ページから注文できます' };
+}
+function renderControls() {
+  const c = S.controls, st = acceptState(c), b = $('#acceptBtn');
+  b.hidden = !c;
+  if (!c) { $('#pauseBanner').hidden = $('#cutBanner').hidden = true; return; }
+  const sold = c.items.filter(x => x.state !== 'on').length;
+  b.className = 'accept-btn ' + st.cls;
+  $('#acceptText').textContent = st.label + (sold ? '・売切' + sold : '');
+  $('#pauseBanner').hidden = !(c.paused && S.started);
+  $('#cutBanner').hidden = !(!c.paused && c.cutToday && !c.closedToday && S.started);
+  if ($('#ctrl').hidden) return;
+  const box = $('#ctrlState');
+  box.className = 'ctrl-state ' + st.cls;
+  box.innerHTML = '<i></i><div><b>' + esc(st.label) + '</b><span>' + esc(st.text) + '</span></div>';
+  const busy = S.ctlBusy > 0;
+  $('#btnCut').innerHTML = c.cutToday ? '今日の受付を再開する<small>今日の受け取りの注文をまた受け付けます</small>' : '今日の受付を締め切る<small>明日以降の予約は受け付けます</small>';
+  $('#btnCut').className = 'btn ' + (c.cutToday ? 'ok' : 'warn');
+  $('#btnCut').disabled = busy || c.paused || c.closedToday;
+  $('#btnPause').innerHTML = c.paused ? '受付を再開する<small>新しい注文をまた受け付けます</small>' : 'すべての受付を一時停止<small>再開するまで注文を止めます</small>';
+  $('#btnPause').className = 'btn ' + (c.paused ? 'ok' : 'danger');
+  $('#btnPause').disabled = busy;
+  $('#ctrlItems').innerHTML = c.items.length ? c.items.map(it =>
+    '<li class="st-' + it.state + '"><div class="ci"><b>' + esc(it.name) + '</b><small>今日の注文 ' + it.todayQty + '個' + (it.dailyLimit ? '（1日の上限 ' + it.dailyLimit + '個）' : '') + '</small></div>' +
+    '<div class="seg3" role="radiogroup" aria-label="' + esc(it.name) + '">' + ITEM_MODES.map(([m, l]) =>
+      '<button type="button" role="radio" aria-checked="' + (it.state === m) + '" class="' + (it.state === m ? 'on' : '') + '" data-item="' + esc(it.id) + '" data-m="' + m + '"' + (busy ? ' disabled' : '') + '>' + l + '</button>').join('') + '</div></li>').join('') :
+    '<li class="prod-empty">メニューシートに商品がありません</li>';
+}
+function openCtrl() { $('#ctrl').hidden = false; renderControls(); }
+async function control(op, extra, msg, undo) {
+  if (!S.controls) return;
+  const prev = JSON.parse(JSON.stringify(S.controls));
+  // 押した瞬間に画面を切り替える（通信が失敗したら元に戻す）
+  const c = S.controls;
+  if (op === 'pause') c.paused = true; else if (op === 'resume') c.paused = false;
+  else if (op === 'closeToday') c.cutToday = true; else if (op === 'openToday') c.cutToday = false;
+  else if (op === 'item') { const it = c.items.find(x => x.id === extra.id); if (it) it.state = extra.mode; }
+  S.ctlBusy++; renderControls();
+  try {
+    const d = await apiPost(Object.assign({ action: 'control', key: S.key, op: op }, extra || {}));
+    if (!d || !d.ok) throw new Error((d && d.error) || '変更できませんでした');
+    S.ctlBusy--;
+    if (d.controls) S.controls = d.controls;
+    renderControls();
+    if (msg) toast(msg, undo || null);
+  } catch (err) {
+    S.ctlBusy--;
+    S.controls = prev; renderControls();
+    toast((err && err.name !== 'TypeError' && err.name !== 'AbortError' && err.message) || '通信できませんでした。もう一度押してください', null, true);
+  }
+}
+async function onCut() {
+  const c = S.controls; if (!c) return;
+  if (c.cutToday) return control('openToday', null, '今日の受付を再開しました');
+  const ok = await confirmBox('今日の受け取りの受付を締め切りますか？', 'お客様の注文ページで、今日の受け取りが選べなくなります。\n明日以降の予約は受け付けます。日付が変わると自動で元に戻ります。', '締め切る');
+  if (ok) control('closeToday', null, '今日の受付を締め切りました', { label: '元に戻す', fn: () => control('openToday', null, '今日の受付を再開しました') });
+}
+async function onPause() {
+  const c = S.controls; if (!c) return;
+  if (c.paused) return control('resume', null, '受付を再開しました');
+  const ok = await confirmBox('すべての受付を一時停止しますか？', 'お客様の注文ページに「ただいま受付を一時停止しています」と表示され、新しい注文が入らなくなります。\n入っている注文はそのままです。「受付を再開する」を押すまで止まります。', '一時停止する');
+  if (ok) control('pause', null, '受付を一時停止しました', { label: '元に戻す', fn: () => control('resume', null, '受付を再開しました') });
+}
+function onItem(id, mode) {
+  const it = S.controls && S.controls.items.find(x => x.id === id); if (!it || it.state === mode) return;
+  const prev = it.state;
+  const msg = mode === 'today' ? '「' + it.name + '」を今日売り切れにしました' : mode === 'stop' ? '「' + it.name + '」の販売を止めました' : '「' + it.name + '」の販売を再開しました';
+  control('item', { id: id, mode: mode }, msg, { label: '元に戻す', fn: () => control('item', { id: id, mode: prev }, '元に戻しました') });
+}
+
+/* ===== 売上（月の日別） ===== */
+const C_ACT = '#A8481A', C_RES = '#E9965F', C_INK = '#1A1714', C_SUB = '#6B645B', C_GRID = '#EEE9E1';
+function setView(v) {
+  if (v === S.view) return;
+  S.view = v;
+  document.querySelectorAll('.views [data-view]').forEach(b => { const on = b.dataset.view === v; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+  $('#ordersView').hidden = v !== 'orders';
+  $('#salesView').hidden = v !== 'sales';
+  clearTimeout(S.stimer);
+  if (v === 'sales') {
+    if (!S.month) S.month = (S.today || jstNow().date).slice(0, 7);
+    renderHeader();
+    if (S.sales && S.sales.month === S.month) renderSales();
+    loadSales();
+  } else { renderHeader(); render(); }
+  window.scrollTo(0, 0);
+}
+function shiftMonth(n) {
+  const a = (S.month || S.today.slice(0, 7)).split('-').map(Number);
+  const d = new Date(Date.UTC(a[0], a[1] - 1 + n, 1));
+  S.month = d.getUTCFullYear() + '-' + String(d.getUTCMonth() + 1).padStart(2, '0');
+  renderHeader();
+  loadSales();
+}
+async function loadSales() {
+  if (!S.started || S.view !== 'sales') return;
+  const gen = ++S.sgen;
+  clearTimeout(S.stimer);
+  $('#salesView').classList.add('loading');
+  try {
+    const d = await apiGet({ action: 'sales', key: S.key, month: S.month });
+    if (gen !== S.sgen) return;
+    if (!d || !d.ok) {
+      if (d && (d.code === 'badkey' || d.code === 'nokey' || d.code === 'oldgas')) { showStart(d.error); return; }
+      throw new Error((d && d.error) || '読み込めませんでした');
+    }
+    S.sales = d; S.month = d.month;
+    if (d.today) S.today = d.today;
+    renderHeader(); renderSales();
+  } catch (err) {
+    if (gen === S.sgen) toast('売上を読み込めませんでした。少し待ってからもう一度開いてください', null, true);
+  } finally {
+    if (gen === S.sgen) {
+      $('#salesView').classList.remove('loading');
+      if (S.started && S.view === 'sales') S.stimer = setTimeout(loadSales, 60000);
+    }
+  }
+}
+const taxEx = v => Math.floor(v / 1.08);
+function renderSales() {
+  const d = S.sales; if (!d) return;
+  const today = d.today, cur = d.month === today.slice(0, 7);
+  const act = d.days.filter(x => x.date <= today), res = d.days.filter(x => x.date > today);
+  const sum = (arr, k) => arr.reduce((t, x) => t + x[k], 0);
+  const aS = sum(act, 'sales'), aO = sum(act, 'orders'), aQ = sum(act, 'qty'), rS = sum(res, 'sales'), rO = sum(res, 'orders');
+  const open = act.filter(x => x.orders > 0).length;
+  const base = cur ? d.prev.toDateSales : d.prev.sales;
+  // 前月とくらべて（今月は「前月の同じ日まで」と比較）
+  let dVal = '—', dSub = '<span class="kpi-sub">前月の売上がありません</span>';
+  if (base > 0) {
+    const pct = Math.round((aS - base) / base * 100);
+    dVal = pct > 0 ? '<span class="delta up" style="font-size:24px;margin:0">▲ ' + pct + '%</span>' :
+      pct < 0 ? '<span class="delta down" style="font-size:24px;margin:0">▼ ' + Math.abs(pct) + '%</span>' : '<span class="delta flat" style="font-size:24px;margin:0">± 0%</span>';
+    dSub = '<span class="kpi-sub">' + (cur ? '前月の同じ日まで ' : '前月 ') + yen(base) + '</span>';
+  }
+  const k = (label, val, sub, hl) => '<div class="kpi' + (hl ? ' hl' : '') + '"><small>' + label + '</small><b>' + val + '</b>' + (sub || '') + '</div>';
+  const sub = t => '<span class="kpi-sub">' + t + '</span>';
+  $('#sKpis').innerHTML = act.length ?
+    k(cur ? '今月の売上（今日まで）' : '売上', yen(aS), sub('税抜 ' + yen(taxEx(aS))), true) +
+    k('前月とくらべて', dVal, dSub) +
+    k('注文数', aO + '<em>件</em>', sub('お弁当 ' + aQ + '個')) +
+    k('客単価', yen(aO ? Math.round(aS / aO) : 0), sub('1日平均 ' + yen(open ? Math.round(aS / open) : 0) + '（' + open + '日分）')) +
+    (res.length ? k('予約（明日以降の受け取り）', yen(rS), sub(rO + '件')) : k('キャンセル', sum(d.days, 'cancels') + '<em>件</em>', ''))
+    : k('予約（この月の受け取り）', yen(rS), sub(rO + '件・税抜 ' + yen(taxEx(rS))), true) + k('お弁当', sum(res, 'qty') + '<em>個</em>', '') + k('客単価', yen(rO ? Math.round(rS / rO) : 0), '');
+  $('#legRes').hidden = !res.some(x => x.sales > 0);
+  renderChart();
+  renderSalesTable(d, act, res);
+  renderRank(d);
+}
+function niceTicks(max) {
+  if (!(max > 0)) return [0, 5000, 10000];
+  const raw = max / 5, mag = Math.pow(10, Math.floor(Math.log10(raw))), n = raw / mag;
+  const step = (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * mag;
+  const out = []; for (let v = 0; v <= max + step * .001 || out.length < 2; v += step) out.push(Math.round(v));
+  if (out[out.length - 1] < max) out.push(Math.round(out[out.length - 1] + step));
+  return out;
+}
+function barPath(x, y0, w, h) {
+  const r = Math.min(4, h, w / 2);
+  return 'M' + x + ',' + y0 + 'V' + (y0 - h + r) + 'Q' + x + ',' + (y0 - h) + ' ' + (x + r) + ',' + (y0 - h) + 'H' + (x + w - r) + 'Q' + (x + w) + ',' + (y0 - h) + ' ' + (x + w) + ',' + (y0 - h + r) + 'V' + y0 + 'Z';
+}
+function renderChart() {
+  const d = S.sales, box = $('#sChart'); if (!d || $('#salesView').hidden) return;
+  const W = box.clientWidth || 600, Hh = box.clientHeight || 250;
+  const narrow = W < 560;
+  const m = { l: narrow ? 46 : 64, r: 6, t: 26, b: 30 }, iw = W - m.l - m.r, ih = Hh - m.t - m.b;
+  const n = d.days.length, slot = iw / n, bw = Math.max(3, Math.min(24, slot - Math.max(2, slot * .32)));
+  const max = Math.max(0, ...d.days.map(x => x.sales)), ticks = niceTicks(max), top = ticks[ticks.length - 1] || 1;
+  const y0 = m.t + ih, Y = v => y0 - v / top * ih;
+  const axis = v => narrow && v >= 10000 ? (v / 10000) + '万' : '¥' + v.toLocaleString('ja-JP');
+  let g = '<defs><pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="' + C_RES + '"/><line x1="0" y1="0" x2="0" y2="5" stroke="' + C_ACT + '" stroke-opacity=".38" stroke-width="2"/></pattern></defs>';
+  ticks.forEach(t => {
+    const yy = Math.round(Y(t)) + .5;
+    g += '<line x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + yy + '" y2="' + yy + '" stroke="' + (t === 0 ? '#D8D2C8' : C_GRID) + '" stroke-width="1"/>';
+    g += '<text x="' + (m.l - 8) + '" y="' + (yy + 4) + '" text-anchor="end" font-size="11" fill="' + C_SUB + '" class="num">' + axis(t) + '</text>';
+  });
+  const every = slot >= 22 ? 1 : slot >= 13 ? 2 : 5;
+  const tDay = d.today.slice(0, 7) === d.month ? Number(d.today.slice(8, 10)) : -99;
+  let maxI = -1; d.days.forEach((x, i) => { if (max > 0 && x.sales === max && maxI < 0) maxI = i; });
+  d.days.forEach((x, i) => {
+    const cx = m.l + slot * i + slot / 2, day = Number(x.date.slice(8, 10)), isT = x.date === d.today, fut = x.date > d.today;
+    if (x.sales > 0) {
+      const h = Math.max(2, x.sales / top * ih);
+      g += '<path class="bar" data-i="' + i + '" d="' + barPath(cx - bw / 2, y0, bw, h) + '" fill="' + (fut ? 'url(#hatch)' : C_ACT) + '"/>';
+    }
+    const near = every > 1 && !isT && Math.abs(day - tDay) < (every === 2 ? 2 : 3);
+    if (isT || (!near && (day === 1 || (day % every === 0 && (every === 1 || day <= n - 2)) || day === n)))
+      g += '<text x="' + cx + '" y="' + (y0 + 18) + '" text-anchor="middle" font-size="11" font-weight="' + (isT ? 800 : 400) + '" fill="' + (isT ? C_INK : C_SUB) + '" class="num">' + day + '</text>';
+    if (isT) g += '<circle cx="' + cx + '" cy="' + (y0 + 25) + '" r="2.5" fill="' + C_INK + '"/>';
+  });
+  if (maxI >= 0) {
+    const cx = m.l + slot * maxI + slot / 2, tx = Math.min(W - m.r - 30, Math.max(m.l + 30, cx));
+    g += '<text x="' + tx + '" y="' + (Y(max) - 7) + '" text-anchor="middle" font-size="11" font-weight="700" fill="' + C_INK + '" class="num">' + yen(max) + '</text>';
+  }
+  d.days.forEach((x, i) => {
+    g += '<rect class="hit" data-i="' + i + '" x="' + (m.l + slot * i) + '" y="' + m.t + '" width="' + slot + '" height="' + (ih + m.b) + '" tabindex="0" role="img" aria-label="' + esc(md(x.date) + ' ' + yen(x.sales) + ' ' + x.orders + '件') + '"/>';
+  });
+  const tip = $('#sTip');
+  box.innerHTML = '';
+  box.insertAdjacentHTML('afterbegin', '<svg viewBox="0 0 ' + W + ' ' + Hh + '" preserveAspectRatio="none" role="group" aria-label="日別の売上グラフ">' + g + '</svg>');
+  box.appendChild(tip);
+  tip.hidden = true;
+  box._geo = { m: m, slot: slot, Y: Y, W: W };
+}
+function showTip(i) {
+  const d = S.sales, box = $('#sChart'), geo = box._geo; if (!d || !geo) return;
+  const x = d.days[i]; if (!x) return;
+  const tip = $('#sTip');
+  tip.textContent = '';
+  const head = document.createElement('span');
+  head.textContent = md(x.date) + (x.date === d.today ? ' 今日' : x.date > d.today ? ' 予約' : '');
+  const val = document.createElement('b'); val.textContent = yen(x.sales);
+  const sub = document.createElement('span');
+  sub.textContent = x.orders + '件・' + x.qty + '個' + (x.cancels ? '・キャンセル' + x.cancels + '件' : '');
+  tip.append(head, val, sub);
+  tip.hidden = false;
+  const cx = geo.m.l + geo.slot * i + geo.slot / 2;
+  const half = tip.offsetWidth / 2 + 4;
+  tip.style.left = Math.min(geo.W - half, Math.max(half, cx)) + 'px';
+  tip.style.top = Math.max(tip.offsetHeight + 10, geo.Y(x.sales)) + 'px';
+  box.classList.add('hovering');
+  box.querySelectorAll('.bar').forEach(b => b.classList.toggle('on', b.dataset.i === String(i)));
+}
+function hideTip() { $('#sTip').hidden = true; $('#sChart').classList.remove('hovering'); }
+function renderSalesTable(d, act, res) {
+  const cell = (v, z) => z ? '—' : v;
+  // 今日より先は、予約が入っている日だけ出す
+  const rows = d.days.filter(x => x.date <= d.today || x.orders || x.cancels).map(x => {
+    const w = wd(x.date), z = x.orders === 0 && x.cancels === 0, isT = x.date === d.today, fut = x.date > d.today;
+    const dcls = w === '日' ? 'sun' : w === '土' ? 'sat' : '';
+    return '<tr data-date="' + esc(x.date) + '" class="' + (z ? 'zero ' : '') + (isT ? 'today' : '') + '">' +
+      '<td><span class="num">' + Number(x.date.slice(5, 7)) + '/' + Number(x.date.slice(8, 10)) + '</span> <span class="' + dcls + '">(' + w + ')</span>' +
+      (isT ? '<span class="mini t">今日</span>' : fut && x.orders ? '<span class="mini r">予約</span>' : '') + '</td>' +
+      '<td>' + cell(x.orders, !x.orders) + '</td><td>' + cell(x.qty, !x.orders) + '</td>' +
+      '<td class="strong">' + cell(yen(x.sales), !x.orders) + '</td><td>' + cell(yen(taxEx(x.sales)), !x.orders) + '</td>' +
+      '<td>' + cell(yen(x.orders ? Math.round(x.sales / x.orders) : 0), !x.orders) + '</td>' +
+      '<td>' + cell(yen(x.store), !x.orders) + '</td><td>' + cell(yen(x.card), !x.orders) + '</td>' +
+      '<td>' + cell(x.discount ? '−' + yen(x.discount) : '0', !x.orders) + '</td><td>' + (x.cancels || (z ? '—' : 0)) + '</td></tr>';
+  }).join('') || '<tr class="zero"><td colspan="10">この月の注文・予約はまだありません</td></tr>';
+  const tot = (label, arr) => {
+    const t = k => arr.reduce((s, x) => s + x[k], 0), o = t('orders');
+    return '<tr><td>' + label + '</td><td>' + o + '</td><td>' + t('qty') + '</td><td>' + yen(t('sales')) + '</td><td>' + yen(taxEx(t('sales'))) + '</td><td>' + yen(o ? Math.round(t('sales') / o) : 0) + '</td><td>' + yen(t('store')) + '</td><td>' + yen(t('card')) + '</td><td>' + (t('discount') ? '−' + yen(t('discount')) : '0') + '</td><td>' + t('cancels') + '</td></tr>';
+  };
+  const foot = act.length && res.some(x => x.orders || x.cancels) ? tot('実績（今日まで）', act) + tot('予約（明日以降）', res) : tot('合計', d.days);
+  $('#sTable').innerHTML = '<thead><tr><th>日付</th><th>注文</th><th>個数</th><th>売上（税込）</th><th>税抜</th><th>客単価</th><th>店頭払い</th><th>オンライン</th><th>割引</th><th>キャンセル</th></tr></thead><tbody>' + rows + '</tbody><tfoot>' + foot + '</tfoot>';
+}
+function renderRank(d) {
+  const top = d.items.length ? d.items[0].qty : 0;
+  $('#sItems').innerHTML = d.items.length ? d.items.map((it, i) =>
+    '<li><span class="no num">' + (i + 1) + '</span><span class="nm">' + esc(it.name) + '</span><span class="v">' + it.qty + '個<small>' + yen(it.amount) + '</small></span><span class="meter"><i style="width:' + (top ? Math.max(2, it.qty / top * 100) : 0) + '%"></i></span></li>').join('') :
+    '<li class="prod-empty">この月の注文はまだありません</li>';
+  const totalQty = d.items.reduce((t, x) => t + x.qty, 0);
+  $('#sOpts').innerHTML = d.options.map(o => '<span>' + esc(o.name) + ' ' + o.qty + '個' + (totalQty ? '（' + Math.round(o.qty / totalQty * 100) + '%）' : '') + '</span>').join('');
+  const so = d.sources.reduce((t, x) => t + x.orders, 0);
+  $('#sSrc').innerHTML = d.sources.length ? d.sources.map(x =>
+    '<li><span class="no"></span><span class="nm">' + esc(srcLabel(x.key)) + '</span><span class="v">' + x.orders + '件<small>' + (so ? Math.round(x.orders / so * 100) : 0) + '%・' + yen(x.sales) + '</small></span><span class="meter"><i style="width:' + (so ? Math.max(2, x.orders / so * 100) : 0) + '%"></i></span></li>').join('') :
+    '<li class="prod-empty">この月の注文はまだありません</li>';
+}
+
+/* ===== 受け渡し・キャンセル ===== */
+async function setStatus(id, status, opts) {
+  const o = S.orders.find(x => x.id === id); if (!o) return;
+  const prev = o.status;
+  S.busy[id] = true; o.status = status; render();
+  try {
+    const d = await apiPost({ action: 'status', key: S.key, order: id, status: status });
+    if (!d || !d.ok) throw new Error((d && d.error) || '変更できませんでした');
+    delete S.busy[id];
+    if (!(opts && opts.silent)) {
+      const msg = status === ST.DONE ? 'No.' + id + '（' + o.name + '様）を受け渡し済みにしました' : status === ST.CANCEL ? 'No.' + id + 'をキャンセルにしました' : 'No.' + id + 'を受け渡し前に戻しました';
+      toast(msg, prev !== status ? { label: '元に戻す', fn: () => setStatus(id, prev, { silent: true }) } : null);
+    }
+    render();
+    refresh();
+  } catch (err) {
+    delete S.busy[id];
+    const cur = S.orders.find(x => x.id === id); if (cur) cur.status = prev;
+    render();
+    toast((err && err.name !== 'TypeError' && err.message) || '通信できませんでした。もう一度押してください', null, true);
+  }
+}
+function confirmBox(title, text, yes) {
+  return new Promise(res => {
+    $('#cfTitle').textContent = title; $('#cfText').textContent = text; $('#cfYes').textContent = yes;
+    const m = $('#confirm'); m.hidden = false;
+    const done = v => { m.hidden = true; $('#cfYes').onclick = $('#cfNo').onclick = m.onclick = null; res(v); };
+    $('#cfYes').onclick = () => done(true);
+    $('#cfNo').onclick = () => done(false);
+    m.onclick = e => { if (e.target === m) done(false); };
+    setTimeout(() => $('#cfNo').focus(), 30);
+  });
+}
+let toastTimer = 0;
+function toast(msg, action, isErr) {
+  const t = $('#toast');
+  $('#toastText').textContent = msg;
+  t.classList.toggle('err', !!isErr);
+  const b = $('#toastBtn');
+  b.hidden = !action;
+  b.textContent = action ? action.label : '';
+  b.onclick = action ? () => { t.classList.remove('show'); action.fn(); } : null;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), action ? 7000 : 4000);
+}
+
+/* ===== 設定 ===== */
+function saveSet() { store.set(K_SET, S.set); renderSoundBtn(); }
+function setSound(on) {
+  S.set.sound = on; saveSet();
+  if (on) Sound.unlock(false);
+  toast(on ? '通知音をオンにしました' : '通知音をオフにしました');
+}
+
+/* ===== デモ ===== */
+const Demo = (function () {
+  const MENU = [['土鍋ご飯の唐揚げ弁当', 1000], ['土鍋ご飯いくしか特製のり弁', 1180], ['いくしかの焼き魚弁当', 1200], ['土鍋ご飯のエビフライ&唐揚げ弁当', 1200], ['土鍋ご飯の豚の角煮弁当', 1500], ['土鍋ご飯いくしか和牛ちらし', 1800], ['土鍋ご飯の特製うな重弁当', 2300]];
+  const NAMES = ['堀切 花子', '葛飾 太郎', '菖蒲 さくら', '金井 健', '小菅 美咲', '青戸 翔', '四つ木 優子', '立石 大輔'];
+  let orders = null, seq = 0;
+  const ctl = { paused: false, cutToday: false, closedToday: false, items: null };
+  function mk(date, time, createdAgoMin, status, payState, lines, extra) {
+    seq++;
+    const ls = lines.map(([i, q, opt]) => ({ name: MENU[i][0], options: opt ? ['ご飯大盛り'] : [], qty: q, unit: MENU[i][1] + (opt ? 100 : 0) }));
+    const total = ls.reduce((s, l) => s + l.unit * l.qty, 0);
+    return Object.assign({
+      id: date.slice(5).replace('-', '') + '-' + String(seq).padStart(3, '0'), created: Date.now() - createdAgoMin * 60000, date: date, time: time,
+      name: NAMES[seq % NAMES.length], phone: '080-0000-' + String(1000 + seq), itemsText: ls.map(l => l.name + (l.options.length ? '（' + l.options.join('・') + '）' : '') + ' ×' + l.qty).join(' / '),
+      qty: ls.reduce((s, l) => s + l.qty, 0), total: total, payMethod: payState === PS.UNPAID ? '店頭払い' : 'オンライン決済', payState: payState, status: status,
+      chopsticks: seq % 3 ? '必要' : '不要', note: '', source: ['qr', 'line', 'ig', 'google'][seq % 4], coupon: '', discount: 0, lines: ls
+    }, extra || {});
+  }
+  function slot(offsetMin) {
+    const m = Math.max(10 * 60 + 30, Math.min(20 * 60, Math.round((jstNow().min + offsetMin) / 15) * 15));
+    return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+  }
+  function init() {
+    const t = jstNow().date, tm = addDays(t, 1);
+    orders = [
+      mk(t, slot(-60), 300, ST.DONE, PS.UNPAID, [[0, 2], [4, 1]]),
+      mk(t, slot(-15), 200, ST.NEW, PS.UNPAID, [[0, 1, true]], { note: '会社名で領収書をお願いします（株式会社ほりきり）' }),
+      mk(t, slot(15), 120, ST.NEW, PS.PAID, [[6, 2], [5, 1]], { coupon: 'LINE100', discount: 100, total: 6300 }),
+      mk(t, slot(15), 90, ST.NEW, PS.UNPAID, [[3, 3, true], [1, 2]]),
+      mk(t, slot(75), 60, ST.NEW, PS.UNPAID, [[2, 1]]),
+      mk(t, slot(120), 40, ST.CANCEL, PS.UNPAID, [[4, 2]]),
+      mk(tm, '12:00', 30, ST.NEW, PS.UNPAID, [[0, 10], [1, 5]], { note: 'ケータリング用。お箸は15膳お願いします' }),
+      mk(tm, '18:30', 20, ST.NEW, PS.UNPAID, [[6, 1]])
+    ];
+    setTimeout(add, 7000);
+  }
+  function add() {
+    if (!orders) init();
+    orders.push(mk(jstNow().date, slot(45), 0, ST.NEW, PS.UNPAID, [[seq % 7, 1 + seq % 2, seq % 2 === 0]]));
+  }
+  function controls(today) {
+    if (!ctl.items) ctl.items = MENU.map((m, i) => ({ id: 'B0' + (i + 1), name: m[0], dailyLimit: i === 6 ? 20 : 0, todayQty: 0, state: 'on' }));
+    ctl.items.forEach(it => { it.todayQty = (orders || []).filter(o => o.date === today && isValid(o)).reduce((t, o) => t + o.lines.filter(l => l.name === it.name).reduce((u, l) => u + l.qty, 0), 0); });
+    return JSON.parse(JSON.stringify(ctl));
+  }
+  function rnd(seed) { let h = 2166136261; for (let i = 0; i < seed.length; i++) { h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619); } return ((h >>> 0) % 10000) / 10000; }
+  function fakeDay(ds) {
+    const w = wd(ds), r = rnd(ds), base = w === '日' ? 5 : w === '土' ? 9 : 12;
+    const o = Math.max(0, Math.round(base + r * 10 - 3)), q = Math.round(o * (1.15 + rnd(ds + 'q') * .35));
+    const sales = Math.round(q * (1180 + rnd(ds + 's') * 300) / 10) * 10, card = Math.round(sales * .18 / 10) * 10;
+    return { date: ds, orders: o, qty: q, sales: sales, store: sales - card, card: card, discount: o > 6 ? 100 * Math.floor(rnd(ds + 'd') * 3) : 0, coupons: 0, cancels: rnd(ds + 'c') < .25 ? 1 : 0 };
+  }
+  function monthDays(ym) {
+    const a = ym.split('-').map(Number), n = new Date(Date.UTC(a[0], a[1], 0)).getUTCDate(), out = [];
+    for (let i = 1; i <= n; i++) out.push(ym + '-' + String(i).padStart(2, '0'));
+    return out;
+  }
+  function sales(p) {
+    if (!orders) init();
+    const today = jstNow().date, ym = /^\d{4}-\d{2}$/.test(p.month || '') ? p.month : today.slice(0, 7);
+    const real = {};
+    orders.forEach(o => {
+      const x = real[o.date] || (real[o.date] = { date: o.date, orders: 0, qty: 0, sales: 0, store: 0, card: 0, discount: 0, coupons: 0, cancels: 0 });
+      if (o.status === ST.CANCEL) { x.cancels++; return; }
+      if (!isValid(o)) return;
+      x.orders++; x.qty += o.qty; x.sales += o.total; if (o.payState === PS.PAID) x.card += o.total; else x.store += o.total; x.discount += o.discount || 0;
+    });
+    const dayOf = ds => real[ds] || (ds < today ? fakeDay(ds) : { date: ds, orders: 0, qty: 0, sales: 0, store: 0, card: 0, discount: 0, coupons: 0, cancels: 0 });
+    const days = monthDays(ym).map(dayOf);
+    const a = ym.split('-').map(Number), pd = new Date(Date.UTC(a[0], a[1] - 2, 1));
+    const pym = pd.getUTCFullYear() + '-' + String(pd.getUTCMonth() + 1).padStart(2, '0');
+    const cut = ym === today.slice(0, 7) ? Number(today.slice(8, 10)) : 31;
+    const prev = { orders: 0, sales: 0, toDateOrders: 0, toDateSales: 0, cutDay: cut };
+    monthDays(pym).forEach(ds => { if (ds >= today) return; const x = dayOf(ds); prev.orders += x.orders; prev.sales += x.sales; if (Number(ds.slice(8)) <= cut) { prev.toDateOrders += x.orders; prev.toDateSales += x.sales; } });
+    const tq = days.reduce((t, x) => t + x.qty, 0), w = [.27, .19, .14, .13, .11, .09, .07];
+    const items = MENU.map((mm, i) => ({ name: mm[0], qty: Math.round(tq * w[i]), amount: Math.round(tq * w[i]) * mm[1] })).filter(x => x.qty > 0).sort((x, y) => y.qty - x.qty);
+    const to = days.reduce((t, x) => t + x.orders, 0), ts = days.reduce((t, x) => t + x.sales, 0), sw = [['qr', .46], ['line', .31], ['google', .12], ['ig', .07], ['web', .04]];
+    const sources = to ? sw.map(([k, f]) => ({ key: k, orders: Math.round(to * f), sales: Math.round(ts * f / 10) * 10 })) : [];
+    const d = { ok: true, month: ym, today: today, prevMonth: pym, days: days, items: items, options: tq ? [{ name: 'ご飯大盛り', qty: Math.round(tq * .22) }] : [], sources: sources, prev: prev };
+    return new Promise(r => setTimeout(() => r(JSON.parse(JSON.stringify(d))), 250));
+  }
+  return {
+    add: add,
+    sales: sales,
+    get(p) {
+      if (!orders) init();
+      const today = jstNow().date, date = p.date || today;
+      const d = { ok: true, now: Date.now(), today: today, date: date, days: {}, recent: [], orders: orders.filter(o => o.date === date).sort((a, b) => (a.time + a.id).localeCompare(b.time + b.id)), controls: controls(today) };
+      orders.forEach(o => {
+        if (o.created > Date.now() - 48 * 3600000) d.recent.push(o);
+        if (o.date >= today && isValid(o)) d.days[o.date] = (d.days[o.date] || 0) + 1;
+      });
+      return new Promise(r => setTimeout(() => r(JSON.parse(JSON.stringify(d))), 250));
+    },
+    post(b) {
+      if (b.action === 'control') {
+        const today = jstNow().date;
+        controls(today);
+        if (b.op === 'pause') ctl.paused = true; else if (b.op === 'resume') ctl.paused = false;
+        else if (b.op === 'closeToday') ctl.cutToday = true; else if (b.op === 'openToday') ctl.cutToday = false;
+        else if (b.op === 'item') { const it = ctl.items.find(x => x.id === b.id); if (it) it.state = b.mode; }
+        return new Promise(r => setTimeout(() => r({ ok: true, controls: controls(today) }), 300));
+      }
+      const o = (orders || []).find(x => x.id === b.order);
+      if (!o) return Promise.resolve({ ok: false, error: '注文が見つかりません' });
+      o.status = b.status;
+      return new Promise(r => setTimeout(() => r({ ok: true, order: o.id, status: o.status }), 300));
+    }
+  };
+})();
+
+/* ===== イベント ===== */
+function bind() {
+  $('#startForm').addEventListener('submit', start);
+  $('#keyInput').addEventListener('input', e => { e.target.value = e.target.value.toUpperCase(); });
+  $('#prevDay').onclick = () => S.view === 'sales' ? shiftMonth(-1) : goDate(addDays(S.viewDate || S.today, -1));
+  $('#nextDay').onclick = () => S.view === 'sales' ? shiftMonth(1) : goDate(addDays(S.viewDate || S.today, 1));
+  $('#todayBtn').onclick = () => { if (S.view === 'sales') { S.month = S.today.slice(0, 7); renderHeader(); loadSales(); } else goDate(S.today); };
+  document.querySelectorAll('.views [data-view]').forEach(b => { b.onclick = () => setView(b.dataset.view); });
+  $('#sTable').addEventListener('click', e => { const tr = e.target.closest('tr[data-date]'); if (tr) { setView('orders'); goDate(tr.dataset.date); } });
+  const ch = $('#sChart');
+  const hitIndex = e => { const t = e.target.closest && e.target.closest('.hit'); return t ? Number(t.dataset.i) : -1; };
+  ch.addEventListener('pointermove', e => { const i = hitIndex(e); if (i >= 0) showTip(i); else hideTip(); });
+  ch.addEventListener('pointerdown', e => { const i = hitIndex(e); if (i >= 0) showTip(i); });
+  ch.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') hideTip(); });
+  ch.addEventListener('focusin', e => { const i = hitIndex(e); if (i >= 0) showTip(i); });
+  ch.addEventListener('focusout', hideTip);
+  let rz = 0; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(renderChart, 150); });
+  $('#retryBtn').onclick = () => { S.gen++; S.loading = false; refresh(); };
+  $('#tabs').addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (b) { S.filter = b.dataset.f; renderTabs(); renderList(); } });
+  $('#days').addEventListener('click', e => { const b = e.target.closest('[data-date]'); if (b) goDate(b.dataset.date); });
+  $('#list').addEventListener('click', async e => {
+    const b = e.target.closest('[data-act]'); if (!b) return;
+    const id = b.dataset.id, o = S.orders.find(x => x.id === id); if (!o) return;
+    if (b.dataset.act === 'done') setStatus(id, ST.DONE);
+    else if (b.dataset.act === 'undo') setStatus(id, ST.NEW);
+    else if (b.dataset.act === 'cancel') {
+      const paid = o.payState === PS.PAID;
+      const ok = await confirmBox('この注文をキャンセルにしますか？', 'No.' + id + '　' + o.name + '様\n' + o.time + ' 受け取り　' + o.itemsText + (paid ? '\n\n※オンラインでお支払い済みです。返金はStripeの管理画面から行ってください。' : ''), 'キャンセルにする');
+      if (ok) setStatus(id, ST.CANCEL);
+    }
+  });
+  $('#alOk').onclick = ack;
+  $('#acceptBtn').onclick = openCtrl;
+  $('#ctrlClose').onclick = () => { $('#ctrl').hidden = true; };
+  $('#ctrl').addEventListener('click', e => { if (e.target.id === 'ctrl') $('#ctrl').hidden = true; });
+  $('#btnCut').onclick = onCut;
+  $('#btnPause').onclick = onPause;
+  $('#ctrlItems').addEventListener('click', e => { const b = e.target.closest('[data-item]'); if (b) onItem(b.dataset.item, b.dataset.m); });
+  document.querySelectorAll('[data-ctl]').forEach(b => { b.onclick = () => control(b.dataset.ctl, null, b.dataset.ctl === 'resume' ? '受付を再開しました' : '今日の受付を再開しました'); });
+  $('#alert').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') { e.preventDefault(); ack(); } });
+  $('#soundBtn').onclick = () => setSound(!S.set.sound);
+  $('#soundOnBtn').onclick = () => setSound(true);
+  $('#unblockBtn').onclick = () => Sound.unlock(false);
+  $('#setBtn').onclick = () => { renderSoundBtn(); updWake(); $('#settings').hidden = false; };
+  $('#setClose').onclick = () => { $('#settings').hidden = true; };
+  $('#settings').addEventListener('click', e => { if (e.target.id === 'settings') $('#settings').hidden = true; });
+  $('#swSound').onclick = () => setSound(!S.set.sound);
+  $('#swRepeat').onclick = () => { S.set.repeat = !S.set.repeat; saveSet(); if (S.unacked.length) openAlert(false); };
+  $('#testSound').onclick = () => { Sound.unlock(true); };
+  $('#demoAdd').onclick = () => { Demo.add(); $('#settings').hidden = true; S.gen++; S.loading = false; refresh(); };
+  $('#logout').onclick = () => { store.del(K_KEY); S.key = ''; $('#settings').hidden = true; closeAlert(); showStart(''); $('#keyInput').value = ''; $('#keyInput').focus(); };
+  if ('Notification' in window && Notification.permission !== 'denied' && Notification.permission !== 'granted' && !/iPhone|iPad|iPod|Android/.test(navigator.userAgent)) {
+    $('#notifRow').hidden = false;
+    $('#notifBtn').onclick = () => Notification.requestPermission().then(p => { if (p !== 'default') $('#notifRow').hidden = true; toast(p === 'granted' ? 'パソコンの通知をオンにしました' : '通知は許可されませんでした'); });
+  }
+  // 音がブロックされていたら、次に画面に触れたときに直す
+  document.addEventListener('pointerdown', () => { if (Sound.blocked && S.started) Sound.unlock(false); }, true);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && S.started) { keepAwake(); S.gen++; S.loading = false; refresh(); }
+  });
+  window.addEventListener('online', () => { if (S.started) { S.gen++; S.loading = false; refresh(); } });
+}
+
+function main() {
+  bind();
+  setInterval(tickClock, 1000); tickClock();
+  showStart('');
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', main); else main();
+})();
+</script>
+</body>
+</html>

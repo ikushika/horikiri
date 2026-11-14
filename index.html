@@ -130,6 +130,7 @@ img{display:block;max-width:100%}
 .card .price{font-size:15px;font-weight:700;margin-top:3px}
 .card .price small{font-size:10.5px;font-weight:400;color:var(--sub);margin-left:3px}
 .tag{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:4px;background:var(--accent-weak);color:var(--accent);margin-top:4px}
+.tag.today-sold{background:#F2F0EC;color:#6B645B;font-weight:700}
 .card.soldout h4,.card.soldout .price{color:var(--mute)}
 
 .line-banner{display:flex;gap:12px;align-items:center;background:var(--green-weak);border-radius:var(--r);padding:14px 16px;margin:30px 20px 0;font-size:13px;line-height:1.5}
@@ -562,7 +563,7 @@ textarea{min-height:84px;resize:vertical}
  * （空欄のままだとサンプルデータで動くデモ表示になります）
  * ===================================================== */
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbxJY0sDV1JzD7mhZkVxPptVTydSW7bdIlJOTZVP6m0oSrMEudbP8cNP4A-yZBXrVFqG/exec';
-const FALLBACK_TEL = ''; // 読み込みに失敗したとき案内する電話番号（空欄なら出さない）
+const FALLBACK_TEL = '03-5875-7556'; // 読み込みに失敗したとき案内する電話番号（空欄なら出さない）
 </script>
 <script>
 (() => {
@@ -662,6 +663,8 @@ const ICON = {
 /* ---------- 受付枠 ---------- */
 function slotList() { const c = S.cfg, out = []; for (let m = toMin(c.pickupStart); m <= toMin(c.pickupEnd); m += c.interval) out.push(fromMin(m)); return out; }
 function isOpen(ds) { return S.cfg.closedWeekdays.indexOf(wdOf(ds)) < 0 && S.cfg.closedDates.indexOf(ds) < 0; }
+// 店舗ダッシュボードの「受付を一時停止」「今日の受付を締め切る」
+function isCut(ds) { return !!S.cfg.paused || (S.cfg.cutoffDates || []).indexOf(ds) >= 0; }
 function dateList() { const out = []; for (let i = 0; i < S.cfg.days; i++) out.push(dsOf(now() + i * 86400000)); return out; }
 function usageOf(ds) { return (S.usage && S.usage[ds]) || { slots: {}, items: {} }; }
 function leadOk(ds, t) { return slotMs(ds, t) - now() >= S.cfg.leadMinutes * 60000; }
@@ -673,9 +676,21 @@ function slotState(ds, t) {
   if (left < cartQty()) return { ok: false, reason: 'few', left: left };
   return { ok: true, left: left };
 }
-function dateOpenSlots(ds) { return isOpen(ds) ? slotList().filter(t => leadOk(ds, t) && slotLeft(ds, t) > 0) : []; }
-function earliest() { for (const ds of dateList()) { const s = dateOpenSlots(ds); if (s.length) return { ds: ds, t: s[0] }; } return null; }
-function itemLeft(ds, m) { return m.dailyLimit > 0 ? m.dailyLimit - (usageOf(ds).items[m.id] || 0) : Infinity; }
+function dateOpenSlots(ds) { return isOpen(ds) && !isCut(ds) ? slotList().filter(t => leadOk(ds, t) && slotLeft(ds, t) > 0) : []; }
+function earliest() {
+  let first = null;
+  for (const ds of dateList()) {
+    const s = dateOpenSlots(ds); if (!s.length) continue;
+    if (!first) first = { ds: ds, t: s[0] };
+    if (!limitIssues(ds).length) return { ds: ds, t: s[0] }; // カートの商品が売り切れていない日を優先
+  }
+  return first;
+}
+function itemLeft(ds, m) {
+  if (m.soldDate && m.soldDate === ds) return 0; // その日だけ売り切れ
+  return m.dailyLimit > 0 ? m.dailyLimit - (usageOf(ds).items[m.id] || 0) : Infinity;
+}
+const soldToday = m => !m.soldOut && !!m.soldDate && m.soldDate === dsOf(now());
 
 /* ---------- カート ---------- */
 const menuById = id => S.menu.find(m => m.id === id);
@@ -741,6 +756,9 @@ function renderNews() {
   // 重要なお知らせ（＋設定シートの旧「お知らせ」）はページ上部の帯に
   const top = list.filter(n => n.important).map(n => ({ title: n.title, body: n.body, url: n.url }));
   if (c.notice) top.unshift({ title: '', body: c.notice, url: '' });
+  const td = dsOf(now());
+  if (c.paused) top.unshift({ title: 'ただいま注文の受付を一時停止しています', body: '再開まで少しお待ちください。お急ぎの方はお電話でお問い合わせください。', url: '' });
+  else if ((c.cutoffDates || []).indexOf(td) >= 0 && isOpen(td)) top.unshift({ title: '本日の受け取りの受付は終了しました', body: '明日以降の受け取りは、このページからご予約いただけます。', url: '' });
   $('#notice').innerHTML = top.map(n => '<div class="notice-item">' + BELL + '<div>' + (n.title ? '<b>' + esc(n.title) + '</b>' : '') +
     (n.body ? '<p>' + linkify(n.body) + '</p>' : '') + (n.url ? '<a href="' + esc(n.url) + '" target="_blank" rel="noopener">詳しく見る</a>' : '') + '</div></div>').join('');
 
@@ -900,7 +918,7 @@ function itemCard(m) {
     (m.soldOut ? '<span class="sold">売り切れ</span>' : '<span class="plus" aria-hidden="true">＋</span>') +
     '<span class="incart" data-badge="' + esc(m.id) + '" hidden></span></div>' +
     '<h4>' + esc(m.name) + '</h4>' +
-    (m.dailyLimit > 0 && !m.soldOut ? '<span class="tag">1日' + m.dailyLimit + '食限定</span>' : '') +
+    (soldToday(m) ? '<span class="tag today-sold">本日分は売り切れ</span>' : m.dailyLimit > 0 && !m.soldOut ? '<span class="tag">1日' + m.dailyLimit + '食限定</span>' : '') +
     '<p class="price">' + yen(m.price) + '<small>税込</small></p></button>';
 }
 
@@ -968,7 +986,7 @@ function openItem(id) {
       '<div class="sheet-body"' + (img ? '' : ' style="padding-top:28px"') + '>' + ((m.badges || []).length ? '<div class="sheet-badges">' + m.badges.map(b => '<span class="badge">' + esc(b) + '</span>').join('') + '</div>' : '') + '<h3 class="serif">' + esc(m.name) + '</h3>' +
       (m.desc ? '<p class="desc">' + esc(m.desc) + '</p>' : '') +
       '<p class="price">' + yen(m.price) + ' <small style="font-weight:400;font-size:12px;color:var(--sub)">税込</small></p>' +
-      (m.dailyLimit > 0 ? '<span class="tag">1日' + m.dailyLimit + '食限定</span>' : '') +
+      (soldToday(m) ? '<span class="tag today-sold">本日分は売り切れ・明日以降はご予約できます</span>' : m.dailyLimit > 0 ? '<span class="tag">1日' + m.dailyLimit + '食限定</span>' : '') +
       (m.options.length ? '<p class="opt-title">オプション</p>' + m.options.map((o, i) =>
         '<button type="button" class="opt' + (st.opts.indexOf(o.name) >= 0 ? ' on' : '') + '" data-o="' + i + '"><span class="box">' + ICON.check + '</span>' + esc(o.name) +
         '<span class="p">' + (o.price ? (o.price > 0 ? '+' : '−') + yen(Math.abs(o.price)) : '') + '</span></button>').join('') : '') +
@@ -1092,7 +1110,7 @@ function renderDates() {
   if (!S.date || !dateOpenSlots(S.date).length) { const e = earliest(); S.date = e ? e.ds : ''; }
   $('#dates').innerHTML = list.map(ds => {
     const open = isOpen(ds), slots = dateOpenSlots(ds);
-    const sub = !open ? '定休日' : !slots.length ? '受付終了' : (relDay(ds) || '');
+    const sub = !open ? '定休日' : S.cfg.paused ? '停止中' : isCut(ds) ? '受付終了' : !slots.length ? '受付終了' : (relDay(ds) || '');
     const p = ds.split('-').map(Number);
     return '<button type="button" class="date' + (ds === S.date ? ' on' : '') + '" data-ds="' + ds + '"' + (slots.length ? '' : ' disabled') + '>' +
       p[1] + '月<b>' + p[2] + '</b>' + WD[wdOf(ds)] + (sub ? '・' + sub : '') + '</button>';
@@ -1102,7 +1120,7 @@ function renderDates() {
 
 function renderTimes() {
   const box = $('#times');
-  if (!S.date) { box.innerHTML = ''; $('#pickupHint').textContent = '現在、受け付けできる受取時間がありません。お電話でお問い合わせください。'; return; }
+  if (!S.date) { box.innerHTML = ''; $('#pickupHint').textContent = S.cfg.paused ? 'ただいま注文の受付を一時停止しています。再開まで少しお待ちください。' : '現在、受け付けできる受取時間がありません。お電話でお問い合わせください。'; return; }
   box.innerHTML = slotList().map(t => {
     const s = slotState(S.date, t);
     const sub = s.ok ? (s.left !== Infinity && s.left <= 5 ? '残り' + s.left : '') : s.reason === 'past' ? '受付終了' : s.reason === 'full' ? '満' : '残り' + s.left;
@@ -1119,7 +1137,7 @@ function renderTimes() {
 function limitIssues(ds) {
   const by = {};
   S.cart.forEach(l => { by[l.id] = (by[l.id] || 0) + l.qty; });
-  return Object.keys(by).map(id => { const m = menuById(id); if (!m) return ''; const left = itemLeft(ds, m); return by[id] > left ? '「' + m.name + '」はこの日あと' + Math.max(0, left) + '個までです' : ''; }).filter(Boolean);
+  return Object.keys(by).map(id => { const m = menuById(id); if (!m) return ''; const left = itemLeft(ds, m); return by[id] > left ? '「' + m.name + '」は' + (left <= 0 ? 'この日は売り切れです。別の日をお選びください' : 'この日あと' + left + '個までです') : ''; }).filter(Boolean);
 }
 
 function renderPay() {

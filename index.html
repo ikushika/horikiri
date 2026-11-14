@@ -1000,10 +1000,12 @@ function renderDelivery() {
   $('#uberBtn').onclick = e => { if (!c.uberUrl) { e.preventDefault(); toast('Uber Eatsは準備中です'); } };
 }
 
+// プライバシーポリシー（設定シートが空欄なら、同じフォルダの privacy.html）
+const privacyUrl = () => S.cfg.privacyUrl || 'privacy.html';
 function renderFooter() {
   const c = S.cfg, f = [];
   if (c.tokushoUrl) f.push('<a href="' + esc(c.tokushoUrl) + '">特定商取引法に基づく表記</a>');
-  if (c.privacyUrl) f.push('<a href="' + esc(c.privacyUrl) + '" target="_blank" rel="noopener">プライバシーポリシー</a>');
+  f.push('<a href="' + esc(privacyUrl()) + '">プライバシーポリシー</a>');
   if (c.contactUrl) f.push('<a href="' + esc(c.contactUrl) + '" target="_blank" rel="noopener">お問い合わせ</a>');
   if (c.companyUrl) f.push('<a href="' + esc(c.companyUrl) + '" target="_blank" rel="noopener">会社概要</a>');
   $('#footer').innerHTML = (f.length ? '<nav>' + f.join('') + '</nav>' : '') + '<p>© 株式会社いくしか</p>';
@@ -1154,7 +1156,8 @@ function renderCheckout() {
   $('#notesText').hidden = !S.cfg.notes;
   $('#agree').classList.toggle('on', S.agree);
   $$('#chopsticks button').forEach(b => b.classList.toggle('on', b.dataset.v === S.chop));
-  $('#legalLink').innerHTML = S.cfg.tokushoUrl ? 'キャンセル・お支払いについては<a href="' + esc(S.cfg.tokushoUrl) + '" target="_blank" rel="noopener">特定商取引法に基づく表記</a>をご覧ください。' : '';
+  $('#legalLink').innerHTML = (S.cfg.tokushoUrl ? 'キャンセル・お支払いについては<a href="' + esc(S.cfg.tokushoUrl) + '" target="_blank" rel="noopener">特定商取引法に基づく表記</a>をご覧ください。' : '') +
+    'ご入力いただいた個人情報は、<a href="' + esc(privacyUrl()) + '" target="_blank" rel="noopener">プライバシーポリシー</a>に沿って取り扱います。';
 }
 
 function renderLines() {

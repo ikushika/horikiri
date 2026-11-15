@@ -62,6 +62,26 @@ img{display:block;max-width:100%}
 .quick{padding:18px 20px 4px}
 .earliest{display:flex;align-items:center;gap:10px;font-size:14px}
 .earliest b{font-size:15.5px}
+/* オープン日（設定シートの「オープン日」より前と当日だけ出る） */
+.open-badge{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(233,199,154,.6);color:#F3DDBB;border-radius:999px;padding:4px 13px 4px 4px;font-size:12.5px;letter-spacing:.08em;margin-bottom:4px;font-weight:600}
+.open-badge[hidden]{display:none}
+.open-badge .ob-k{background:#E9C79A;color:#1A1714;border-radius:999px;padding:3px 9px;font-size:10px;font-weight:800;letter-spacing:.16em}
+.open-card{margin:18px 20px 0;border-radius:18px;background:#1A1714;color:#fff;padding:18px 20px 20px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(26,23,20,.16)}
+.open-card[hidden]{display:none}
+.open-card::after{content:"";position:absolute;right:-60px;top:-60px;width:190px;height:190px;border-radius:50%;border:1px solid rgba(233,199,154,.22);box-shadow:0 0 0 22px rgba(233,199,154,.05)}
+.oc-top{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;z-index:1}
+.oc-k{font-size:11px;font-weight:800;letter-spacing:.24em;color:#E9C79A}
+.oc-cd{font-size:12.5px;color:rgba(255,255,255,.78);white-space:nowrap}
+.oc-cd b{font-size:22px;color:#fff;margin:0 3px;font-weight:700;letter-spacing:0}
+.oc-date{position:relative;z-index:1;margin-top:8px;font-size:17px;letter-spacing:.04em;display:flex;align-items:baseline;flex-wrap:wrap;gap:0 2px}
+.oc-date small{width:100%;font-size:12px;letter-spacing:.3em;color:rgba(255,255,255,.6)}
+.oc-date b{font-size:42px;line-height:1.1;font-weight:600;letter-spacing:.02em}
+.oc-date span{font-size:16px;color:rgba(255,255,255,.8)}
+.oc-text{position:relative;z-index:1;margin-top:10px;font-size:13.5px;line-height:1.8;color:rgba(255,255,255,.88)}
+.oc-res{position:relative;z-index:1;display:flex;gap:9px;align-items:flex-start;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14);font-size:13px;line-height:1.7;color:rgba(255,255,255,.86)}
+.oc-res svg{width:18px;height:18px;flex:none;margin-top:2px;color:#E9C79A}
+.oc-res b{color:#F3DDBB;font-size:14.5px}
+.oc-btn{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;margin-top:14px;height:46px;border-radius:999px;background:#E9C79A;color:#1A1714;font-weight:800;font-size:14.5px;text-decoration:none;letter-spacing:.04em}
 .dot{width:8px;height:8px;border-radius:50%;background:#2F8F5B;box-shadow:0 0 0 4px rgba(47,143,91,.15);flex:none}
 .dot.off{background:var(--mute);box-shadow:none}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
@@ -473,6 +493,13 @@ textarea{min-height:84px;resize:vertical}
   .hero-video{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18%),linear-gradient(180deg,transparent 0,#000 6%,#000 95%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 18%),linear-gradient(180deg,transparent 0,#000 6%,#000 95%,transparent 100%);mask-composite:intersect}
   .hero-copy{position:relative;grid-column:1;grid-row:2;padding:0 48px 0 var(--gut)}
   .hero-name{font-size:20px}
+  .open-badge{font-size:13.5px}
+  .open-card{margin:24px auto 0;padding:24px 30px 26px;display:grid;grid-template-columns:auto 1fr auto;column-gap:34px;align-items:center}
+  .open-card .oc-top{grid-column:1;grid-row:1;flex-direction:column;align-items:flex-start;gap:4px}
+  .open-card .oc-date{grid-column:1;grid-row:2}
+  .open-card .oc-text{grid-column:2;grid-row:1;margin-top:0;align-self:end}
+  .open-card .oc-res{grid-column:2;grid-row:2;align-self:start}
+  .open-card .oc-btn{grid-column:3;grid-row:1/3;margin-top:0;padding:0 28px}
   .hero-name span{font-size:13px}
   .hero h1{font-size:44px;margin-top:30px;line-height:1.55}
   .hero h1 strong{font-size:58px}
@@ -602,6 +629,7 @@ textarea{min-height:84px;resize:vertical}
     </div>
     <header class="hero" id="hero">
       <div class="hero-copy">
+        <p class="open-badge" id="openBadge" hidden></p>
         <p class="hero-name serif" id="heroName">土鍋ご飯いくしか<span>堀切</span></p>
         <h1 class="serif"><strong>土鍋</strong>で炊いた、<br>ごはんが主役の<br>お弁当。</h1>
         <p class="catch" id="catch"></p>
@@ -611,6 +639,7 @@ textarea{min-height:84px;resize:vertical}
     </header>
     <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
 
+    <section class="open-card" id="openCard" hidden aria-label="オープンのお知らせ"></section>
     <div class="quick" id="quick"></div>
     <div id="notice"></div>
     <div id="couponBanner"></div>
@@ -822,9 +851,21 @@ const ICON = {
 function slotList() { const c = S.cfg, out = []; for (let m = toMin(c.pickupStart); m <= toMin(c.pickupEnd); m += c.interval) out.push(fromMin(m)); return out; }
 // 臨時休業日 → 休み、臨時営業日 → 営業（定休曜日でも）、それ以外は定休曜日で判定
 function isOpen(ds) {
+  if (beforeOpen(ds)) return false;
   if ((S.cfg.closedDates || []).indexOf(ds) >= 0) return false;
   if ((S.cfg.openDates || []).indexOf(ds) >= 0) return true;
   return S.cfg.closedWeekdays.indexOf(wdOf(ds)) < 0;
+}
+// 設定シートの「オープン日」より前の日
+function beforeOpen(ds) { return !!S.cfg.openDate && ds < S.cfg.openDate; }
+const addDs = (ds, n) => dsOf(slotMs(ds, '12:00') + n * 86400000);
+const jpDate = ds => { const p = ds.split('-').map(Number); return p[1] + '月' + p[2] + '日（' + WD[wdOf(ds)] + '）'; };
+/** オープン前・当日だけ { date, today, left（あと何日）, resStart（予約の受付開始日）, booking（予約受付中か） } */
+function openInfo() {
+  const od = S.cfg.openDate, td = dsOf(now());
+  if (!od || td > od) return null;
+  const resStart = addDs(od, -(S.cfg.days - 1));
+  return { date: od, today: td === od, left: Math.round((slotMs(od, '12:00') - slotMs(td, '12:00')) / 86400000), resStart: resStart, booking: td >= resStart };
 }
 // 店舗ダッシュボードの「受付を一時停止」「今日の受付を締め切る」
 function isCut(ds) { return !!S.cfg.paused || (S.cfg.cutoffDates || []).indexOf(ds) >= 0; }
@@ -905,6 +946,23 @@ function sanitizeCart() {
   return kind;
 }
 
+/* ---------- 描画：オープン日（オープン前と当日だけ） ---------- */
+const CAL_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>';
+function renderOpen(oi) {
+  const b = $('#openBadge'), card = $('#openCard');
+  b.hidden = card.hidden = !oi;
+  if (!oi) { b.innerHTML = card.innerHTML = ''; return; }
+  const p = oi.date.split('-').map(Number), wd = WD[wdOf(oi.date)], name = esc(S.cfg.storeName);
+  b.innerHTML = oi.today ? '<span class="ob-k">TODAY</span>本日オープン' : '<span class="ob-k">OPEN</span>' + p[0] + '.' + p[1] + '.' + p[2] + '（' + wd + '）オープン';
+  const cd = oi.today ? '本日オープン' : oi.left === 1 ? 'いよいよ明日オープン' : 'オープンまで あと<b>' + oi.left + '</b>日';
+  card.innerHTML =
+    '<div class="oc-top"><span class="oc-k">GRAND OPEN</span><span class="oc-cd">' + cd + '</span></div>' +
+    '<p class="oc-date serif"><small>' + p[0] + '</small><b>' + p[1] + '</b>月<b>' + p[2] + '</b>日<span>（' + wd + '）</span></p>' +
+    '<p class="oc-text">' + (oi.today ? name + 'は、本日オープンしました。ご来店・ご予約をお待ちしています。' : name + 'は、' + p[1] + '月' + p[2] + '日（' + wd + '）にオープンします。') + '</p>' +
+    (oi.today ? '' : '<p class="oc-res">' + CAL_ICON + '<span>' + (oi.booking ? 'オープン日からのお受け取り分の、ご予約を受け付けています。' : 'ご予約は <b>' + jpDate(oi.resStart) + '</b> から、このページで受け付けます。') + '</span></p>') +
+    (oi.booking ? '<a class="oc-btn" href="#menu">お弁当を選ぶ</a>' : '');
+}
+
 /* ---------- 描画：トップ ---------- */
 function renderTop() {
   const c = S.cfg;
@@ -914,11 +972,13 @@ function renderTop() {
   $('#catch').textContent = c.catchCopy || '';
   document.title = 'お弁当のご注文｜' + c.storeName;
 
-  const e = earliest();
+  const e = earliest(), oi = openInfo();
   const access1 = String(c.access || '').split('\n')[0];
+  renderOpen(oi);
   $('#quick').innerHTML =
     '<div class="earliest"><span class="dot' + (e ? '' : ' off') + '"></span>' +
-    (e ? '<span>最短の受け取り <b>' + (relDay(e.ds) || labelDate(e.ds)) + ' ' + e.t + '〜</b></span>' : '<span>現在、受け付けできる受取時間がありません</span>') + '</div>' +
+    (e ? '<span>最短の受け取り <b>' + (relDay(e.ds) || labelDate(e.ds)) + ' ' + e.t + '〜</b></span>' :
+      oi && !oi.booking ? '<span>ご予約の受付は <b>' + jpDate(oi.resStart) + '</b> から</span>' : '<span>現在、受け付けできる受取時間がありません</span>') + '</div>' +
     '<div class="chips">' +
     (access1 ? '<a class="chip" href="#access">' + ICON.train + esc(access1.replace(/^.*?「/, '「')) + '</a>' : '') +
     (c.hoursText ? '<span class="chip">' + ICON.clock + '受取 ' + esc(c.hoursText) + '</span>' : '') +
@@ -928,6 +988,7 @@ function renderTop() {
   renderBanners();
   $('#lineTop').innerHTML = lineBanner('友だち追加がおすすめ', '次回からトーク画面のメニューで、すぐに注文できます。');
   const mq = ['福島県産米を土鍋で炊きあげ', '土鍋で炊く、ごはんが主役のお弁当', 'スマホで事前注文、待たずに受け取り', 'DONABE GOHAN IKUSHIKA'];
+  if (oi) mq.unshift(oi.date.replace(/-0?/g, '.') + ' GRAND OPEN');
   $('#marquee').innerHTML = mq.concat(mq).map(t => '<span>' + esc(t) + '</span>').join('');
   renderScenes(); renderDelivery(); renderStore(); renderFooter(); renderReserved(); injectLd();
   setupReveal(); setupRibbons();
@@ -1358,7 +1419,7 @@ function renderDates() {
   $('#dates').innerHTML = list.map(ds => {
     const open = isOpen(ds), slots = dateOpenSlots(ds);
     const special = (S.cfg.openDates || []).indexOf(ds) >= 0;
-    const sub = !open ? ((S.cfg.closedDates || []).indexOf(ds) >= 0 ? '臨時休業' : '定休日') : S.cfg.paused ? '停止中' : isCut(ds) ? '受付終了' : !slots.length ? '受付終了' : special ? '臨時営業' : (relDay(ds) || '');
+    const sub = !open ? (beforeOpen(ds) ? '開店前' : (S.cfg.closedDates || []).indexOf(ds) >= 0 ? '臨時休業' : '定休日') : S.cfg.paused ? '停止中' : isCut(ds) ? '受付終了' : !slots.length ? '受付終了' : special ? '臨時営業' : (relDay(ds) || '');
     const p = ds.split('-').map(Number);
     return '<button type="button" class="date' + (ds === S.date ? ' on' : '') + '" data-ds="' + ds + '"' + (slots.length ? '' : ' disabled') + '>' +
       p[1] + '月<b>' + p[2] + '</b>' + WD[wdOf(ds)] + (sub ? '・' + sub : '') + '</button>';
@@ -1368,7 +1429,13 @@ function renderDates() {
 
 function renderTimes() {
   const box = $('#times');
-  if (!S.date) { box.innerHTML = ''; $('#pickupHint').textContent = S.cfg.paused ? 'ただいま注文の受付を一時停止しています。再開まで少しお待ちください。' : '現在、受け付けできる受取時間がありません。お電話でお問い合わせください。'; return; }
+  if (!S.date) {
+    box.innerHTML = ''; const oi = openInfo();
+    $('#pickupHint').textContent = S.cfg.paused ? 'ただいま注文の受付を一時停止しています。再開まで少しお待ちください。' :
+      oi && !oi.booking ? jpDate(oi.date) + 'のオープン日からお受け取りいただけます。ご予約は' + jpDate(oi.resStart) + 'から、このページで受け付けます。' :
+      '現在、受け付けできる受取時間がありません。お電話でお問い合わせください。';
+    return;
+  }
   box.innerHTML = slotList().map(t => {
     const s = slotState(S.date, t);
     const sub = s.ok ? (s.left !== Infinity && s.left <= 5 ? '残り' + s.left : '') : s.reason === 'past' ? '受付終了' : s.reason === 'full' ? '満' : '残り' + s.left;

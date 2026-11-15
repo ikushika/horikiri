@@ -221,6 +221,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke
 .seg3 button.on[data-m="on"]{background:var(--green);color:#fff}
 .seg3 button.on[data-m="today"]{background:#C2560F;color:#fff}
 .seg3 button.on[data-m="stop"]{background:var(--ink);color:#fff}
+.ctrl-items li.st-stop .ci small.off{color:var(--red);font-weight:700}
 .seg3 button[disabled]{opacity:.5}
 .ctrl-items li.st-today .ci b,.ctrl-items li.st-stop .ci b{color:var(--sub)}
 
@@ -229,6 +230,89 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke
 .views button{height:38px;padding:0 16px;border-radius:9px;font-weight:700;font-size:15px;color:#C9C1B6;display:flex;align-items:center;gap:6px}
 .views button svg.i{width:18px;height:18px}
 .views button.on{background:#fff;color:var(--dark)}
+
+/* ---------- calendar ---------- */
+.cal-open{display:flex;align-items:center;gap:12px;width:100%;margin-top:14px;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;background:#fff;text-align:left}
+.cal-open svg.i{width:24px;height:24px;flex:none;color:var(--accent)}
+.cal-open svg.chev{width:20px;height:20px;color:var(--mute);margin-left:auto}
+.cal-open b{display:block;font-size:15px}
+.cal-open small{display:block;font-size:12.5px;color:var(--sub)}
+.cal-open:active{background:var(--bg)}
+.cal-box{max-width:560px!important;max-height:calc(100vh - 40px);overflow-y:auto}
+.cal-sub{font-size:13.5px!important;margin-bottom:10px}
+.cal-legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--sub);margin-bottom:10px}
+.cal-legend span{display:flex;align-items:center;gap:5px}
+.cal-legend i{width:14px;height:14px;border-radius:4px;border:1.5px solid var(--line);background:#fff}
+.cal-legend i.holiday{background:#ECE8E1;border-color:#DDD6CB}
+.cal-legend i.open{background:var(--orange-weak);border-color:var(--orange)}
+.cal-legend i.closed{background:var(--red-weak);border-color:var(--red)}
+.cal-head,.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.cal-head span{text-align:center;font-size:12px;font-weight:700;color:var(--sub);padding:2px 0}
+.cal-head .sun{color:var(--red)}.cal-head .sat{color:var(--blue)}
+.cd{min-height:64px;border-radius:10px;border:1.5px solid var(--line);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:1px;padding:5px 2px;position:relative}
+.cd:active{transform:scale(.97)}
+.cd-n{font-size:17px;font-weight:800;line-height:1.2}
+.cd-n small{font-size:11px;font-weight:700;color:var(--sub)}
+.cd-t{font-size:10.5px;font-weight:700;line-height:1.2;white-space:nowrap}
+.cd-o{font-size:10px;font-weight:700;color:var(--blue);background:var(--blue-weak);border-radius:999px;padding:0 6px;margin-top:auto;white-space:nowrap}
+.cd.holiday{background:#ECE8E1;border-color:#DDD6CB;color:var(--sub)}
+.cd.open{background:var(--orange-weak);border-color:var(--orange)}
+.cd.open .cd-t{color:#A8481A}
+.cd.closed{background:var(--red-weak);border-color:var(--red)}
+.cd.closed .cd-t{color:var(--red)}
+.cd.today{box-shadow:0 0 0 2px var(--ink)}
+.cd.far{border-style:dashed}
+.cd.far .cd-n{color:var(--mute)}
+.cd.past{opacity:.35}
+.cd[disabled]{pointer-events:none}
+@media (max-width:420px){.cd{min-height:58px}.cd-n{font-size:15px}.cd-t{font-size:9.5px}}
+
+/* ---------- stock ---------- */
+.stock{padding:16px;max-width:1500px;margin:0 auto}
+.stock-intro{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:14px}
+.stock-intro svg.i{width:26px;height:26px;flex:none;color:var(--accent);margin-top:1px}
+.stock-intro b{display:block;font-size:15px}
+.stock-intro span{display:block;font-size:13px;color:var(--sub);margin-top:2px;line-height:1.6}
+.stock-msg{background:var(--yellow);color:#6B4E00;border:1px solid #EAD891;border-radius:12px;padding:10px 14px;font-size:14px;font-weight:600;margin-bottom:14px}
+.stock-grid{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;transition:opacity .2s}
+.stock-grid.loading{opacity:.5;pointer-events:none}
+.sk{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.sk.set{border-color:#F2C7A3;box-shadow:inset 4px 0 0 var(--orange)}
+.sk.zero{border-color:#F4C7C7;box-shadow:inset 4px 0 0 var(--red)}
+.sk-top{display:flex;align-items:flex-start;gap:8px}
+.sk-top b{flex:1;font-size:15px;line-height:1.4}
+.sk-flag{flex:none;font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;background:var(--bg);color:var(--sub);white-space:nowrap}
+.sk-flag.stop{background:var(--ink);color:#fff}
+.sk-flag.today{background:#C2560F;color:#fff}
+.sk-mid{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.sk-left small{display:block;font-size:12px;color:var(--sub);font-weight:700}
+.sk-left b{font-size:40px;line-height:1;font-weight:800}
+.sk-left em{font-style:normal;font-size:15px;font-weight:700;margin-left:3px;color:var(--sub)}
+.sk-left .free{font-size:22px;line-height:1.5;font-weight:800;color:var(--sub)}
+.sk.low .sk-left b{color:#C2560F}
+.sk.zero .sk-left b,.sk.zero .sk-left small{color:var(--red)}
+.sk-meta{text-align:right;font-size:12.5px;color:var(--sub);line-height:1.55}
+.sk-meta b{color:var(--ink);font-size:14px}
+.sk-acts{display:flex;gap:8px}
+.sk-acts .btn{height:46px;font-size:15px}
+.sk-acts .btn.line{flex:1}
+.sk-acts .btn.ghost{flex:none;padding:0 16px}
+.sk-sub{font-size:14px!important;margin-bottom:14px}
+.stepper{display:flex;align-items:stretch;gap:10px}
+.stepper .step{width:64px;flex:none;border-radius:14px;background:var(--bg);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.stepper .step svg.i{width:26px;height:26px}
+.stepper .step:active{background:var(--line)}
+.sk-num{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;border:2px solid var(--ink);border-radius:14px;height:76px;padding:0 10px}
+.sk-num span{font-size:15px;font-weight:700;color:var(--sub);white-space:nowrap;flex:none}
+.sk-num input{width:100%;max-width:120px;border:0;outline:0;text-align:center;font-size:40px;font-weight:800;font-family:inherit;color:var(--ink);background:none;-moz-appearance:textfield}
+.sk-num input::-webkit-outer-spin-button,.sk-num input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.sk-quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.sk-quick button{height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-weight:700;font-size:14px}
+.sk-quick button.zero{color:var(--red);border-color:#F4C7C7}
+.sk-quick button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sk-hint{font-size:12.5px!important;margin-top:10px}
+.sk-clear{display:block;margin:12px auto 0;font-size:14px;font-weight:700;color:var(--sub);text-decoration:underline;padding:6px 10px}
+@media (max-width:520px){.views button{padding:0 11px;font-size:14px}.sk-left b{font-size:34px}.stepper .step{width:54px}.sk-num{padding:0 8px}.sk-num input{font-size:36px}}
 
 /* ---------- sales ---------- */
 .sales{padding:16px;max-width:1500px;margin:0 auto;transition:opacity .2s}
@@ -287,7 +371,7 @@ table.st{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
 .sales-note{font-size:12px;color:var(--sub);line-height:1.7;margin-top:14px}
 
 /* ---------- alert overlay ---------- */
-.alert{position:fixed;inset:0;z-index:60;background:var(--orange);color:#fff;display:flex;flex-direction:column;align-items:center;padding:calc(24px + var(--safe-t)) 20px calc(24px + var(--safe-b));overflow-y:auto;animation:alertIn .25s ease-out}
+.alert{position:fixed;inset:0;z-index:78;background:var(--orange);color:#fff;display:flex;flex-direction:column;align-items:center;padding:calc(24px + var(--safe-t)) 20px calc(24px + var(--safe-b));overflow-y:auto;animation:alertIn .25s ease-out}
 @keyframes alertIn{from{opacity:0;transform:scale(1.03)}}
 .alert.pulse{animation:pulseBg 1.2s ease-in-out infinite}
 @keyframes pulseBg{50%{background:#C9520A}}
@@ -374,6 +458,7 @@ table.st{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
     <div class="views" role="tablist" aria-label="表示の切り替え">
       <button type="button" role="tab" data-view="orders" class="on" aria-selected="true"><svg class="i" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2M9 12h6M9 16h4"/></svg>注文</button>
       <button type="button" role="tab" data-view="sales" aria-selected="false"><svg class="i" viewBox="0 0 24 24"><path d="M3 3v18h18M7 16v-4M12 16V8M17 16v-7"/></svg>売上</button>
+      <button type="button" role="tab" data-view="stock" aria-selected="false"><svg class="i" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>在庫</button>
     </div>
     <div class="datenav">
       <button class="arrow" id="prevDay" aria-label="前の日"><svg class="i" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
@@ -469,7 +554,16 @@ table.st{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
         </div>
       </div>
     </div>
-    <p class="sales-note">売上＝お会計金額（クーポン割引後・税込）。税抜は軽減税率8%で計算しています。キャンセル・オンライン決済待ちは含みません。スプレッドシートの「日別売上」シートと同じ考え方で、1分ごとに自動で更新します。</p>
+    <p class="sales-note" id="salesNote">売上＝お会計金額（クーポン割引後・税込）。税抜は軽減税率8%で計算しています。キャンセル・オンライン決済待ちは含みません。スプレッドシートの「日別売上」シートと同じ考え方で、1分ごとに自動で更新します。</p>
+  </main>
+
+  <main class="stock" id="stockView" hidden>
+    <div class="stock-intro">
+      <svg class="i" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
+      <div><b>残りの数は、入れたいときだけ</b><span>何も入れなければ、いつも通り制限なしで受け付けます。「残り」を入れると注文が入るたびに減り、0 になるとお客様のページで売り切れになります。キャンセルが出ると戻ります。</span></div>
+    </div>
+    <p class="stock-msg" id="stockMsg" hidden></p>
+    <ul class="stock-grid" id="stockList"></ul>
   </main>
 </div>
 
@@ -520,10 +614,49 @@ table.st{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
       <button class="btn danger" id="btnPause" type="button"></button>
     </div>
     <p class="ctrl-hint"><b>今日の受付を締め切る</b>：今日の受け取りの注文だけ止めます。明日以降の予約は受け付け、日付が変わると自動で元に戻ります。<br><b>一時停止</b>：「再開する」を押すまで、新しい注文をすべて止めます。<br>どちらも、すぐにお客様の注文ページに反映されます。入っている注文はそのままです。</p>
+    <button class="cal-open" id="calOpen" type="button"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h2M14 14h2M8 18h2"/></svg><span><b>営業日カレンダー</b><small id="calSum">定休日の臨時営業や、臨時休業の設定</small></span><svg class="i chev" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
     <h4>商品ごとの売り切れ</h4>
     <ul class="ctrl-items" id="ctrlItems"></ul>
     <p class="ctrl-hint"><b>今日売切</b>：今日の受け取りだけ売り切れにします（明日以降の予約はできます。日付が変わると自動で販売再開）。<br><b>販売停止</b>：「販売中」に戻すまで、どの日も注文できなくします（スプレッドシートの「売切」チェックと同じ）。</p>
+    <div id="ctrlOptWrap" hidden>
+      <h4>オプションの受付</h4>
+      <ul class="ctrl-items" id="ctrlOpts"></ul>
+      <p class="ctrl-hint"><b>停止</b>：そのオプションを、すべてのお弁当で選べなくします（十穀米が切れたときなど）。「受付中」に戻すまで続きます。お弁当そのものは注文できます。</p>
+    </div>
     <div class="modal-acts"><button class="btn primary" id="ctrlClose" type="button">閉じる</button></div>
+  </div>
+</div>
+
+<!-- 営業日カレンダー -->
+<div class="modal sheet" id="cal" hidden>
+  <div class="modal-box cal-box" role="dialog" aria-modal="true" aria-labelledby="calTitle">
+    <h3 id="calTitle">営業日カレンダー</h3>
+    <p class="cal-sub">日付をタップすると、定休日は臨時営業に、営業日は臨時休業にできます。もう一度タップすると元に戻ります。</p>
+    <div class="cal-legend"><span><i class="normal"></i>営業</span><span><i class="holiday"></i>定休日</span><span><i class="open"></i>臨時営業</span><span><i class="closed"></i>臨時休業</span></div>
+    <div class="cal-head"><span class="sun">日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span class="sat">土</span></div>
+    <div class="cal-grid" id="calGrid"></div>
+    <p class="ctrl-hint" id="calHint"></p>
+    <div class="modal-acts"><button class="btn primary" id="calClose" type="button">閉じる</button></div>
+  </div>
+</div>
+
+<!-- 在庫：残りを入れる -->
+<div class="modal sheet" id="stockModal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="skTitle">
+    <h3 id="skTitle"></h3>
+    <p class="sk-sub" id="skSub"></p>
+    <div class="stepper">
+      <button type="button" class="step" id="skMinus" aria-label="1つ減らす"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+      <label class="sk-num"><span>残り</span><input id="skInput" type="number" inputmode="numeric" min="0" max="999" step="1" autocomplete="off"><span>食</span></label>
+      <button type="button" class="step" id="skPlus" aria-label="1つ増やす"><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+    </div>
+    <div class="sk-quick" id="skQuick"></div>
+    <p class="sk-hint">注文が入るたびに自動で減り、キャンセルが出ると戻ります。</p>
+    <div class="modal-acts">
+      <button class="btn ghost" id="skCancel" type="button">やめる</button>
+      <button class="btn primary" id="skSave" type="button">設定する</button>
+    </div>
+    <button class="sk-clear" id="skClear" type="button" hidden>制限なしに戻す</button>
   </div>
 </div>
 
@@ -747,6 +880,8 @@ function apply(d) {
   S.recent = d.recent || [];
   S.days = d.days || {};
   if (d.controls && !S.ctlBusy) S.controls = d.controls;
+  S.stockOld = !('stock' in d);
+  if (d.stock && !S.skBusy) S.stock = d.stock;
   S.lastOk = Date.now(); S.err = '';
   detectNew();
   render();
@@ -858,7 +993,7 @@ const FILTERS = [
 ];
 
 function render() {
-  renderHeader(); renderKpis(); renderTabs(); renderList(); renderSide(); renderSync(); renderSoundBtn(); renderControls();
+  renderHeader(); renderKpis(); renderTabs(); renderList(); renderSide(); renderSync(); renderSoundBtn(); renderControls(); renderStock();
 }
 function renderHeader() {
   if (S.view === 'sales') {
@@ -1006,15 +1141,16 @@ function acceptState(c) {
   if (c.paused) return { cls: 'paused', label: '一時停止中', text: '新しい注文をすべて止めています' };
   if (c.closedToday) return { cls: 'closed', label: '今日は定休日', text: '明日以降の予約は受け付けています' };
   if (c.cutToday) return { cls: 'cut', label: '今日は締切', text: '今日の受け取りは締め切り中。明日以降の予約は受付中' };
+  if (c.specialToday) return { cls: '', label: '受付中（臨時営業）', text: '今日は臨時営業日です。お客様の注文ページから注文できます' };
   return { cls: '', label: '受付中', text: 'お客様の注文ページから注文できます' };
 }
 function renderControls() {
   const c = S.controls, st = acceptState(c), b = $('#acceptBtn');
   b.hidden = !c;
   if (!c) { $('#pauseBanner').hidden = $('#cutBanner').hidden = true; return; }
-  const sold = c.items.filter(x => x.state !== 'on').length;
+  const sold = c.items.filter(x => x.state !== 'on').length, opOff = (c.options || []).filter(x => x.state === 'stop').length;
   b.className = 'accept-btn ' + st.cls;
-  $('#acceptText').textContent = st.label + (sold ? '・売切' + sold : '');
+  $('#acceptText').textContent = st.label + (sold ? '・売切' + sold : '') + (opOff ? '・オプション停止' + opOff : '');
   $('#pauseBanner').hidden = !(c.paused && S.started);
   $('#cutBanner').hidden = !(!c.paused && c.cutToday && !c.closedToday && S.started);
   if ($('#ctrl').hidden) return;
@@ -1029,10 +1165,19 @@ function renderControls() {
   $('#btnPause').className = 'btn ' + (c.paused ? 'ok' : 'danger');
   $('#btnPause').disabled = busy;
   $('#ctrlItems').innerHTML = c.items.length ? c.items.map(it =>
-    '<li class="st-' + it.state + '"><div class="ci"><b>' + esc(it.name) + '</b><small>今日の注文 ' + it.todayQty + '個' + (it.dailyLimit ? '（1日の上限 ' + it.dailyLimit + '個）' : '') + '</small></div>' +
+    '<li class="st-' + it.state + '"><div class="ci"><b>' + esc(it.name) + '</b><small>今日の注文 ' + it.todayQty + '個' + (it.stockLeft != null ? '・在庫の残り ' + it.stockLeft + '食' : it.dailyLimit ? '（1日の上限 ' + it.dailyLimit + '個）' : '') + '</small></div>' +
     '<div class="seg3" role="radiogroup" aria-label="' + esc(it.name) + '">' + ITEM_MODES.map(([m, l]) =>
       '<button type="button" role="radio" aria-checked="' + (it.state === m) + '" class="' + (it.state === m ? 'on' : '') + '" data-item="' + esc(it.id) + '" data-m="' + m + '"' + (busy ? ' disabled' : '') + '>' + l + '</button>').join('') + '</div></li>').join('') :
     '<li class="prod-empty">メニューシートに商品がありません</li>';
+  $('#calOpen').hidden = !c.calendar;
+  if (c.calendar) $('#calSum').textContent = calSummary(c);
+  renderCal();
+  const ops = c.options || [];
+  $('#ctrlOptWrap').hidden = !ops.length;
+  $('#ctrlOpts').innerHTML = ops.map(o =>
+    '<li class="st-' + o.state + '"><div class="ci"><b>' + esc(o.name) + '</b><small' + (o.state === 'stop' ? ' class="off">いま選べません（すべてのお弁当）' : '>' + o.items + '品のお弁当で選べます') + '</small></div>' +
+    '<div class="seg3" role="radiogroup" aria-label="' + esc(o.name) + '">' + [['on', '受付中'], ['stop', '停止']].map(([m, l]) =>
+      '<button type="button" role="radio" aria-checked="' + (o.state === m) + '" class="' + (o.state === m ? 'on' : '') + '" data-opt="' + esc(o.name) + '" data-m="' + m + '"' + (busy ? ' disabled' : '') + '>' + l + '</button>').join('') + '</div></li>').join('');
 }
 function openCtrl() { $('#ctrl').hidden = false; renderControls(); }
 async function control(op, extra, msg, undo) {
@@ -1043,6 +1188,8 @@ async function control(op, extra, msg, undo) {
   if (op === 'pause') c.paused = true; else if (op === 'resume') c.paused = false;
   else if (op === 'closeToday') c.cutToday = true; else if (op === 'openToday') c.cutToday = false;
   else if (op === 'item') { const it = c.items.find(x => x.id === extra.id); if (it) it.state = extra.mode; }
+  else if (op === 'option') { const o = (c.options || []).find(x => x.name === extra.name); if (o) o.state = extra.mode; }
+  else if (op === 'day') { const x = (c.calendar || []).find(y => y.date === extra.date); if (x) x.state = extra.open ? (x.regular ? 'normal' : 'open') : (x.regular ? 'closed' : 'holiday'); }
   S.ctlBusy++; renderControls();
   try {
     const d = await apiPost(Object.assign({ action: 'control', key: S.key, op: op }, extra || {}));
@@ -1076,6 +1223,132 @@ function onItem(id, mode) {
   control('item', { id: id, mode: mode }, msg, { label: '元に戻す', fn: () => control('item', { id: id, mode: prev }, '元に戻しました') });
 }
 
+function onOption(name, mode) {
+  const o = S.controls && (S.controls.options || []).find(x => x.name === name); if (!o || o.state === mode) return;
+  const prev = o.state;
+  control('option', { name: name, mode: mode }, mode === 'stop' ? '「' + name + '」の受付を止めました（すべてのお弁当）' : '「' + name + '」の受付を再開しました',
+    { label: '元に戻す', fn: () => control('option', { name: name, mode: prev }, '元に戻しました') });
+}
+
+/* ===== 営業日カレンダー（臨時営業・臨時休業） ===== */
+const CAL_TAG = { normal: '', holiday: '定休', open: '臨時営業', closed: '臨時休業' };
+function calSummary(c) {
+  const up = (c.calendar || []).filter(x => x.date >= S.today);
+  const o = up.filter(x => x.state === 'open').length, cl = up.filter(x => x.state === 'closed').length;
+  return o || cl ? 'これからの予定：' + [o ? '臨時営業 ' + o + '日' : '', cl ? '臨時休業 ' + cl + '日' : ''].filter(Boolean).join('・') : '定休日の臨時営業や、臨時休業の設定';
+}
+function renderCal() {
+  if ($('#cal').hidden) return;
+  const c = S.controls; if (!c || !c.calendar) return;
+  const today = S.today, busy = S.ctlBusy > 0;
+  const last = addDays(today, (c.bookDays || 7) - 1);
+  $('#calGrid').innerHTML = c.calendar.map((x, i) => {
+    const a = x.date.split('-').map(Number), past = x.date < today, n = S.days[x.date] || 0;
+    const showM = i === 0 || a[2] === 1;
+    return '<button type="button" class="cd ' + x.state + (past ? ' past' : '') + (x.date === today ? ' today' : '') + (x.date > last ? ' far' : '') + '" data-cd="' + x.date + '"' + (past || busy ? ' disabled' : '') +
+      ' aria-label="' + a[1] + '月' + a[2] + '日 ' + ({ normal: '営業', holiday: '定休日', open: '臨時営業', closed: '臨時休業' })[x.state] + (n ? ' 予約' + n + '件' : '') + '">' +
+      '<span class="cd-n">' + (showM ? '<small>' + a[1] + '/</small>' : '') + a[2] + '</span>' +
+      (CAL_TAG[x.state] ? '<span class="cd-t">' + CAL_TAG[x.state] + '</span>' : '') +
+      (n ? '<span class="cd-o">予約' + n + '</span>' : '') + '</button>';
+  }).join('');
+  $('#calHint').innerHTML = 'お客様が予約できるのは、今日から<b>' + (c.bookDays || 7) + '日先</b>まで（点線の日付はまだ予約できません）。先の日付も前もって設定しておけます。<br>臨時休業にしても、入っている予約はそのまま残ります。';
+}
+function openCal() { $('#cal').hidden = false; renderCal(); }
+async function onCalDay(ds) {
+  const c = S.controls; if (!c || S.ctlBusy) return;
+  const x = c.calendar.find(y => y.date === ds); if (!x || ds < S.today) return;
+  const a = ds.split('-').map(Number), lbl = a[1] + '月' + a[2] + '日(' + wd(ds) + ')';
+  const n = S.days[ds] || 0, warn = n ? '\nこの日の予約が' + n + '件あります。予約はそのまま残るので、必要ならお客様に連絡してください。' : '';
+  let open, title, text, yes, msg;
+  if (x.state === 'holiday') { open = true; title = lbl + 'を臨時営業にしますか？'; text = 'お客様の注文ページで、この日の受け取りが選べるようになります。'; yes = '臨時営業にする'; msg = lbl + 'を臨時営業にしました'; }
+  else if (x.state === 'normal') { open = false; title = lbl + 'を臨時休業にしますか？'; text = 'お客様の注文ページで、この日の受け取りが選べなくなります。' + warn; yes = '臨時休業にする'; msg = lbl + 'を臨時休業にしました'; }
+  else if (x.state === 'open') { open = false; title = lbl + 'の臨時営業を取り消しますか？'; text = '定休日に戻ります。お客様はこの日を選べなくなります。' + warn; yes = '取り消す'; msg = lbl + 'の臨時営業を取り消しました'; }
+  else { open = true; title = lbl + 'の臨時休業を取り消しますか？'; text = '営業日に戻ります。お客様がまたこの日を選べるようになります。'; yes = '営業日に戻す'; msg = lbl + 'を営業日に戻しました'; }
+  const ok = await confirmBox(title, text, yes, open ? 'ok' : '');
+  if (ok) control('day', { date: ds, open: open }, msg);
+}
+
+/* ===== 在庫（残り○食。入れたいときだけ） ===== */
+function stockItem(id) { return S.stock && S.stock.items.find(x => x.id === id); }
+function renderStock() {
+  if (S.view !== 'stock') return;
+  const list = $('#stockList'), msg = $('#stockMsg');
+  const ds = S.viewDate || S.today;
+  if (S.stockOld) {
+    msg.hidden = false; msg.textContent = '在庫の機能を使うには、Apps Script の Code.gs を最新に差し替えて、新しいバージョンでデプロイしてください。';
+    list.innerHTML = ''; return;
+  }
+  const st = S.stock;
+  list.classList.toggle('loading', !st || st.date !== ds);
+  if (!st) { msg.hidden = true; list.innerHTML = ''; return; }
+  const past = st.date < (S.today || st.date);
+  msg.hidden = !past;
+  if (past) msg.textContent = '過ぎた日の在庫は変更できません。今日か、これからの日付を選んでください。';
+  const busy = !!S.skBusy;
+  list.innerHTML = st.items.length ? st.items.map(it => {
+    const has = it.left != null, zero = has && it.left <= 0, low = has && !zero && it.left <= 3;
+    const flag = it.soldOut ? '<span class="sk-flag stop">販売停止</span>' : it.soldDate ? '<span class="sk-flag today">この日は売切</span>' : '';
+    const big = has ? '<b class="num">' + it.left + '</b><em>食</em>' : '<span class="free">制限なし</span>';
+    const how = it.set ? esc(it.setAt) + ' に「残り' + it.setLeft + '」で設定' : it.dailyLimit ? 'メニューの1日の上限 ' + it.dailyLimit + '食' : '';
+    return '<li class="sk' + (it.set ? ' set' : '') + (zero ? ' zero' : '') + (low ? ' low' : '') + '">' +
+      '<div class="sk-top"><b>' + esc(it.name) + '</b>' + flag + '</div>' +
+      '<div class="sk-mid"><div class="sk-left">' + (has ? '<small>' + (zero ? '売り切れ' : '残り') + '</small>' : '') + big + '</div>' +
+      '<div class="sk-meta">この日の予約 <b class="num">' + it.ordered + '</b>食' + (how ? '<br>' + how : '') + '</div></div>' +
+      (st.editable ? '<div class="sk-acts"><button class="btn line" type="button" data-sk="' + esc(it.id) + '"' + (busy ? ' disabled' : '') + '>' + (it.set ? '残りを変える' : '残りを入れる') + '</button>' +
+        (it.set ? '<button class="btn ghost" type="button" data-skclear="' + esc(it.id) + '"' + (busy ? ' disabled' : '') + '>解除</button>' : '') + '</div>' : '') +
+      '</li>';
+  }).join('') : '<li class="prod-empty">メニューシートに商品がありません</li>';
+}
+let skId = '';
+function openStock(id) {
+  const it = stockItem(id); if (!it || !S.stock) return;
+  skId = id;
+  const ds = S.stock.date, a = ds.split('-').map(Number);
+  $('#skTitle').textContent = it.name;
+  $('#skSub').textContent = a[1] + '月' + a[2] + '日(' + wd(ds) + ')の受け取り分 ・ いまの予約 ' + it.ordered + '食';
+  $('#skInput').value = it.left != null ? it.left : '';
+  $('#skQuick').innerHTML = [0, 3, 5, 10, 20, 30].map(n => '<button type="button" data-q="' + n + '"' + (n === 0 ? ' class="zero"' : '') + '>' + (n === 0 ? '0（売り切れ）' : n) + '</button>').join('');
+  $('#skClear').hidden = !it.set;
+  $('#stockModal').hidden = false;
+  skSync();
+}
+function skVal() { const v = $('#skInput').value.trim(); if (v === '') return null; const n = Number(v); return Number.isInteger(n) && n >= 0 && n <= 999 ? n : NaN; }
+function skSync() {
+  const v = skVal(), ok = v !== null && !Number.isNaN(v);
+  $('#skSave').disabled = !ok || !!S.skBusy;
+  $('#skSave').textContent = ok ? (v === 0 ? '売り切れにする' : '残り ' + v + '食で設定') : '数を入れてください';
+  $('#skQuick').querySelectorAll('button').forEach(b => b.classList.toggle('on', ok && Number(b.dataset.q) === v));
+}
+function skStep(n) { const v = skVal(); const base = v === null || Number.isNaN(v) ? 0 : v; $('#skInput').value = Math.max(0, Math.min(999, base + n)); skSync(); }
+function closeStock() { $('#stockModal').hidden = true; skId = ''; }
+async function saveStock(id, body, msg) {
+  if (!S.stock || !id) return;
+  S.skBusy = (S.skBusy || 0) + 1; renderStock(); skSync();
+  try {
+    const d = await apiPost(Object.assign({ action: 'stock', key: S.key, date: S.stock.date, id: id }, body));
+    if (!d || !d.ok) {
+      if (d && (d.code === 'badkey' || d.code === 'nokey')) { closeStock(); showStart(d.error); return; }
+      throw new Error((d && d.error) || '変更できませんでした');
+    }
+    if (d.stock) S.stock = d.stock;
+    closeStock();
+    toast(msg);
+  } catch (err) {
+    toast((err && err.name !== 'TypeError' && err.name !== 'AbortError' && err.message) || '通信できませんでした。もう一度押してください', null, true);
+  } finally {
+    S.skBusy--; renderStock(); skSync();
+  }
+}
+function onStockSave() {
+  const it = stockItem(skId), v = skVal();
+  if (!it || v === null || Number.isNaN(v) || S.skBusy) return;
+  saveStock(skId, { left: v }, v === 0 ? '「' + it.name + '」をこの日は売り切れにしました' : '「' + it.name + '」を残り ' + v + '食にしました');
+}
+function onStockClear(id) {
+  const it = stockItem(id); if (!it || S.skBusy) return;
+  saveStock(id, { clear: true }, '「' + it.name + '」を制限なしに戻しました');
+}
+
 /* ===== 売上（月の日別） ===== */
 const C_ACT = '#A8481A', C_RES = '#E9965F', C_INK = '#1A1714', C_SUB = '#6B645B', C_GRID = '#EEE9E1';
 function setView(v) {
@@ -1084,6 +1357,7 @@ function setView(v) {
   document.querySelectorAll('.views [data-view]').forEach(b => { const on = b.dataset.view === v; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
   $('#ordersView').hidden = v !== 'orders';
   $('#salesView').hidden = v !== 'sales';
+  $('#stockView').hidden = v !== 'stock';
   clearTimeout(S.stimer);
   if (v === 'sales') {
     if (!S.month) S.month = (S.today || jstNow().date).slice(0, 7);
@@ -1287,9 +1561,10 @@ async function setStatus(id, status, opts) {
     toast((err && err.name !== 'TypeError' && err.message) || '通信できませんでした。もう一度押してください', null, true);
   }
 }
-function confirmBox(title, text, yes) {
+function confirmBox(title, text, yes, kind) {
   return new Promise(res => {
     $('#cfTitle').textContent = title; $('#cfText').textContent = text; $('#cfYes').textContent = yes;
+    $('#cfYes').className = 'btn ' + (kind || 'danger');
     const m = $('#confirm'); m.hidden = false;
     const done = v => { m.hidden = true; $('#cfYes').onclick = $('#cfNo').onclick = m.onclick = null; res(v); };
     $('#cfYes').onclick = () => done(true);
@@ -1326,6 +1601,17 @@ const Demo = (function () {
   const NAMES = ['堀切 花子', '葛飾 太郎', '菖蒲 さくら', '金井 健', '小菅 美咲', '青戸 翔', '四つ木 優子', '立石 大輔'];
   let orders = null, seq = 0;
   const ctl = { paused: false, cutToday: false, closedToday: false, items: null };
+  const stockSet = {}; // { date: { id: { cap, setLeft, setAt } } }
+  const demoDays = { open: {}, closed: {} };
+  const usedOf = (date, name) => (orders || []).filter(o => o.date === date && isValid(o)).reduce((t, o) => t + o.lines.filter(l => l.name === name).reduce((u, l) => u + l.qty, 0), 0);
+  function stock(date, today) {
+    controls(today);
+    return { date: date, editable: date >= today, items: ctl.items.map(it => {
+      const q = usedOf(date, it.name), x = (stockSet[date] || {})[it.id];
+      const cap = x ? x.cap : (it.dailyLimit > 0 ? it.dailyLimit : null);
+      return { id: it.id, name: it.name, ordered: q, dailyLimit: it.dailyLimit, set: !!x, cap: cap, left: cap === null ? null : Math.max(0, cap - q), setLeft: x ? x.setLeft : null, setAt: x ? x.setAt : '', soldOut: it.state === 'stop', soldDate: date === today && it.state === 'today' };
+    }) };
+  }
   function mk(date, time, createdAgoMin, status, payState, lines, extra) {
     seq++;
     const ls = lines.map(([i, q, opt]) => ({ name: MENU[i][0], options: opt ? ['ご飯大盛り'] : [], qty: q, unit: MENU[i][1] + (opt ? 100 : 0) }));
@@ -1361,7 +1647,19 @@ const Demo = (function () {
   }
   function controls(today) {
     if (!ctl.items) ctl.items = MENU.map((m, i) => ({ id: 'B0' + (i + 1), name: m[0], dailyLimit: i === 6 ? 20 : 0, todayQty: 0, state: 'on' }));
-    ctl.items.forEach(it => { it.todayQty = (orders || []).filter(o => o.date === today && isValid(o)).reduce((t, o) => t + o.lines.filter(l => l.name === it.name).reduce((u, l) => u + l.qty, 0), 0); });
+    if (!ctl.options) ctl.options = [{ name: 'ご飯大盛り', items: 7, state: 'on' }, { name: '十穀米に変更', items: 7, state: 'on' }];
+    // 営業日カレンダー（デモは日・月が定休日）
+    const start = addDays(today, -new Date(today + 'T12:00:00+09:00').getUTCDay());
+    ctl.calendar = [];
+    for (let i = 0; i < 42; i++) {
+      const ds = addDays(start, i), w = new Date(ds + 'T12:00:00+09:00').getUTCDay(), regular = w !== 0 && w !== 1;
+      ctl.calendar.push({ date: ds, regular: regular, state: demoDays.closed[ds] ? 'closed' : demoDays.open[ds] ? 'open' : regular ? 'normal' : 'holiday' });
+    }
+    ctl.bookDays = 7;
+    const tc = ctl.calendar.find(x => x.date === today);
+    ctl.closedToday = tc.state === 'holiday' || tc.state === 'closed';
+    ctl.specialToday = tc.state === 'open';
+    ctl.items.forEach(it => { it.todayQty = usedOf(today, it.name); const x = (stockSet[today] || {})[it.id]; it.stockLeft = x ? Math.max(0, x.cap - it.todayQty) : null; });
     return JSON.parse(JSON.stringify(ctl));
   }
   function rnd(seed) { let h = 2166136261; for (let i = 0; i < seed.length; i++) { h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619); } return ((h >>> 0) % 10000) / 10000; }
@@ -1406,7 +1704,7 @@ const Demo = (function () {
     get(p) {
       if (!orders) init();
       const today = jstNow().date, date = p.date || today;
-      const d = { ok: true, now: Date.now(), today: today, date: date, days: {}, recent: [], orders: orders.filter(o => o.date === date).sort((a, b) => (a.time + a.id).localeCompare(b.time + b.id)), controls: controls(today) };
+      const d = { ok: true, now: Date.now(), today: today, date: date, days: {}, recent: [], orders: orders.filter(o => o.date === date).sort((a, b) => (a.time + a.id).localeCompare(b.time + b.id)), controls: controls(today), stock: stock(date, today) };
       orders.forEach(o => {
         if (o.created > Date.now() - 48 * 3600000) d.recent.push(o);
         if (o.date >= today && isValid(o)) d.days[o.date] = (d.days[o.date] || 0) + 1;
@@ -1414,12 +1712,32 @@ const Demo = (function () {
       return new Promise(r => setTimeout(() => r(JSON.parse(JSON.stringify(d))), 250));
     },
     post(b) {
+      if (b.action === 'stock') {
+        const today = jstNow().date;
+        if (!b.date || b.date < today) return Promise.resolve({ ok: false, error: '過ぎた日の在庫は変更できません' });
+        controls(today);
+        const it = ctl.items.find(x => x.id === b.id);
+        if (!it) return Promise.resolve({ ok: false, error: '商品が見つかりません' });
+        const day = stockSet[b.date] || (stockSet[b.date] = {});
+        if (b.clear) delete day[b.id];
+        else { const q = usedOf(b.date, it.name), n = new Date(Date.now() + 9 * 3600000); day[b.id] = { cap: q + Number(b.left), setLeft: Number(b.left), setAt: String(n.getUTCHours()).padStart(2, '0') + ':' + String(n.getUTCMinutes()).padStart(2, '0') }; }
+        return new Promise(r => setTimeout(() => r({ ok: true, stock: stock(b.date, today) }), 300));
+      }
+
       if (b.action === 'control') {
         const today = jstNow().date;
         controls(today);
         if (b.op === 'pause') ctl.paused = true; else if (b.op === 'resume') ctl.paused = false;
         else if (b.op === 'closeToday') ctl.cutToday = true; else if (b.op === 'openToday') ctl.cutToday = false;
         else if (b.op === 'item') { const it = ctl.items.find(x => x.id === b.id); if (it) it.state = b.mode; }
+        else if (b.op === 'option') { const o = ctl.options.find(x => x.name === b.name); if (o) o.state = b.mode; }
+        else if (b.op === 'day') {
+          if (b.date < today) return Promise.resolve({ ok: false, error: '過ぎた日は変更できません' });
+          const x = ctl.calendar.find(y => y.date === b.date);
+          delete demoDays.open[b.date]; delete demoDays.closed[b.date];
+          if (x && b.open && !x.regular) demoDays.open[b.date] = true;
+          if (x && !b.open && x.regular) demoDays.closed[b.date] = true;
+        }
         return new Promise(r => setTimeout(() => r({ ok: true, controls: controls(today) }), 300));
       }
       const o = (orders || []).find(x => x.id === b.order);
@@ -1438,6 +1756,19 @@ function bind() {
   $('#nextDay').onclick = () => S.view === 'sales' ? shiftMonth(1) : goDate(addDays(S.viewDate || S.today, 1));
   $('#todayBtn').onclick = () => { if (S.view === 'sales') { S.month = S.today.slice(0, 7); renderHeader(); loadSales(); } else goDate(S.today); };
   document.querySelectorAll('.views [data-view]').forEach(b => { b.onclick = () => setView(b.dataset.view); });
+  $('#stockList').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.sk) openStock(b.dataset.sk); else if (b.dataset.skclear) onStockClear(b.dataset.skclear);
+  });
+  $('#skInput').addEventListener('input', skSync);
+  $('#skInput').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); onStockSave(); } });
+  $('#skMinus').onclick = () => skStep(-1);
+  $('#skPlus').onclick = () => skStep(1);
+  $('#skQuick').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $('#skInput').value = b.dataset.q; skSync(); });
+  $('#skSave').onclick = onStockSave;
+  $('#skCancel').onclick = () => { if (!S.skBusy) closeStock(); };
+  $('#skClear').onclick = () => onStockClear(skId);
+  $('#stockModal').addEventListener('click', e => { if (e.target.id === 'stockModal' && !S.skBusy) closeStock(); });
   $('#sTable').addEventListener('click', e => { const tr = e.target.closest('tr[data-date]'); if (tr) { setView('orders'); goDate(tr.dataset.date); } });
   const ch = $('#sChart');
   const hitIndex = e => { const t = e.target.closest && e.target.closest('.hit'); return t ? Number(t.dataset.i) : -1; };
@@ -1468,6 +1799,11 @@ function bind() {
   $('#btnCut').onclick = onCut;
   $('#btnPause').onclick = onPause;
   $('#ctrlItems').addEventListener('click', e => { const b = e.target.closest('[data-item]'); if (b) onItem(b.dataset.item, b.dataset.m); });
+  $('#ctrlOpts').addEventListener('click', e => { const b = e.target.closest('[data-opt]'); if (b) onOption(b.dataset.opt, b.dataset.m); });
+  $('#calOpen').onclick = openCal;
+  $('#calClose').onclick = () => { $('#cal').hidden = true; };
+  $('#calGrid').addEventListener('click', e => { const b = e.target.closest('[data-cd]'); if (b) onCalDay(b.dataset.cd); });
+  $('#cal').addEventListener('click', e => { if (e.target.id === 'cal') $('#cal').hidden = true; });
   document.querySelectorAll('[data-ctl]').forEach(b => { b.onclick = () => control(b.dataset.ctl, null, b.dataset.ctl === 'resume' ? '受付を再開しました' : '今日の受付を再開しました'); });
   $('#alert').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') { e.preventDefault(); ack(); } });
   $('#soundBtn').onclick = () => setSound(!S.set.sound);

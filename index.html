@@ -299,6 +299,15 @@ img{display:block;max-width:100%}
 .sums{margin-top:14px}
 .sums .row{display:flex;justify-content:space-between;font-size:14px;color:var(--sub);padding:2px 0}
 .sums .row.disc{color:var(--accent);font-weight:700}
+.banners{margin:16px 20px 0}
+.bn-track{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:14px;-webkit-overflow-scrolling:touch}
+.bn-track::-webkit-scrollbar{display:none}
+.bn-track.one{justify-content:center}
+.bn-slide{flex:0 0 100%;scroll-snap-align:center;aspect-ratio:2/1;border-radius:14px;overflow:hidden;background:var(--soft);display:block;position:relative}
+.bn-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bn-dots{display:flex;justify-content:center;gap:6px;margin-top:9px}
+.bn-dots button{width:7px;height:7px;border-radius:4px;background:#D8D2C8;padding:0;transition:width .25s,background .25s}
+.bn-dots button.on{width:18px;background:var(--ink)}
 .coupon-banner{display:flex;align-items:center;gap:10px;margin:14px 20px 0;background:var(--accent-weak);color:var(--accent);border:1px dashed #D9B9A6;border-radius:12px;padding:11px 14px;font-size:13px;line-height:1.5}
 .coupon-banner svg{width:20px;height:20px;flex:none}
 .coupon-banner b{font-size:14px}
@@ -440,7 +449,9 @@ textarea{min-height:84px;resize:vertical}
   .wrap{max-width:none}
   /* 中身は1080px幅で中央に */
   #view-menu>:not(.site-header):not(.hero):not(.marquee):not(.ribbon):not(.foot){max-width:1080px;margin-left:auto;margin-right:auto}
-  #view-menu>.news,#view-menu>.rice,#view-menu>.delivery,#view-menu .reserved{max-width:none;width:min(1040px,calc(100% - 40px))}
+  #view-menu>.news,#view-menu>.rice,#view-menu>.delivery,#view-menu .reserved,#view-menu>.banners{max-width:none;width:min(1040px,calc(100% - 40px))}
+  #view-menu>.banners{margin-top:26px}
+  .bn-slide{flex-basis:calc(50% - 5px)}
   #view-menu .reserved{margin-left:auto;margin-right:auto}
   .demo-badge{top:76px;right:16px}
 
@@ -603,6 +614,7 @@ textarea{min-height:84px;resize:vertical}
     <div class="quick" id="quick"></div>
     <div id="notice"></div>
     <div id="couponBanner"></div>
+    <section class="banners" id="banners" hidden aria-label="お知らせバナー"></section>
     <div id="reserved"></div>
     <section class="news" id="news" hidden></section>
 
@@ -913,6 +925,7 @@ function renderTop() {
     '</div>';
 
   renderNews();
+  renderBanners();
   $('#lineTop').innerHTML = lineBanner('友だち追加がおすすめ', '次回からトーク画面のメニューで、すぐに注文できます。');
   const mq = ['福島県産米を土鍋で炊きあげ', '土鍋で炊く、ごはんが主役のお弁当', 'スマホで事前注文、待たずに受け取り', 'DONABE GOHAN IKUSHIKA'];
   $('#marquee').innerHTML = mq.concat(mq).map(t => '<span>' + esc(t) + '</span>').join('');
@@ -923,6 +936,47 @@ function renderTop() {
 /* ---------- 最新情報（お知らせシート） ---------- */
 const linkify = t => esc(t).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
 const BELL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 3a6 6 0 00-6 6v3.5L4.5 16h15L18 12.5V9a6 6 0 00-6-6z"/><path d="M10 19a2 2 0 004 0"/></svg>';
+/* ---------- バナー（店舗ダッシュボードで登録。1枚もなければ出さない） ---------- */
+let bnTimer = 0;
+function renderBanners() {
+  const box = $('#banners'), list = (S.banners || []).filter(b => b && /^https:\/\//.test(b.image));
+  clearInterval(bnTimer);
+  box.hidden = !list.length;
+  if (!list.length) { box.innerHTML = ''; return; }
+  box.innerHTML = '<div class="bn-track' + (list.length === 1 ? ' one' : '') + '" id="bnTrack">' + list.map((b, i) => {
+    const l = b.link || '', ext = /^https?:\/\//.test(l) && l.indexOf(location.origin) !== 0;
+    const tag = l ? 'a' : 'div';
+    return '<' + tag + ' class="bn-slide"' + (l ? ' href="' + esc(l) + '" data-bl="' + esc(l) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') : '') + ' aria-label="バナー ' + (i + 1) + '">' +
+      '<img src="' + esc(b.image) + '" alt="" loading="' + (i ? 'lazy' : 'eager') + '"></' + tag + '>';
+  }).join('') + '</div>' + (list.length > 1 ? '<div class="bn-dots">' + list.map((_, i) => '<button type="button" aria-label="' + (i + 1) + '枚目" data-bd="' + i + '"' + (i ? '' : ' class="on"') + '></button>').join('') + '</div>' : '');
+  const tr = $('#bnTrack');
+  $$('[data-bl]', box).forEach(a => a.onclick = e => {
+    const l = a.dataset.bl;
+    if (l.charAt(0) === '#') { e.preventDefault(); const t = $(l); if (t) t.scrollIntoView({ behavior: MOTION ? 'smooth' : 'auto' }); }
+    else if (l.charAt(0) === '?') {
+      e.preventDefault();
+      const code = new URLSearchParams(l).get('coupon');
+      if (code) applyCoupon(normCode(code), true).then(ok => { toast(ok ? 'クーポン「' + (S.coupon.label || S.coupon.code) + '」を適用しました' : 'このクーポンはいま使えません', 3000); if (ok) renderCouponBanner(); });
+    }
+  });
+  if (list.length < 2) return;
+  const idx = () => Math.round(tr.scrollLeft / Math.max(1, tr.firstElementChild.offsetWidth + 10));
+  const mark = () => { const k = idx(); $$('.bn-dots button', box).forEach((b, i) => b.classList.toggle('on', i === k)); };
+  tr.addEventListener('scroll', () => { clearTimeout(tr._t); tr._t = setTimeout(mark, 60); }, { passive: true });
+  $$('.bn-dots button', box).forEach(b => b.onclick = () => tr.scrollTo({ left: Number(b.dataset.bd) * (tr.firstElementChild.offsetWidth + 10), behavior: MOTION ? 'smooth' : 'auto' }));
+  // 自動でめくる（触っている間・画面の外では止める）
+  if (!MOTION) return;
+  let hold = false;
+  ['pointerdown', 'touchstart'].forEach(ev => tr.addEventListener(ev, () => { hold = true; }, { passive: true }));
+  ['pointerup', 'touchend'].forEach(ev => tr.addEventListener(ev, () => { setTimeout(() => { hold = false; }, 4000); }, { passive: true }));
+  bnTimer = setInterval(() => {
+    if (hold || document.hidden || tr.scrollWidth <= tr.clientWidth + 4) return;
+    const r = tr.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+    const w = tr.firstElementChild.offsetWidth + 10, max = tr.scrollWidth - tr.clientWidth;
+    tr.scrollTo({ left: tr.scrollLeft + w > max + 4 ? 0 : tr.scrollLeft + w, behavior: 'smooth' });
+  }, 5000);
+}
+
 function renderNews() {
   const list = S.news || [], c = S.cfg;
   // 重要なお知らせ（＋設定シートの旧「お知らせ」）はページ上部の帯に
@@ -1422,7 +1476,7 @@ async function loadInit() {
 }
 
 function applyInit(d) {
-  S.cfg = d.config; S.menu = d.menu || []; S.usage = d.usage || {}; S.stock = d.stock || {}; S.news = d.news || [];
+  S.cfg = d.config; S.menu = d.menu || []; S.usage = d.usage || {}; S.stock = d.stock || {}; S.news = d.news || []; S.banners = d.banners || [];
   if (d.now) S.offset = d.now - Date.now();
 }
 

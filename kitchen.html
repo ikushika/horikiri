@@ -366,6 +366,9 @@ body[data-view="menu"] .datenav,body[data-view="promo"] .datenav{display:none}
 .cd-t{font-size:10.5px;font-weight:700;line-height:1.2;white-space:nowrap}
 .cd-o{font-size:10px;font-weight:700;color:var(--blue);background:var(--blue-weak);border-radius:999px;padding:0 6px;margin-top:auto;white-space:nowrap}
 .cd.holiday{background:#ECE8E1;border-color:#DDD6CB;color:var(--sub)}
+.cd.preopen{background:repeating-linear-gradient(135deg,#F3F0EA 0 6px,#ECE8E1 6px 12px);border-color:#DDD6CB;color:var(--mute)}
+.cd.opening{border-color:var(--ink);border-width:2px}
+.cd.opening .cd-t{color:var(--ink);font-weight:800}
 .cd.open{background:var(--orange-weak);border-color:var(--orange)}
 .cd.open .cd-t{color:#A8481A}
 .cd.closed{background:var(--red-weak);border-color:var(--red)}
@@ -1355,6 +1358,8 @@ const ITEM_MODES = [['on', '販売中'], ['today', '今日売切'], ['stop', '�
 function acceptState(c) {
   if (!c) return null;
   if (c.paused) return { cls: 'paused', label: '一時停止中', text: '新しい注文をすべて止めています' };
+  if (c.preOpen && c.openDate) { const a = c.openDate.split('-').map(Number), rs = addDays(c.openDate, -((c.bookDays || 7) - 1)), b = rs.split('-').map(Number);
+    return { cls: 'closed', label: 'オープン前', text: a[1] + '月' + a[2] + '日(' + wd(c.openDate) + ')オープン。' + (rs <= S.today ? 'オープン日からの予約を受け付けています' : 'お客様の予約は' + b[1] + '月' + b[2] + '日(' + wd(rs) + ')から受け付けます') }; }
   if (c.closedToday) return { cls: 'closed', label: '今日は定休日', text: '明日以降の予約は受け付けています' };
   if (c.cutToday) return { cls: 'cut', label: '今日は締切', text: '今日の受け取りは締め切り中。明日以降の予約は受付中' };
   if (c.specialToday) return { cls: '', label: '受付中（臨時営業）', text: '今日は臨時営業日です。お客様の注文ページから注文できます' };
@@ -1778,7 +1783,7 @@ function bindMenuPromo() {
 }
 
 /* ===== 営業日カレンダー（臨時営業・臨時休業） ===== */
-const CAL_TAG = { normal: '', holiday: '定休', open: '臨時営業', closed: '臨時休業' };
+const CAL_TAG = { normal: '', holiday: '定休', open: '臨時営業', closed: '臨時休業', preopen: '開店前' };
 function calSummary(c) {
   const up = (c.calendar || []).filter(x => x.date >= S.today);
   const o = up.filter(x => x.state === 'open').length, cl = up.filter(x => x.state === 'closed').length;
@@ -1792,18 +1797,19 @@ function renderCal() {
   $('#calGrid').innerHTML = c.calendar.map((x, i) => {
     const a = x.date.split('-').map(Number), past = x.date < today, n = S.days[x.date] || 0;
     const showM = i === 0 || a[2] === 1;
-    return '<button type="button" class="cd ' + x.state + (past ? ' past' : '') + (x.date === today ? ' today' : '') + (x.date > last ? ' far' : '') + '" data-cd="' + x.date + '"' + (past || busy ? ' disabled' : '') +
-      ' aria-label="' + a[1] + '月' + a[2] + '日 ' + ({ normal: '営業', holiday: '定休日', open: '臨時営業', closed: '臨時休業' })[x.state] + (n ? ' 予約' + n + '件' : '') + '">' +
+    return '<button type="button" class="cd ' + x.state + (past ? ' past' : '') + (x.date === today ? ' today' : '') + (x.date > last ? ' far' : '') + (x.date === c.openDate ? ' opening' : '') + '" data-cd="' + x.date + '"' + (past || busy || x.state === 'preopen' ? ' disabled' : '') +
+      ' aria-label="' + a[1] + '月' + a[2] + '日 ' + ({ normal: '営業', holiday: '定休日', open: '臨時営業', closed: '臨時休業', preopen: 'オープン前' })[x.state] + (x.date === c.openDate ? '（オープン日）' : '') + (n ? ' 予約' + n + '件' : '') + '">' +
       '<span class="cd-n">' + (showM ? '<small>' + a[1] + '/</small>' : '') + a[2] + '</span>' +
-      (CAL_TAG[x.state] ? '<span class="cd-t">' + CAL_TAG[x.state] + '</span>' : '') +
+      (x.date === c.openDate ? '<span class="cd-t">オープン</span>' : CAL_TAG[x.state] ? '<span class="cd-t">' + CAL_TAG[x.state] + '</span>' : '') +
       (n ? '<span class="cd-o">予約' + n + '</span>' : '') + '</button>';
   }).join('');
-  $('#calHint').innerHTML = 'お客様が予約できるのは、今日から<b>' + (c.bookDays || 7) + '日先</b>まで（点線の日付はまだ予約できません）。先の日付も前もって設定しておけます。<br>臨時休業にしても、入っている予約はそのまま残ります。';
+  $('#calHint').innerHTML = 'お客様が予約できるのは、今日から<b>' + (c.bookDays || 7) + '日先</b>まで（点線の日付はまだ予約できません）。先の日付も前もって設定しておけます。<br>臨時休業にしても、入っている予約はそのまま残ります。' +
+    (c.preOpen ? '<br>「開店前」の日は注文を受けません。オープン日を変えるときは、スプレッドシートの「設定」の「オープン日」を書き換えてください。' : '');
 }
 function openCal() { $('#cal').hidden = false; renderCal(); }
 async function onCalDay(ds) {
   const c = S.controls; if (!c || S.ctlBusy) return;
-  const x = c.calendar.find(y => y.date === ds); if (!x || ds < S.today) return;
+  const x = c.calendar.find(y => y.date === ds); if (!x || ds < S.today || x.state === 'preopen') return;
   const a = ds.split('-').map(Number), lbl = a[1] + '月' + a[2] + '日(' + wd(ds) + ')';
   const n = S.days[ds] || 0, warn = n ? '\nこの日の予約が' + n + '件あります。予約はそのまま残るので、必要ならお客様に連絡してください。' : '';
   let open, title, text, yes, msg;

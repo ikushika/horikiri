@@ -267,6 +267,8 @@ img{display:block;max-width:100%}
 .sheet-body .desc{color:var(--sub);font-size:14px;margin-top:8px;white-space:pre-wrap}
 .sheet-body .price{font-size:19px;font-weight:700;margin-top:10px}
 .opt-title{font-size:13px;font-weight:700;margin-top:20px;color:var(--sub)}
+.opt-sold{display:flex;gap:8px;align-items:flex-start;margin-top:10px;padding:10px 12px;border-radius:10px;background:#FDF1E8;color:#9A3F06;font-size:13px;line-height:1.6;font-weight:600}
+.opt-sold svg{width:16px;height:16px;flex:none;margin-top:2px}
 .opt{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);width:100%;text-align:left;font-size:15px}
 .opt .box,.agree .box{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--mute);display:grid;place-items:center;flex:none}
 .opt .box svg,.agree .box svg{opacity:0}
@@ -347,6 +349,9 @@ img{display:block;max-width:100%}
 .time.on small{color:#ddd}
 .time:disabled{background:var(--soft);color:var(--mute);border-color:var(--soft)}
 .hint{font-size:12px;color:var(--sub);margin-top:10px}
+.opt-fix{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.opt-fix[hidden]{display:none}
+.opt-fix button{height:44px;border-radius:999px;border:1.5px solid var(--ink);font-size:14px;font-weight:700;background:#fff}
 .field{margin-top:16px}
 .field:first-of-type{margin-top:0}
 .field label,.lbl{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
@@ -691,6 +696,7 @@ textarea{min-height:84px;resize:vertical}
       <div class="dates" id="dates"></div>
       <div class="times" id="times"></div>
       <p class="hint" id="pickupHint"></p>
+      <div class="opt-fix" id="optFix" hidden></div>
       <p class="err" id="pickupErr"></p>
     </section>
 
@@ -899,6 +905,27 @@ function itemLeft(ds, m) {
   return lim == null ? Infinity : lim - (usageOf(ds).items[m.id] || 0);
 }
 const soldToday = m => !m.soldOut && itemLeft(dsOf(now()), m) <= 0;
+// カートの中で、その日だけ品切れのオプション名
+function soldOptsInCart(ds) {
+  const out = [];
+  S.cart.forEach(l => { const m = menuById(l.id); if (m) l.options.forEach(n => { const o = m.options.find(x => x.name === n); if (o && o.soldDate === ds && out.indexOf(n) < 0) out.push(n); }); });
+  return out;
+}
+// カートのすべての行からオプションを外す（同じ内容の行はまとめる）
+function removeOptFromCart(name) {
+  const out = [];
+  S.cart.forEach(l => {
+    const keep = l.options.filter(n => n !== name), key = l.id + '|' + keep.join(',');
+    const ex = out.find(x => x.key === key);
+    if (ex) ex.qty = Math.min(99, ex.qty + l.qty); else out.push({ key: key, id: l.id, options: keep, qty: l.qty });
+  });
+  S.cart = out; saveCart();
+}
+// 今日の受け取りだけ品切れのオプションの案内（お弁当の詳細）
+function optSoldNote(m) {
+  const t = dsOf(now()), names = m.options.filter(o => o.soldDate === t && !o.stopped).map(o => '「' + esc(o.name) + '」');
+  return names.length ? '<p class="opt-sold">' + ICON.clock + '<span>' + names.join('') + 'は本日分が品切れです。明日以降の受け取りならお選びいただけます。</span></p>' : '';
+}
 // 商品のタグ（本日分は売り切れ／本日あと○食／1日○食限定）
 function itemTag(m, long) {
   if (m.soldOut) return '';
@@ -1296,7 +1323,7 @@ function openItem(id) {
       (m.options.length ? '<p class="opt-title">オプション</p>' + m.options.map((o, i) =>
         (o.stopped ? '<button type="button" class="opt off" disabled aria-disabled="true"><span class="box"></span>' + esc(o.name) + '<span class="p">ただいま受付停止中</span></button>' :
         '<button type="button" class="opt' + (st.opts.indexOf(o.name) >= 0 ? ' on' : '') + '" data-o="' + i + '"><span class="box">' + ICON.check + '</span>' + esc(o.name) +
-        '<span class="p">' + (o.price ? (o.price > 0 ? '+' : '−') + yen(Math.abs(o.price)) : '') + '</span></button>')).join('') : '') +
+        '<span class="p">' + (o.price ? (o.price > 0 ? '+' : '−') + yen(Math.abs(o.price)) : '') + '</span></button>')).join('') + optSoldNote(m) : '') +
       '<div class="qty-row"><button type="button" class="qbtn" data-q="-1"' + (st.qty <= 1 ? ' disabled' : '') + ' aria-label="減らす">−</button><b>' + st.qty + '</b><button type="button" class="qbtn" data-q="1"' + (st.qty >= 30 ? ' disabled' : '') + ' aria-label="増やす">＋</button></div>' +
       '</div><button type="button" class="btn" data-add><span class="grow">カートに追加</span><span>' + yen(unit * st.qty) + '</span></button>';
     $$('[data-o]', el).forEach(b => b.onclick = () => { const o = m.options[+b.dataset.o]; if (!o || o.stopped) return; const i = st.opts.indexOf(o.name); i >= 0 ? st.opts.splice(i, 1) : st.opts.push(o.name); draw(); });
@@ -1447,12 +1474,26 @@ function renderTimes() {
   const over = limitIssues(S.date);
   if (over.length) hints.push(over.join(' / '));
   $('#pickupHint').textContent = hints.join(' ');
+  // 品切れのオプションを外して、この日に受け取るボタン
+  const so = soldOptsInCart(S.date), fx = $('#optFix');
+  fx.hidden = !so.length;
+  fx.innerHTML = so.map(n => '<button type="button" data-rmopt="' + esc(n) + '">「' + esc(n) + '」を外して、この日に受け取る</button>').join('');
+  $$('[data-rmopt]', fx).forEach(b => b.onclick = () => {
+    const n = b.dataset.rmopt; removeOptFromCart(n);
+    renderLines(); renderTimes(); renderCartBar(); renderBadges(); clearErr('pickupCard');
+    toast('「' + n + '」を外しました。金額をご確認ください');
+  });
 }
 
 function limitIssues(ds) {
   const by = {};
   S.cart.forEach(l => { by[l.id] = (by[l.id] || 0) + l.qty; });
-  return Object.keys(by).map(id => { const m = menuById(id); if (!m) return ''; const left = itemLeft(ds, m); return by[id] > left ? '「' + m.name + '」は' + (left <= 0 ? 'この日は売り切れです。別の日をお選びください' : 'この日あと' + left + '個までです') : ''; }).filter(Boolean);
+  const out = Object.keys(by).map(id => { const m = menuById(id); if (!m) return ''; const left = itemLeft(ds, m); return by[id] > left ? '「' + m.name + '」は' + (left <= 0 ? 'この日は売り切れです。別の日をお選びください' : 'この日あと' + left + '個までです') : ''; }).filter(Boolean);
+  // その日だけ品切れのオプション（店舗ダッシュボードの「今日品切れ」）
+  const sold = [];
+  S.cart.forEach(l => { const m = menuById(l.id); if (!m) return; l.options.forEach(n => { const o = m.options.find(x => x.name === n); if (o && o.soldDate === ds && sold.indexOf(n) < 0) sold.push(n); }); });
+  sold.forEach(n => out.push('「' + n + '」はこの日の分が品切れです。別の日をお選びいただくか、オプションを外してください'));
+  return out;
 }
 
 function renderPay() {

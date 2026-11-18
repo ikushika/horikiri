@@ -876,7 +876,14 @@ function openInfo() {
 // 店舗ダッシュボードの「受付を一時停止」「今日の受付を締め切る」
 function isCut(ds) { return !!S.cfg.paused || (S.cfg.cutoffDates || []).indexOf(ds) >= 0; }
 function dateList() { const out = []; for (let i = 0; i < S.cfg.days; i++) out.push(dsOf(now() + i * 86400000)); return out; }
-function usageOf(ds) { return (S.usage && S.usage[ds]) || { slots: {}, items: {} }; }
+function usageOf(ds) { return (S.usage && S.usage[ds]) || { slots: {}, items: {}, opts: {} }; }
+/** オプションのその日の残り（在庫タブの「OPT:名前」。設定がなければ Infinity） */
+function optLeft(ds, name) {
+  const d = S.stock && S.stock[ds], cap = d ? d['OPT:' + name] : null;
+  return cap == null ? Infinity : cap - ((usageOf(ds).opts || {})[name] || 0);
+}
+/** カートの中のオプションの数（名前ごと） */
+function cartOpts() { const by = {}; S.cart.forEach(l => l.options.forEach(n => { by[n] = (by[n] || 0) + l.qty; })); return by; }
 function leadOk(ds, t) { return slotMs(ds, t) - now() >= S.cfg.leadMinutes * 60000; }
 function slotLeft(ds, t) { return S.cfg.slotCap > 0 ? S.cfg.slotCap - (usageOf(ds).slots[t] || 0) : Infinity; }
 function slotState(ds, t) {
@@ -905,11 +912,10 @@ function itemLeft(ds, m) {
   return lim == null ? Infinity : lim - (usageOf(ds).items[m.id] || 0);
 }
 const soldToday = m => !m.soldOut && itemLeft(dsOf(now()), m) <= 0;
-// カートの中で、その日だけ品切れのオプション名
+// カートの中で、その日の残りを超えているオプション名
 function soldOptsInCart(ds) {
-  const out = [];
-  S.cart.forEach(l => { const m = menuById(l.id); if (m) l.options.forEach(n => { const o = m.options.find(x => x.name === n); if (o && o.soldDate === ds && out.indexOf(n) < 0) out.push(n); }); });
-  return out;
+  const by = cartOpts();
+  return Object.keys(by).filter(n => by[n] > optLeft(ds, n));
 }
 // カートのすべての行からオプションを外す（同じ内容の行はまとめる）
 function removeOptFromCart(name) {
@@ -921,10 +927,13 @@ function removeOptFromCart(name) {
   });
   S.cart = out; saveCart();
 }
-// 今日の受け取りだけ品切れのオプションの案内（お弁当の詳細）
+// 今日の受け取り分が品切れ・残りわずかのオプションの案内（お弁当の詳細）
 function optSoldNote(m) {
-  const t = dsOf(now()), names = m.options.filter(o => o.soldDate === t && !o.stopped).map(o => '「' + esc(o.name) + '」');
-  return names.length ? '<p class="opt-sold">' + ICON.clock + '<span>' + names.join('') + 'は本日分が品切れです。明日以降の受け取りならお選びいただけます。</span></p>' : '';
+  const t = dsOf(now()); if (!isOpen(t)) return '';
+  const sold = [], few = [];
+  m.options.filter(o => !o.stopped).forEach(o => { const left = optLeft(t, o.name); if (left <= 0) sold.push('「' + esc(o.name) + '」'); else if (left <= 5) few.push('「' + esc(o.name) + '」は本日あと' + left + '食'); });
+  const msg = (sold.length ? sold.join('') + 'は本日分が品切れです。明日以降の受け取りならお選びいただけます。' : '') + (few.length ? few.join('、') + 'です。' : '');
+  return msg ? '<p class="opt-sold">' + ICON.clock + '<span>' + msg + '</span></p>' : '';
 }
 // 商品のタグ（本日分は売り切れ／本日あと○食／1日○食限定）
 function itemTag(m, long) {
@@ -1489,10 +1498,12 @@ function limitIssues(ds) {
   const by = {};
   S.cart.forEach(l => { by[l.id] = (by[l.id] || 0) + l.qty; });
   const out = Object.keys(by).map(id => { const m = menuById(id); if (!m) return ''; const left = itemLeft(ds, m); return by[id] > left ? '「' + m.name + '」は' + (left <= 0 ? 'この日は売り切れです。別の日をお選びください' : 'この日あと' + left + '個までです') : ''; }).filter(Boolean);
-  // その日だけ品切れのオプション（店舗ダッシュボードの「今日品切れ」）
-  const sold = [];
-  S.cart.forEach(l => { const m = menuById(l.id); if (!m) return; l.options.forEach(n => { const o = m.options.find(x => x.name === n); if (o && o.soldDate === ds && sold.indexOf(n) < 0) sold.push(n); }); });
-  sold.forEach(n => out.push('「' + n + '」はこの日の分が品切れです。別の日をお選びいただくか、オプションを外してください'));
+  // オプションの残り（店舗ダッシュボードの「今日品切れ」・在庫タブ）
+  const byO = cartOpts();
+  Object.keys(byO).forEach(n => {
+    const left = optLeft(ds, n);
+    if (byO[n] > left) out.push(left <= 0 ? '「' + n + '」はこの日の分が品切れです。別の日をお選びいただくか、オプションを外してください' : '「' + n + '」はこの日あと' + left + '食までです');
+  });
   return out;
 }
 

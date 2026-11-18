@@ -389,6 +389,10 @@ body[data-view="menu"] .datenav,body[data-view="promo"] .datenav{display:none}
 .stock-intro b{display:block;font-size:15px}
 .stock-intro span{display:block;font-size:13px;color:var(--sub);margin-top:2px;line-height:1.6}
 .stock-msg{background:var(--yellow);color:#6B4E00;border:1px solid #EAD891;border-radius:12px;padding:10px 14px;font-size:14px;font-weight:600;margin-bottom:14px}
+.stock-h{font-size:15px;font-weight:800;margin:6px 2px 10px;display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.stock-h small{font-size:12.5px;font-weight:500;color:var(--sub)}
+#stockOptWrap{margin-top:22px}
+#stockOptWrap[hidden]{display:none}
 .stock-grid{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;transition:opacity .2s}
 .stock-grid.loading{opacity:.5;pointer-events:none}
 .sk{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:10px}
@@ -678,10 +682,15 @@ table.st{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
   <main class="stock" id="stockView" hidden>
     <div class="stock-intro">
       <svg class="i" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
-      <div><b>残りの数は、入れたいときだけ</b><span>何も入れなければ、いつも通り制限なしで受け付けます。「残り」を入れると注文が入るたびに減り、0 になるとお客様のページで売り切れになります。キャンセルが出ると戻ります。</span></div>
+      <div><b>残りの数は、入れたいときだけ</b><span>何も入れなければ、いつも通り制限なしで受け付けます。「残り」を入れると注文が入るたびに減り、0 になるとお客様のページで売り切れになります。キャンセルが出ると戻ります。ご飯大盛り・十穀米などのオプションも、下で同じように入れられます。</span></div>
     </div>
     <p class="stock-msg" id="stockMsg" hidden></p>
+    <h3 class="stock-h">お弁当</h3>
     <ul class="stock-grid" id="stockList"></ul>
+    <div id="stockOptWrap" hidden>
+      <h3 class="stock-h">オプション<small>数は、そのオプションを付けたお弁当の数です。0 にすると、その日は品切れ（お弁当は注文できます）</small></h3>
+      <ul class="stock-grid" id="stockOptList"></ul>
+    </div>
   </main>
   <main class="mview" id="menuView" hidden>
     <div class="stock-intro">
@@ -691,7 +700,7 @@ table.st{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
     <div class="mv-head"><h2>商品</h2><button class="btn primary" id="mAdd" type="button">＋ 商品を追加</button></div>
     <ul class="mgrid" id="mList"></ul>
     <div class="mv-head"><h2>オプションの原価</h2></div>
-    <p class="mv-note">オプションを付けたときに増える原価（1食あたり・税込）を、オプションごとに入れます。例：ご飯大盛り＝増えるご飯の分、11雑穀米に変更＝雑穀の分。</p>
+    <p class="mv-note">オプションを付けたときに増える原価（1食あたり・税込）を、オプションごとに入れます。例：ご飯大盛り＝増えるご飯の分、十穀米に変更＝十穀米の分。</p>
     <div class="panel"><ul class="oc-list" id="ocList"></ul></div>
   </main>
 
@@ -754,9 +763,9 @@ table.st{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
     </div>
     <p class="ctrl-hint"><b>今日の受付を締め切る</b>：今日の受け取りの注文だけ止めます。明日以降の予約は受け付け、日付が変わると自動で元に戻ります。<br><b>一時停止</b>：「再開する」を押すまで、新しい注文をすべて止めます。<br>どちらも、すぐにお客様の注文ページに反映されます。入っている注文はそのままです。</p>
     <div id="ctrlOptWrap" hidden>
-      <h4>オプションの品切れ<small>ご飯大盛り・11雑穀米など</small></h4>
+      <h4>オプションの品切れ<small>ご飯大盛り・十穀米など</small></h4>
       <ul class="ctrl-items" id="ctrlOpts"></ul>
-      <p class="ctrl-hint"><b>今日品切れ</b>：今日の受け取りだけ、そのオプションを選べなくします（11雑穀米が切れたときなど）。明日以降の予約では選べて、日付が変わると自動で「受付中」に戻ります。<br><b>停止</b>：「受付中」に戻すまで、どの日も選べなくします。どちらも、お弁当そのものは注文できます。</p>
+      <p class="ctrl-hint"><b>今日品切れ</b>：今日の受け取りだけ、そのオプションを選べなくします（十穀米が切れたときなど）。明日以降の予約では選べて、日付が変わると自動で「受付中」に戻ります。残り○食で止めたいときや、先の日の分は「在庫」タブで入れられます。<br><b>停止</b>：「受付中」に戻すまで、どの日も選べなくします。どちらも、お弁当そのものは注文できます。</p>
     </div>
     <h4>商品ごとの売り切れ</h4>
     <ul class="ctrl-items" id="ctrlItems"></ul>
@@ -1358,7 +1367,7 @@ function tickClock() {
 /* ===== 受付・売り切れ ===== */
 const ITEM_MODES = [['on', '販売中'], ['today', '今日売切'], ['stop', '販売停止']];
 const OPT_MODES = [['on', '受付中'], ['today', '今日品切れ'], ['stop', '停止']];
-const OPT_NOTE = { on: n => n + '品のお弁当で選べます', today: () => '今日の受け取りは選べません（明日から自動で受付中）', stop: () => 'いま選べません（すべてのお弁当・どの日も）' };
+const OPT_NOTE = { on: o => o.left != null ? '今日の残り ' + o.left + '食（在庫タブで変えられます）' : o.items + '品のお弁当で選べます', today: () => '今日の受け取りは選べません（明日から自動で受付中）', stop: () => 'いま選べません（すべてのお弁当・どの日も）' };
 function acceptState(c) {
   if (!c) return null;
   if (c.paused) return { cls: 'paused', label: '一時停止中', text: '新しい注文をすべて止めています' };
@@ -1400,7 +1409,7 @@ function renderControls() {
   const ops = c.options || [];
   $('#ctrlOptWrap').hidden = !ops.length;
   $('#ctrlOpts').innerHTML = ops.map(o =>
-    '<li class="st-' + o.state + '"><div class="ci"><b>' + esc(o.name) + '</b><small' + (o.state !== 'on' ? ' class="off">' : '>') + (OPT_NOTE[o.state] || OPT_NOTE.on)(o.items) + '</small></div>' +
+    '<li class="st-' + o.state + '"><div class="ci"><b>' + esc(o.name) + '</b><small' + (o.state !== 'on' ? ' class="off">' : '>') + (OPT_NOTE[o.state] || OPT_NOTE.on)(o) + '</small></div>' +
     '<div class="seg3" role="radiogroup" aria-label="' + esc(o.name) + '">' + OPT_MODES.map(([m, l]) =>
       '<button type="button" role="radio" aria-checked="' + (o.state === m) + '" class="' + (o.state === m ? 'on' : '') + '" data-opt="' + esc(o.name) + '" data-m="' + m + '"' + (busy ? ' disabled' : '') + '>' + l + '</button>').join('') + '</div></li>').join('');
 }
@@ -1423,6 +1432,7 @@ async function control(op, extra, msg, undo) {
     if (d.controls) S.controls = d.controls;
     renderControls();
     if (msg) toast(msg, undo || null);
+    if (op === 'option') refresh(); // 在庫タブ（今日の残り0）も合わせる
   } catch (err) {
     S.ctlBusy--;
     S.controls = prev; renderControls();
@@ -1827,7 +1837,22 @@ async function onCalDay(ds) {
 }
 
 /* ===== 在庫（残り○食。入れたいときだけ） ===== */
-function stockItem(id) { return S.stock && S.stock.items.find(x => x.id === id); }
+function stockItem(id) { return S.stock && (S.stock.items.find(x => x.id === id) || (S.stock.options || []).find(x => x.id === id)); }
+// 在庫のカード1枚（お弁当・オプション共通）
+function skCard(it, editable, busy) {
+  const has = it.left != null, zero = has && it.left <= 0, low = has && !zero && it.left <= 3;
+  const flag = it.opt ? (it.stopped ? '<span class="sk-flag stop">停止中</span>' : '') :
+    it.soldOut ? '<span class="sk-flag stop">販売停止</span>' : it.soldDate ? '<span class="sk-flag today">この日は売切</span>' : '';
+  const big = has ? '<b class="num">' + it.left + '</b><em>食</em>' : '<span class="free">制限なし</span>';
+  const how = it.set ? esc(it.setAt) + ' に「残り' + it.setLeft + '」で設定' : it.dailyLimit ? 'メニューの1日の上限 ' + it.dailyLimit + '食' : '';
+  return '<li class="sk' + (it.opt ? ' opt' : '') + (it.set ? ' set' : '') + (zero ? ' zero' : '') + (low ? ' low' : '') + '">' +
+    '<div class="sk-top"><b>' + esc(it.name) + '</b>' + flag + '</div>' +
+    '<div class="sk-mid"><div class="sk-left">' + (has ? '<small>' + (zero ? (it.opt ? '品切れ' : '売り切れ') : '残り') + '</small>' : '') + big + '</div>' +
+    '<div class="sk-meta">この日の予約 <b class="num">' + it.ordered + '</b>食' + (how ? '<br>' + how : '') + '</div></div>' +
+    (editable ? '<div class="sk-acts"><button class="btn line" type="button" data-sk="' + esc(it.id) + '"' + (busy ? ' disabled' : '') + '>' + (it.set ? '残りを変える' : '残りを入れる') + '</button>' +
+      (it.set ? '<button class="btn ghost" type="button" data-skclear="' + esc(it.id) + '"' + (busy ? ' disabled' : '') + '>解除</button>' : '') + '</div>' : '') +
+    '</li>';
+}
 function renderStock() {
   if (S.view !== 'stock') return;
   const list = $('#stockList'), msg = $('#stockMsg');
@@ -1843,19 +1868,10 @@ function renderStock() {
   msg.hidden = !past;
   if (past) msg.textContent = '過ぎた日の在庫は変更できません。今日か、これからの日付を選んでください。';
   const busy = !!S.skBusy;
-  list.innerHTML = st.items.length ? st.items.map(it => {
-    const has = it.left != null, zero = has && it.left <= 0, low = has && !zero && it.left <= 3;
-    const flag = it.soldOut ? '<span class="sk-flag stop">販売停止</span>' : it.soldDate ? '<span class="sk-flag today">この日は売切</span>' : '';
-    const big = has ? '<b class="num">' + it.left + '</b><em>食</em>' : '<span class="free">制限なし</span>';
-    const how = it.set ? esc(it.setAt) + ' に「残り' + it.setLeft + '」で設定' : it.dailyLimit ? 'メニューの1日の上限 ' + it.dailyLimit + '食' : '';
-    return '<li class="sk' + (it.set ? ' set' : '') + (zero ? ' zero' : '') + (low ? ' low' : '') + '">' +
-      '<div class="sk-top"><b>' + esc(it.name) + '</b>' + flag + '</div>' +
-      '<div class="sk-mid"><div class="sk-left">' + (has ? '<small>' + (zero ? '売り切れ' : '残り') + '</small>' : '') + big + '</div>' +
-      '<div class="sk-meta">この日の予約 <b class="num">' + it.ordered + '</b>食' + (how ? '<br>' + how : '') + '</div></div>' +
-      (st.editable ? '<div class="sk-acts"><button class="btn line" type="button" data-sk="' + esc(it.id) + '"' + (busy ? ' disabled' : '') + '>' + (it.set ? '残りを変える' : '残りを入れる') + '</button>' +
-        (it.set ? '<button class="btn ghost" type="button" data-skclear="' + esc(it.id) + '"' + (busy ? ' disabled' : '') + '>解除</button>' : '') + '</div>' : '') +
-      '</li>';
-  }).join('') : '<li class="prod-empty">メニューシートに商品がありません</li>';
+  list.innerHTML = st.items.length ? st.items.map(it => skCard(it, st.editable, busy)).join('') : '<li class="prod-empty">メニューシートに商品がありません</li>';
+  const ops = st.options || [];
+  $('#stockOptWrap').hidden = !ops.length;
+  $('#stockOptList').innerHTML = ops.map(it => skCard(it, st.editable, busy)).join('');
 }
 let skId = '';
 function openStock(id) {
@@ -1863,9 +1879,9 @@ function openStock(id) {
   skId = id;
   const ds = S.stock.date, a = ds.split('-').map(Number);
   $('#skTitle').textContent = it.name;
-  $('#skSub').textContent = a[1] + '月' + a[2] + '日(' + wd(ds) + ')の受け取り分 ・ いまの予約 ' + it.ordered + '食';
+  $('#skSub').textContent = a[1] + '月' + a[2] + '日(' + wd(ds) + ')の受け取り分 ・ いまの予約 ' + it.ordered + '食' + (it.opt ? '（このオプションを付けた数）' : '');
   $('#skInput').value = it.left != null ? it.left : '';
-  $('#skQuick').innerHTML = [0, 3, 5, 10, 20, 30].map(n => '<button type="button" data-q="' + n + '"' + (n === 0 ? ' class="zero"' : '') + '>' + (n === 0 ? '0（売り切れ）' : n) + '</button>').join('');
+  $('#skQuick').innerHTML = [0, 3, 5, 10, 20, 30].map(n => '<button type="button" data-q="' + n + '"' + (n === 0 ? ' class="zero"' : '') + '>' + (n === 0 ? (it.opt ? '0（品切れ）' : '0（売り切れ）') : n) + '</button>').join('');
   $('#skClear').hidden = !it.set;
   $('#stockModal').hidden = false;
   skSync();
@@ -1874,7 +1890,8 @@ function skVal() { const v = $('#skInput').value.trim(); if (v === '') return nu
 function skSync() {
   const v = skVal(), ok = v !== null && !Number.isNaN(v);
   $('#skSave').disabled = !ok || !!S.skBusy;
-  $('#skSave').textContent = ok ? (v === 0 ? '売り切れにする' : '残り ' + v + '食で設定') : '数を入れてください';
+  const it = stockItem(skId);
+  $('#skSave').textContent = ok ? (v === 0 ? (it && it.opt ? '品切れにする' : '売り切れにする') : '残り ' + v + '食で設定') : '数を入れてください';
   $('#skQuick').querySelectorAll('button').forEach(b => b.classList.toggle('on', ok && Number(b.dataset.q) === v));
 }
 function skStep(n) { const v = skVal(); const base = v === null || Number.isNaN(v) ? 0 : v; $('#skInput').value = Math.max(0, Math.min(999, base + n)); skSync(); }
@@ -1900,7 +1917,7 @@ async function saveStock(id, body, msg) {
 function onStockSave() {
   const it = stockItem(skId), v = skVal();
   if (!it || v === null || Number.isNaN(v) || S.skBusy) return;
-  saveStock(skId, { left: v }, v === 0 ? '「' + it.name + '」をこの日は売り切れにしました' : '「' + it.name + '」を残り ' + v + '食にしました');
+  saveStock(skId, { left: v }, v === 0 ? '「' + it.name + '」をこの日は' + (it.opt ? '品切れ' : '売り切れ') + 'にしました' : '「' + it.name + '」を残り ' + v + '食にしました');
 }
 function onStockClear(id) {
   const it = stockItem(id); if (!it || S.skBusy) return;
@@ -2174,12 +2191,17 @@ const Demo = (function () {
   const stockSet = {}; // { date: { id: { cap, setLeft, setAt } } }
   const demoDays = { open: {}, closed: {} };
   const usedOf = (date, name) => (orders || []).filter(o => o.date === date && isValid(o)).reduce((t, o) => t + o.lines.filter(l => l.name === name).reduce((u, l) => u + l.qty, 0), 0);
+  const usedOptOf = (date, opt) => (orders || []).filter(o => o.date === date && isValid(o)).reduce((t, o) => t + o.lines.filter(l => (l.options || []).indexOf(opt) >= 0).reduce((u, l) => u + l.qty, 0), 0);
+  const optLeftOf = (date, opt) => { const x = (stockSet[date] || {})['OPT:' + opt]; return x ? Math.max(0, x.cap - usedOptOf(date, opt)) : null; };
   function stock(date, today) {
     controls(today);
     return { date: date, editable: date >= today, items: ctl.items.map(it => {
       const q = usedOf(date, it.name), x = (stockSet[date] || {})[it.id];
       const cap = x ? x.cap : (it.dailyLimit > 0 ? it.dailyLimit : null);
       return { id: it.id, name: it.name, ordered: q, dailyLimit: it.dailyLimit, set: !!x, cap: cap, left: cap === null ? null : Math.max(0, cap - q), setLeft: x ? x.setLeft : null, setAt: x ? x.setAt : '', soldOut: it.state === 'stop', soldDate: date === today && it.state === 'today' };
+    }), options: ctl.options.map(o => {
+      const id = 'OPT:' + o.name, x = (stockSet[date] || {})[id], q = usedOptOf(date, o.name);
+      return { id: id, opt: true, name: o.name, items: o.items, ordered: q, set: !!x, cap: x ? x.cap : null, left: x ? Math.max(0, x.cap - q) : null, setLeft: x ? x.setLeft : null, setAt: x ? x.setAt : '', stopped: o.state === 'stop' };
     }) };
   }
   function mk(date, time, createdAgoMin, status, payState, lines, extra) {
@@ -2230,6 +2252,7 @@ const Demo = (function () {
     ctl.closedToday = tc.state === 'holiday' || tc.state === 'closed';
     ctl.specialToday = tc.state === 'open';
     ctl.items.forEach(it => { it.todayQty = usedOf(today, it.name); const x = (stockSet[today] || {})[it.id]; it.stockLeft = x ? Math.max(0, x.cap - it.todayQty) : null; });
+    ctl.options.forEach(o => { o.left = optLeftOf(today, o.name); if (o.state !== 'stop') o.state = o.left === 0 ? 'today' : 'on'; });
     return JSON.parse(JSON.stringify(ctl));
   }
   function rnd(seed) { let h = 2166136261; for (let i = 0; i < seed.length; i++) { h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619); } return ((h >>> 0) % 10000) / 10000; }
@@ -2274,8 +2297,8 @@ const Demo = (function () {
   const wait = v => new Promise(r => setTimeout(() => r(JSON.parse(JSON.stringify(v))), 250));
   function menuData() {
     const RID = ['B04', 'B02', 'B01', 'B06', 'B05', 'B03', 'B07']; // 本番のメニューと同じID（写真が合うように）
-    if (!dm) dm = { ok: true, items: MENU.map((m, i) => ({ id: RID[i], category: 'お弁当', name: m[0], desc: '', price: m[1], image: '', options: [{ name: 'ご飯大盛り', price: 100 }, { name: '11雑穀米に変更', price: 100 }], dailyLimit: 0, soldOut: false, visible: true, order: i + 1, badges: i === 4 ? ['人気No.1'] : [], cost: i === 0 ? 365 : null })),
-      optionCosts: [{ name: 'ご飯大盛り', cost: 32 }, { name: '11雑穀米に変更', cost: null }] };
+    if (!dm) dm = { ok: true, items: MENU.map((m, i) => ({ id: RID[i], category: 'お弁当', name: m[0], desc: '', price: m[1], image: '', options: [{ name: 'ご飯大盛り', price: 100 }, { name: '十穀米に変更', price: 100 }], dailyLimit: 0, soldOut: false, visible: true, order: i + 1, badges: i === 4 ? ['人気No.1'] : [], cost: i === 0 ? 365 : null })),
+      optionCosts: [{ name: 'ご飯大盛り', cost: 32 }, { name: '十穀米に変更', cost: null }] };
     return dm;
   }
   function promoData() {
@@ -2343,11 +2366,11 @@ const Demo = (function () {
         const today = jstNow().date;
         if (!b.date || b.date < today) return Promise.resolve({ ok: false, error: '過ぎた日の在庫は変更できません' });
         controls(today);
-        const it = ctl.items.find(x => x.id === b.id);
+        const isOpt = String(b.id).indexOf('OPT:') === 0, it = isOpt ? ctl.options.find(x => 'OPT:' + x.name === b.id) : ctl.items.find(x => x.id === b.id);
         if (!it) return Promise.resolve({ ok: false, error: '商品が見つかりません' });
         const day = stockSet[b.date] || (stockSet[b.date] = {});
         if (b.clear) delete day[b.id];
-        else { const q = usedOf(b.date, it.name), n = new Date(Date.now() + 9 * 3600000); day[b.id] = { cap: q + Number(b.left), setLeft: Number(b.left), setAt: String(n.getUTCHours()).padStart(2, '0') + ':' + String(n.getUTCMinutes()).padStart(2, '0') }; }
+        else { const q = isOpt ? usedOptOf(b.date, it.name) : usedOf(b.date, it.name), n = new Date(Date.now() + 9 * 3600000); day[b.id] = { cap: q + Number(b.left), setLeft: Number(b.left), setAt: String(n.getUTCHours()).padStart(2, '0') + ':' + String(n.getUTCMinutes()).padStart(2, '0') }; }
         return new Promise(r => setTimeout(() => r({ ok: true, stock: stock(b.date, today) }), 300));
       }
 
@@ -2357,7 +2380,15 @@ const Demo = (function () {
         if (b.op === 'pause') ctl.paused = true; else if (b.op === 'resume') ctl.paused = false;
         else if (b.op === 'closeToday') ctl.cutToday = true; else if (b.op === 'openToday') ctl.cutToday = false;
         else if (b.op === 'item') { const it = ctl.items.find(x => x.id === b.id); if (it) it.state = b.mode; }
-        else if (b.op === 'option') { const o = ctl.options.find(x => x.name === b.name); if (o) o.state = b.mode; }
+        else if (b.op === 'option') {
+          const o = ctl.options.find(x => x.name === b.name);
+          if (o) {
+            o.state = b.mode === 'stop' ? 'stop' : 'on';
+            const day = stockSet[today] || (stockSet[today] = {}), id = 'OPT:' + o.name, q = usedOptOf(today, o.name);
+            if (b.mode === 'today') day[id] = { cap: q, setLeft: 0, setAt: '' };
+            if (b.mode === 'on' && day[id] && day[id].cap - q <= 0) delete day[id];
+          }
+        }
         else if (b.op === 'day') {
           if (b.date < today) return Promise.resolve({ ok: false, error: '過ぎた日は変更できません' });
           const x = ctl.calendar.find(y => y.date === b.date);
@@ -2383,10 +2414,10 @@ function bind() {
   $('#nextDay').onclick = () => S.view === 'sales' ? shiftMonth(1) : goDate(addDays(S.viewDate || S.today, 1));
   $('#todayBtn').onclick = () => { if (S.view === 'sales') { S.month = S.today.slice(0, 7); renderHeader(); loadSales(); } else goDate(S.today); };
   document.querySelectorAll('.views [data-view]').forEach(b => { b.onclick = () => setView(b.dataset.view); });
-  $('#stockList').addEventListener('click', e => {
+  ['#stockList', '#stockOptList'].forEach(sel => $(sel).addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
     if (b.dataset.sk) openStock(b.dataset.sk); else if (b.dataset.skclear) onStockClear(b.dataset.skclear);
-  });
+  }));
   $('#skInput').addEventListener('input', skSync);
   $('#skInput').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); onStockSave(); } });
   $('#skMinus').onclick = () => skStep(-1);
